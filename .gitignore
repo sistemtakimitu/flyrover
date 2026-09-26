@@ -1,0 +1,31 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+.env/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+
+# Large data files (Connectome CSVs, weights, etc.)
+*.csv
+*.h5
+*.pt
+*.pth
+*.npy
+*.npz
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
