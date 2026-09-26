@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-# flyrover
-Connectome rover project
+
 =======
 # FlyRover 
 
