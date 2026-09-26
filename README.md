@@ -1,5 +1,3 @@
-
-=======
 # FlyRover 
 
 Bio-Inspired Autonomous Rover (Mars Surface Application) - ITU Sistem Takımı
