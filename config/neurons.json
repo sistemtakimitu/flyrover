@@ -1,0 +1,16 @@
+{
+  "visual_perception": {
+    "T4_ON_motion": {
+      "T4a": { "label": "ME.LOP.3991", "root_id": 720575940618989214 },
+      "T4b": { "label": "ME.LOP.2680", "root_id": 720575940614747554 },
+      "T4c": { "label": "ME.LOP.2410", "root_id": 720575940617643705 },
+      "T4d": { "label": "ME.LOP.3762", "root_id": 720575940615263298 }
+    },
+    "T5_OFF_motion": {
+      "T5a": { "label": "LO.LOP.140", "root_id": 720575940628381640 },
+      "T5b": { "label": "LO.LOP.4922", "root_id": 720575940620032336 },
+      "T5c": { "label": "LO.LOP.210", "root_id": 720575940624769260 },
+      "T5d": { "label": "LO.LOP.4213", "root_id": 720575940628717062 }
+    }
+  }
+}
