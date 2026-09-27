@@ -12,5 +12,15 @@
       "T5c": { "label": "LO.LOP.210", "root_id": 720575940624769260 },
       "T5d": { "label": "LO.LOP.4213", "root_id": 720575940628717062 }
     }
+  },
+  "threat_and_target": {
+    "threat_detection": {
+      "LC4": { "label": "LO.PVLP.157", "root_id": 720575940628064260 },
+      "LPLC2": { "label": "LOP.PVLP.22", "root_id": 720575940624931530 }
+    },
+    "target_pursuit": {
+      "LC10a": { "label": "LO.AOTU.358", "root_id": 720575940624055559 },
+      "LC11": { "label": "LO.PVLP.53", "root_id": 720575940604281120 }
+    }
   }
 }
