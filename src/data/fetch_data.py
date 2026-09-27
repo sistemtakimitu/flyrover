@@ -36,7 +36,8 @@ def fetch_synapses(client, root_ids):
         # FlyWire public versiyonundan sinapslari al
         synapses_df = client.materialize.synapse_query(
             pre_ids=root_ids,
-            post_ids=root_ids
+            post_ids=root_ids,
+            synapse_table='synapses_nt_v1'
         )
         return synapses_df
     except Exception as e:
@@ -49,7 +50,7 @@ def fetch_soma_coordinates(client, root_ids):
     try:
         # Flywire public'te nucleus tablosu üzerinden koordinat alinir
         nuclei_df = client.materialize.query_table(
-            'nucleus_neuron_svm', 
+            'nuclei_v1', 
             filter_in_dict={'pt_root_id': root_ids}
         )
         # xyz koordinatlarini al (genelde pt_position sütununda array halinde gelir)
