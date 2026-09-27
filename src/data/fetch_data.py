@@ -76,9 +76,10 @@ def main():
         print("Uyari: neurons.json icinde root_id bulunamadi.")
         return
 
-    # CAVEClient baslat
-    print("\nCAVEclient baglantisi saglaniyor (flywire_fafb_public)...")
+    # CAVEClient baslat (Versiyon 783'e sabitleniyor - NASA standardi)
+    print("\nCAVEclient baglantisi saglaniyor (flywire_fafb_public, v783)...")
     client = CAVEclient('flywire_fafb_public')
+    client.materialize.version = 783
     
     # 1. Sinaps (Baglanti) verilerini cek
     syn_df = fetch_synapses(client, root_ids)
@@ -110,7 +111,8 @@ def main():
                 "post_name": id_to_name.get(post, str(post)),
                 "pre_root_id": pre,
                 "post_root_id": post,
-                "weight": w
+                "weight": w,
+                "edge_type": "measured"  # Dogrudan ölcülmüs (1-hop) gercek sinaps
             })
             
     export_data = {
