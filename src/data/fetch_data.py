@@ -58,7 +58,7 @@ def fetch_soma_coordinates(client, root_ids):
         for _, row in nuclei_df.iterrows():
             rid = int(row['pt_root_id'])
             pos = row['pt_position'] # [x, y, z]
-            soma_dict[rid] = pos
+            soma_dict[rid] = pos.tolist() if hasattr(pos, 'tolist') else list(pos)
         return soma_dict
     except Exception as e:
         print(f"Soma koordinatlari alinamadi (Tablo ismi farkli olabilir): {e}")
