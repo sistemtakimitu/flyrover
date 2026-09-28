@@ -22,5 +22,24 @@
       "LC10a": { "label": "LO.AOTU.358", "root_id": 720575940624055559 },
       "LC11": { "label": "LO.PVLP.53", "root_id": 720575940604281120 }
     }
+  },
+  "navigation_and_compass": {
+    "VS_stabilization": {
+      "VS1": { "label": "LOP.19", "root_id": 720575940619878961 },
+      "VS2": { "label": "LOP.IPS.10", "root_id": 720575940640722851 },
+      "VS3": { "label": "LOP.IPS.5", "root_id": 720575940641812699 },
+      "VS4": { "label": "LOP.IPS.17", "root_id": 720575940659799937 },
+      "VS5": { "label": "LOP.42", "root_id": 720575940639151694 },
+      "VS6": { "label": "LOP.IPS.18", "root_id": 720575940626928521 }
+    },
+    "EPG_compass": {
+      "EPG": { "label": "EB.57", "root_id": 720575940616569601 }
+    },
+    "steering_PFL3_FC2": {
+      "PFL3": { "label": "FB.LAL.10", "root_id": 720575940601870952 },
+      "FC2A": { "label": "FB.337", "root_id": 720575940618792942 },
+      "FC2B": { "label": "FB.216", "root_id": 720575940627162344 },
+      "FC2C": { "label": "FB.472", "root_id": 720575940621193864 }
+    }
   }
 }
