@@ -41,5 +41,11 @@
       "FC2B": { "label": "FB.216", "root_id": 720575940627162344 },
       "FC2C": { "label": "FB.472", "root_id": 720575940621193864 }
     }
+  },
+  "motor_and_action": {
+    "forward_sprint_BPN": {
+      "Type_1_BPN": { "label": "CL210", "root_id": 720575940625414686 },
+      "Type_3_BPN": { "label": "CB4187", "root_id": 720575940615192588 }
+    }
   }
 }
