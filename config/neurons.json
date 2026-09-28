@@ -64,7 +64,20 @@
       "DNa02_1": { "label": "LAL.IPS.2", "root_id": 720575940604737708 },
       "DNa02_2": { "label": "LAL.IPS.3", "root_id": 720575940629327659 },
       "DNb05_1": { "label": "PLP.GNG.1", "root_id": 720575940628352850 },
-      "DNb05_2": { "label": "SPS.GNG.2", "root_id": 720575940629461442 }
+      "DNb05_2": { "label": "SPS.GNG.2", "root_id": 720575940629461442 },
+      "DNb06_1": { "label": "IPS.GNG.17", "root_id": 720575940637308605 },
+      "DNg13_1": { "label": "VES.20", "root_id": 720575940616471052 },
+      "DNg13_2": { "label": "VES.22", "root_id": 720575940606112940 }
+    },
+    "stopping_and_braking": {
+      "Foxglove_1": { "label": "GNG.85", "root_id": 720575940611160930 },
+      "Foxglove_2": { "label": "GNG.88", "root_id": 720575940628755815 }
+    },
+    "emergency_escape_DN": {
+      "DNb01_1": { "label": "SPS.GNG.8", "root_id": 720575940625878160 },
+      "DNb01_2": { "label": "SPS.16", "root_id": 720575940630758418 },
+      "DNa15_1": { "label": "IPS.GNG.7", "root_id": 720575940631759663 },
+      "DNa15_2": { "label": "IPS.GNG.11", "root_id": 720575940609488942 }
     }
   }
 }
