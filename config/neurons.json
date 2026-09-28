@@ -53,6 +53,18 @@
       "aSP9_1": { "label": "LH.AVLP.30", "root_id": 720575940643651784 },
       "aSP9_2": { "label": "LH.PVLP.6", "root_id": 720575940623867911 },
       "pSP9_1": { "label": "LH.923", "root_id": 720575940624977930 }
+    },
+    "backward_walk_MDN": {
+      "MDN_1": { "label": "LAL.GNG.7", "root_id": 720575940616026939 },
+      "MDN_2": { "label": "LAL.GNG.9", "root_id": 720575940610236514 }
+    },
+    "steering_motor_DN": {
+      "DNa01_1": { "label": "LAL.GNG.14", "root_id": 720575940626328707 },
+      "DNa01_2": { "label": "LAL.GNG.15", "root_id": 720575940618167579 },
+      "DNa02_1": { "label": "LAL.IPS.2", "root_id": 720575940604737708 },
+      "DNa02_2": { "label": "LAL.IPS.3", "root_id": 720575940629327659 },
+      "DNb05_1": { "label": "PLP.GNG.1", "root_id": 720575940628352850 },
+      "DNb05_2": { "label": "SPS.GNG.2", "root_id": 720575940629461442 }
     }
   }
 }
