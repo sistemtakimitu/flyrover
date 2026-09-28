@@ -45,7 +45,14 @@
   "motor_and_action": {
     "forward_sprint_BPN": {
       "Type_1_BPN": { "label": "CL210", "root_id": 720575940625414686 },
-      "Type_3_BPN": { "label": "CB4187", "root_id": 720575940615192588 }
+      "Type_2_BPN": { "label": "PLP.SMP.43", "root_id": 720575940630460975 },
+      "Type_3_BPN": { "label": "CB4187", "root_id": 720575940615192588 },
+      "Type_4_BPN": { "label": "SMP.1032", "root_id": 720575940613107119 }
+    },
+    "forward_pursuit_P9": {
+      "aSP9_1": { "label": "LH.AVLP.30", "root_id": 720575940643651784 },
+      "aSP9_2": { "label": "LH.PVLP.6", "root_id": 720575940623867911 },
+      "pSP9_1": { "label": "LH.923", "root_id": 720575940624977930 }
     }
   }
 }
