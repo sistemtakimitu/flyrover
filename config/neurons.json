@@ -52,7 +52,8 @@
     "forward_pursuit_P9": {
       "aSP9_1": { "label": "LH.AVLP.30", "root_id": 720575940643651784 },
       "aSP9_2": { "label": "LH.PVLP.6", "root_id": 720575940623867911 },
-      "pSP9_1": { "label": "LH.923", "root_id": 720575940624977930 }
+      "pSP9_1": { "label": "LH.923", "root_id": 720575940624977930 },
+      "pSP9_2": { "label": "LH.789", "root_id": 720575940626965258 }
     },
     "backward_walk_MDN": {
       "MDN_1": { "label": "LAL.GNG.7", "root_id": 720575940616026939 },
@@ -66,6 +67,7 @@
       "DNb05_1": { "label": "PLP.GNG.1", "root_id": 720575940628352850 },
       "DNb05_2": { "label": "SPS.GNG.2", "root_id": 720575940629461442 },
       "DNb06_1": { "label": "IPS.GNG.17", "root_id": 720575940637308605 },
+      "DNb06_2": { "label": "IPS.86", "root_id": 720575940629041879 },
       "DNg13_1": { "label": "VES.20", "root_id": 720575940616471052 },
       "DNg13_2": { "label": "VES.22", "root_id": 720575940606112940 }
     },
