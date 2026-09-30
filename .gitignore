@@ -29,3 +29,6 @@ env/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Local query cache (src/data/fetch_data.py)
+data/cache/
