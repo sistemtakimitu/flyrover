@@ -1,0 +1,2350 @@
+{
+  "nodes": {
+    "720575940618989214": {
+      "name": "T4_ON_motion_T4a",
+      "soma_xyz": [
+        755616,
+        249248,
+        234800
+      ]
+    },
+    "720575940614747554": {
+      "name": "T4_ON_motion_T4b",
+      "soma_xyz": [
+        749600,
+        235488,
+        234520
+      ]
+    },
+    "720575940617643705": {
+      "name": "T4_ON_motion_T4c",
+      "soma_xyz": [
+        747136,
+        247584,
+        234400
+      ]
+    },
+    "720575940615263298": {
+      "name": "T4_ON_motion_T4d",
+      "soma_xyz": [
+        751424,
+        247328,
+        238560
+      ]
+    },
+    "720575940628381640": {
+      "name": "T5_OFF_motion_T5a",
+      "soma_xyz": [
+        290144,
+        269248,
+        267720
+      ]
+    },
+    "720575940620032336": {
+      "name": "T5_OFF_motion_T5b",
+      "soma_xyz": [
+        278208,
+        242496,
+        273880
+      ]
+    },
+    "720575940624769260": {
+      "name": "T5_OFF_motion_T5c",
+      "soma_xyz": null
+    },
+    "720575940628717062": {
+      "name": "T5_OFF_motion_T5d",
+      "soma_xyz": [
+        288704,
+        203744,
+        263840
+      ]
+    },
+    "720575940645821316": {
+      "name": "threat_detection_LC4_R",
+      "soma_xyz": [
+        670816,
+        283360,
+        126920
+      ]
+    },
+    "720575940640612480": {
+      "name": "threat_detection_LC4_L",
+      "soma_xyz": [
+        377984,
+        266176,
+        157080
+      ]
+    },
+    "720575940630731847": {
+      "name": "threat_detection_LPLC2_L",
+      "soma_xyz": [
+        389568,
+        219200,
+        222720
+      ]
+    },
+    "720575940624931530": {
+      "name": "threat_detection_LPLC2_R",
+      "soma_xyz": [
+        699264,
+        189440,
+        185360
+      ]
+    },
+    "720575940622187329": {
+      "name": "target_pursuit_LC10a_R",
+      "soma_xyz": [
+        711520,
+        209792,
+        146560
+      ]
+    },
+    "720575940628553515": {
+      "name": "target_pursuit_LC10a_L",
+      "soma_xyz": null
+    },
+    "720575940626730127": {
+      "name": "target_pursuit_LC11_R",
+      "soma_xyz": [
+        692928,
+        221504,
+        230800
+      ]
+    },
+    "720575940624625040": {
+      "name": "target_pursuit_LC11_L",
+      "soma_xyz": [
+        371136,
+        222176,
+        252840
+      ]
+    },
+    "720575940619878961": {
+      "name": "VS_stabilization_VS1",
+      "soma_xyz": [
+        728960,
+        225888,
+        239400
+      ]
+    },
+    "720575940640722851": {
+      "name": "VS_stabilization_VS2",
+      "soma_xyz": [
+        330240,
+        236672,
+        273440
+      ]
+    },
+    "720575940641812699": {
+      "name": "VS_stabilization_VS3",
+      "soma_xyz": [
+        704032,
+        263008,
+        238920
+      ]
+    },
+    "720575940659799937": {
+      "name": "VS_stabilization_VS4",
+      "soma_xyz": [
+        710976,
+        261216,
+        242120
+      ]
+    },
+    "720575940639151694": {
+      "name": "VS_stabilization_VS5",
+      "soma_xyz": [
+        707968,
+        250528,
+        240720
+      ]
+    },
+    "720575940626928521": {
+      "name": "VS_stabilization_VS6",
+      "soma_xyz": [
+        706880,
+        259456,
+        240680
+      ]
+    },
+    "720575940616569601": {
+      "name": "EPG_compass_EPG",
+      "soma_xyz": [
+        596704,
+        180320,
+        212680
+      ]
+    },
+    "720575940601870952": {
+      "name": "steering_PFL3_FC2_PFL3",
+      "soma_xyz": null
+    },
+    "720575940618792942": {
+      "name": "steering_PFL3_FC2_FC2A",
+      "soma_xyz": [
+        572992,
+        214496,
+        207040
+      ]
+    },
+    "720575940627162344": {
+      "name": "steering_PFL3_FC2_FC2B",
+      "soma_xyz": [
+        477568,
+        171328,
+        218080
+      ]
+    },
+    "720575940621193864": {
+      "name": "steering_PFL3_FC2_FC2C",
+      "soma_xyz": [
+        586208,
+        184288,
+        211240
+      ]
+    },
+    "720575940625895708": {
+      "name": "forward_sprint_BPN_Type_1_BPN_1",
+      "soma_xyz": [
+        495424,
+        116224,
+        155080
+      ]
+    },
+    "720575940621395233": {
+      "name": "forward_sprint_BPN_Type_1_BPN_2",
+      "soma_xyz": [
+        562752,
+        121504,
+        146560
+      ]
+    },
+    "720575940622022071": {
+      "name": "forward_sprint_BPN_Type_2_BPN_1",
+      "soma_xyz": [
+        512416,
+        93792,
+        129440
+      ]
+    },
+    "720575940632802785": {
+      "name": "forward_sprint_BPN_Type_2_BPN_2",
+      "soma_xyz": [
+        556576,
+        96160,
+        122640
+      ]
+    },
+    "720575940628490028": {
+      "name": "forward_sprint_BPN_Type_3_BPN_1",
+      "soma_xyz": [
+        512928,
+        91744,
+        124760
+      ]
+    },
+    "720575940634714804": {
+      "name": "forward_sprint_BPN_Type_3_BPN_2",
+      "soma_xyz": null
+    },
+    "720575940603250860": {
+      "name": "forward_sprint_BPN_Type_4_BPN_1",
+      "soma_xyz": [
+        498208,
+        102048,
+        148800
+      ]
+    },
+    "720575940613107119": {
+      "name": "forward_sprint_BPN_Type_4_BPN_2",
+      "soma_xyz": [
+        552896,
+        94624,
+        123240
+      ]
+    },
+    "720575940643651784": {
+      "name": "forward_pursuit_P9_aSP9_1",
+      "soma_xyz": [
+        318816,
+        182912,
+        126960
+      ]
+    },
+    "720575940623867911": {
+      "name": "forward_pursuit_P9_aSP9_2",
+      "soma_xyz": [
+        322272,
+        181152,
+        118840
+      ]
+    },
+    "720575940624977930": {
+      "name": "forward_pursuit_P9_pSP9_1",
+      "soma_xyz": [
+        725920,
+        172288,
+        114880
+      ]
+    },
+    "720575940626965258": {
+      "name": "forward_pursuit_P9_pSP9_2",
+      "soma_xyz": [
+        317984,
+        144288,
+        151200
+      ]
+    },
+    "720575940616026939": {
+      "name": "backward_walk_MDN_MDN_1",
+      "soma_xyz": [
+        517568,
+        100832,
+        113880
+      ]
+    },
+    "720575940610236514": {
+      "name": "backward_walk_MDN_MDN_2",
+      "soma_xyz": [
+        530976,
+        120480,
+        122720
+      ]
+    },
+    "720575940626328707": {
+      "name": "steering_motor_DN_DNa01_1",
+      "soma_xyz": [
+        631552,
+        186688,
+        36120
+      ]
+    },
+    "720575940618167579": {
+      "name": "steering_motor_DN_DNa01_2",
+      "soma_xyz": [
+        403936,
+        165312,
+        83440
+      ]
+    },
+    "720575940604737708": {
+      "name": "steering_motor_DN_DNa02_1",
+      "soma_xyz": [
+        653728,
+        169856,
+        43000
+      ]
+    },
+    "720575940629327659": {
+      "name": "steering_motor_DN_DNa02_2",
+      "soma_xyz": [
+        405312,
+        171008,
+        84240
+      ]
+    },
+    "720575940628352850": {
+      "name": "steering_motor_DN_DNb05_1",
+      "soma_xyz": [
+        505504,
+        269152,
+        46760
+      ]
+    },
+    "720575940629461442": {
+      "name": "steering_motor_DN_DNb05_2",
+      "soma_xyz": [
+        547552,
+        282464,
+        48280
+      ]
+    },
+    "720575940637308605": {
+      "name": "steering_motor_DN_DNb06_1",
+      "soma_xyz": [
+        506688,
+        273024,
+        52520
+      ]
+    },
+    "720575940629041879": {
+      "name": "steering_motor_DN_DNb06_2",
+      "soma_xyz": [
+        571232,
+        298688,
+        57280
+      ]
+    },
+    "720575940616471052": {
+      "name": "steering_motor_DN_DNg13_1",
+      "soma_xyz": [
+        502720,
+        363744,
+        174920
+      ]
+    },
+    "720575940606112940": {
+      "name": "steering_motor_DN_DNg13_2",
+      "soma_xyz": [
+        542464,
+        363776,
+        159880
+      ]
+    },
+    "720575940611160930": {
+      "name": "stopping_and_braking_Foxglove_1",
+      "soma_xyz": [
+        565280,
+        302912,
+        138160
+      ]
+    },
+    "720575940628755815": {
+      "name": "stopping_and_braking_Foxglove_2",
+      "soma_xyz": [
+        423392,
+        315904,
+        100680
+      ]
+    },
+    "720575940631168057": {
+      "name": "stopping_and_braking_Bluebell_1",
+      "soma_xyz": [
+        413248,
+        314656,
+        101080
+      ]
+    },
+    "720575940635166571": {
+      "name": "stopping_and_braking_Bluebell_2",
+      "soma_xyz": [
+        618144,
+        331776,
+        97640
+      ]
+    },
+    "720575940630424407": {
+      "name": "stopping_and_braking_BRK_1",
+      "soma_xyz": null
+    },
+    "720575940630012663": {
+      "name": "stopping_and_braking_BRK_2",
+      "soma_xyz": null
+    },
+    "720575940635872101": {
+      "name": "stopping_and_braking_DNp09_1",
+      "soma_xyz": [
+        424224,
+        195616,
+        218720
+      ]
+    },
+    "720575940627652358": {
+      "name": "stopping_and_braking_DNp09_2",
+      "soma_xyz": [
+        634624,
+        198368,
+        212000
+      ]
+    },
+    "720575940627645514": {
+      "name": "emergency_escape_DN_DNp03_1",
+      "soma_xyz": [
+        483232,
+        139648,
+        168200
+      ]
+    },
+    "720575940628884496": {
+      "name": "emergency_escape_DN_DNp03_2",
+      "soma_xyz": [
+        574400,
+        141536,
+        160800
+      ]
+    },
+    "720575940625878160": {
+      "name": "emergency_escape_DN_DNb01_1",
+      "soma_xyz": [
+        425952,
+        239584,
+        91120
+      ]
+    },
+    "720575940630758418": {
+      "name": "emergency_escape_DN_DNb01_2",
+      "soma_xyz": [
+        618144,
+        252672,
+        69160
+      ]
+    },
+    "720575940631759663": {
+      "name": "emergency_escape_DN_DNa15_1",
+      "soma_xyz": [
+        409824,
+        171872,
+        76040
+      ]
+    },
+    "720575940609488942": {
+      "name": "emergency_escape_DN_DNa15_2",
+      "soma_xyz": [
+        624416,
+        181632,
+        38440
+      ]
+    },
+    "720575940622838154": {
+      "name": "emergency_escape_DN_GF_1",
+      "soma_xyz": [
+        465344,
+        377344,
+        274400
+      ]
+    },
+    "720575940632499757": {
+      "name": "emergency_escape_DN_GF_2",
+      "soma_xyz": [
+        473152,
+        427328,
+        263200
+      ]
+    },
+    "720575940620054694": {
+      "name": "emergency_escape_DN_DNp11_1",
+      "soma_xyz": [
+        436800,
+        225376,
+        225600
+      ]
+    },
+    "720575940629777018": {
+      "name": "emergency_escape_DN_DNp11_2",
+      "soma_xyz": [
+        480384,
+        338976,
+        260400
+      ]
+    },
+    "720575940619654053": {
+      "name": "emergency_escape_DN_DNp02_1",
+      "soma_xyz": [
+        432640,
+        193536,
+        207280
+      ]
+    },
+    "720575940620468718": {
+      "name": "emergency_escape_DN_DNp02_2",
+      "soma_xyz": [
+        631200,
+        198016,
+        190600
+      ]
+    },
+    "720575940604954289": {
+      "name": "emergency_escape_DN_DNp04_1",
+      "soma_xyz": [
+        424928,
+        194144,
+        212480
+      ]
+    },
+    "720575940629757036": {
+      "name": "emergency_escape_DN_DNp04_2",
+      "soma_xyz": [
+        617440,
+        213664,
+        208440
+      ]
+    }
+  },
+  "edges": [
+    {
+      "pre_name": "forward_sprint_BPN_Type_4_BPN_1",
+      "post_name": "forward_sprint_BPN_Type_1_BPN_1",
+      "pre_root_id": 720575940603250860,
+      "post_root_id": 720575940625895708,
+      "weight": 2,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNa02_1",
+      "post_name": "steering_motor_DN_DNg13_2",
+      "pre_root_id": 720575940604737708,
+      "post_root_id": 720575940606112940,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNa02_1",
+      "post_name": "emergency_escape_DN_DNa15_2",
+      "pre_root_id": 720575940604737708,
+      "post_root_id": 720575940609488942,
+      "weight": 15,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNa02_1",
+      "post_name": "backward_walk_MDN_MDN_1",
+      "pre_root_id": 720575940604737708,
+      "post_root_id": 720575940616026939,
+      "weight": 6,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNa02_1",
+      "post_name": "steering_motor_DN_DNa01_1",
+      "pre_root_id": 720575940604737708,
+      "post_root_id": 720575940626328707,
+      "weight": 3,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNa02_1",
+      "post_name": "stopping_and_braking_DNp09_2",
+      "pre_root_id": 720575940604737708,
+      "post_root_id": 720575940627652358,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNa02_1",
+      "post_name": "emergency_escape_DN_DNb01_2",
+      "pre_root_id": 720575940604737708,
+      "post_root_id": 720575940630758418,
+      "weight": 4,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp04_1",
+      "post_name": "emergency_escape_DN_DNp02_1",
+      "pre_root_id": 720575940604954289,
+      "post_root_id": 720575940619654053,
+      "weight": 18,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp04_1",
+      "post_name": "emergency_escape_DN_DNp11_1",
+      "pre_root_id": 720575940604954289,
+      "post_root_id": 720575940620054694,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp04_1",
+      "post_name": "emergency_escape_DN_GF_1",
+      "pre_root_id": 720575940604954289,
+      "post_root_id": 720575940622838154,
+      "weight": 2,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp04_1",
+      "post_name": "emergency_escape_DN_DNp03_1",
+      "pre_root_id": 720575940604954289,
+      "post_root_id": 720575940627645514,
+      "weight": 5,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp04_1",
+      "post_name": "emergency_escape_DN_DNp11_2",
+      "pre_root_id": 720575940604954289,
+      "post_root_id": 720575940629777018,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp04_1",
+      "post_name": "stopping_and_braking_DNp09_1",
+      "pre_root_id": 720575940604954289,
+      "post_root_id": 720575940635872101,
+      "weight": 7,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp04_1",
+      "post_name": "threat_detection_LC4_L",
+      "pre_root_id": 720575940604954289,
+      "post_root_id": 720575940640612480,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNg13_2",
+      "post_name": "steering_motor_DN_DNa02_1",
+      "pre_root_id": 720575940606112940,
+      "post_root_id": 720575940604737708,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNg13_2",
+      "post_name": "backward_walk_MDN_MDN_2",
+      "pre_root_id": 720575940606112940,
+      "post_root_id": 720575940610236514,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNg13_2",
+      "post_name": "backward_walk_MDN_MDN_1",
+      "pre_root_id": 720575940606112940,
+      "post_root_id": 720575940616026939,
+      "weight": 2,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNg13_2",
+      "post_name": "steering_motor_DN_DNg13_1",
+      "pre_root_id": 720575940606112940,
+      "post_root_id": 720575940616471052,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNg13_2",
+      "post_name": "steering_motor_DN_DNa01_2",
+      "pre_root_id": 720575940606112940,
+      "post_root_id": 720575940618167579,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNg13_2",
+      "post_name": "steering_motor_DN_DNa01_1",
+      "pre_root_id": 720575940606112940,
+      "post_root_id": 720575940626328707,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNg13_2",
+      "post_name": "emergency_escape_DN_DNb01_2",
+      "pre_root_id": 720575940606112940,
+      "post_root_id": 720575940630758418,
+      "weight": 3,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNa15_2",
+      "post_name": "steering_motor_DN_DNa02_1",
+      "pre_root_id": 720575940609488942,
+      "post_root_id": 720575940604737708,
+      "weight": 11,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNa15_2",
+      "post_name": "steering_motor_DN_DNa01_1",
+      "pre_root_id": 720575940609488942,
+      "post_root_id": 720575940626328707,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNa15_2",
+      "post_name": "emergency_escape_DN_DNp03_1",
+      "pre_root_id": 720575940609488942,
+      "post_root_id": 720575940627645514,
+      "weight": 3,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNa15_2",
+      "post_name": "emergency_escape_DN_DNb01_2",
+      "pre_root_id": 720575940609488942,
+      "post_root_id": 720575940630758418,
+      "weight": 5,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "backward_walk_MDN_MDN_2",
+      "post_name": "steering_motor_DN_DNa02_1",
+      "pre_root_id": 720575940610236514,
+      "post_root_id": 720575940604737708,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "backward_walk_MDN_MDN_2",
+      "post_name": "steering_motor_DN_DNg13_2",
+      "pre_root_id": 720575940610236514,
+      "post_root_id": 720575940606112940,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "backward_walk_MDN_MDN_2",
+      "post_name": "backward_walk_MDN_MDN_1",
+      "pre_root_id": 720575940610236514,
+      "post_root_id": 720575940616026939,
+      "weight": 6,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "backward_walk_MDN_MDN_2",
+      "post_name": "steering_motor_DN_DNg13_1",
+      "pre_root_id": 720575940610236514,
+      "post_root_id": 720575940616471052,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "backward_walk_MDN_MDN_2",
+      "post_name": "steering_motor_DN_DNa01_2",
+      "pre_root_id": 720575940610236514,
+      "post_root_id": 720575940618167579,
+      "weight": 4,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "backward_walk_MDN_MDN_2",
+      "post_name": "emergency_escape_DN_DNb01_1",
+      "pre_root_id": 720575940610236514,
+      "post_root_id": 720575940625878160,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "backward_walk_MDN_MDN_2",
+      "post_name": "steering_motor_DN_DNa01_1",
+      "pre_root_id": 720575940610236514,
+      "post_root_id": 720575940626328707,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "backward_walk_MDN_MDN_2",
+      "post_name": "steering_motor_DN_DNa02_2",
+      "pre_root_id": 720575940610236514,
+      "post_root_id": 720575940629327659,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "stopping_and_braking_Foxglove_1",
+      "post_name": "steering_motor_DN_DNg13_1",
+      "pre_root_id": 720575940611160930,
+      "post_root_id": 720575940616471052,
+      "weight": 3,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "stopping_and_braking_Foxglove_1",
+      "post_name": "stopping_and_braking_Foxglove_2",
+      "pre_root_id": 720575940611160930,
+      "post_root_id": 720575940628755815,
+      "weight": 2,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "stopping_and_braking_Foxglove_1",
+      "post_name": "stopping_and_braking_BRK_1",
+      "pre_root_id": 720575940611160930,
+      "post_root_id": 720575940630424407,
+      "weight": 2,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "stopping_and_braking_Foxglove_1",
+      "post_name": "stopping_and_braking_Bluebell_2",
+      "pre_root_id": 720575940611160930,
+      "post_root_id": 720575940635166571,
+      "weight": 7,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "forward_sprint_BPN_Type_4_BPN_2",
+      "post_name": "stopping_and_braking_Foxglove_1",
+      "pre_root_id": 720575940613107119,
+      "post_root_id": 720575940611160930,
+      "weight": 2,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "forward_sprint_BPN_Type_4_BPN_2",
+      "post_name": "forward_sprint_BPN_Type_1_BPN_2",
+      "pre_root_id": 720575940613107119,
+      "post_root_id": 720575940621395233,
+      "weight": 3,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "forward_sprint_BPN_Type_4_BPN_2",
+      "post_name": "forward_sprint_BPN_Type_2_BPN_2",
+      "pre_root_id": 720575940613107119,
+      "post_root_id": 720575940632802785,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "T4_ON_motion_T4b",
+      "post_name": "T4_ON_motion_T4d",
+      "pre_root_id": 720575940614747554,
+      "post_root_id": 720575940615263298,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "T4_ON_motion_T4b",
+      "post_name": "VS_stabilization_VS1",
+      "pre_root_id": 720575940614747554,
+      "post_root_id": 720575940619878961,
+      "weight": 16,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "T4_ON_motion_T4d",
+      "post_name": "T4_ON_motion_T4a",
+      "pre_root_id": 720575940615263298,
+      "post_root_id": 720575940618989214,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "T4_ON_motion_T4d",
+      "post_name": "VS_stabilization_VS5",
+      "pre_root_id": 720575940615263298,
+      "post_root_id": 720575940639151694,
+      "weight": 6,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "T4_ON_motion_T4d",
+      "post_name": "VS_stabilization_VS3",
+      "pre_root_id": 720575940615263298,
+      "post_root_id": 720575940641812699,
+      "weight": 11,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "T4_ON_motion_T4d",
+      "post_name": "VS_stabilization_VS4",
+      "pre_root_id": 720575940615263298,
+      "post_root_id": 720575940659799937,
+      "weight": 19,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "backward_walk_MDN_MDN_1",
+      "post_name": "steering_motor_DN_DNa02_1",
+      "pre_root_id": 720575940616026939,
+      "post_root_id": 720575940604737708,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "backward_walk_MDN_MDN_1",
+      "post_name": "backward_walk_MDN_MDN_2",
+      "pre_root_id": 720575940616026939,
+      "post_root_id": 720575940610236514,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "backward_walk_MDN_MDN_1",
+      "post_name": "steering_motor_DN_DNa01_2",
+      "pre_root_id": 720575940616026939,
+      "post_root_id": 720575940618167579,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "backward_walk_MDN_MDN_1",
+      "post_name": "steering_motor_DN_DNa02_2",
+      "pre_root_id": 720575940616026939,
+      "post_root_id": 720575940629327659,
+      "weight": 2,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNg13_1",
+      "post_name": "steering_motor_DN_DNg13_2",
+      "pre_root_id": 720575940616471052,
+      "post_root_id": 720575940606112940,
+      "weight": 3,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNg13_1",
+      "post_name": "backward_walk_MDN_MDN_1",
+      "pre_root_id": 720575940616471052,
+      "post_root_id": 720575940616026939,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNg13_1",
+      "post_name": "emergency_escape_DN_DNb01_1",
+      "pre_root_id": 720575940616471052,
+      "post_root_id": 720575940625878160,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNg13_1",
+      "post_name": "steering_motor_DN_DNa02_2",
+      "pre_root_id": 720575940616471052,
+      "post_root_id": 720575940629327659,
+      "weight": 2,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "T4_ON_motion_T4c",
+      "post_name": "T4_ON_motion_T4d",
+      "pre_root_id": 720575940617643705,
+      "post_root_id": 720575940615263298,
+      "weight": 4,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNa01_2",
+      "post_name": "backward_walk_MDN_MDN_2",
+      "pre_root_id": 720575940618167579,
+      "post_root_id": 720575940610236514,
+      "weight": 2,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNa01_2",
+      "post_name": "steering_motor_DN_DNg13_1",
+      "pre_root_id": 720575940618167579,
+      "post_root_id": 720575940616471052,
+      "weight": 25,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNa01_2",
+      "post_name": "stopping_and_braking_Foxglove_2",
+      "pre_root_id": 720575940618167579,
+      "post_root_id": 720575940628755815,
+      "weight": 4,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNa01_2",
+      "post_name": "steering_motor_DN_DNa02_2",
+      "pre_root_id": 720575940618167579,
+      "post_root_id": 720575940629327659,
+      "weight": 10,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNa01_2",
+      "post_name": "stopping_and_braking_Bluebell_1",
+      "pre_root_id": 720575940618167579,
+      "post_root_id": 720575940631168057,
+      "weight": 9,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNa01_2",
+      "post_name": "emergency_escape_DN_DNa15_1",
+      "pre_root_id": 720575940618167579,
+      "post_root_id": 720575940631759663,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "T4_ON_motion_T4a",
+      "post_name": "VS_stabilization_VS6",
+      "pre_root_id": 720575940618989214,
+      "post_root_id": 720575940626928521,
+      "weight": 6,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "T4_ON_motion_T4a",
+      "post_name": "VS_stabilization_VS4",
+      "pre_root_id": 720575940618989214,
+      "post_root_id": 720575940659799937,
+      "weight": 6,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp02_1",
+      "post_name": "emergency_escape_DN_DNp04_1",
+      "pre_root_id": 720575940619654053,
+      "post_root_id": 720575940604954289,
+      "weight": 36,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp02_1",
+      "post_name": "emergency_escape_DN_DNp11_1",
+      "pre_root_id": 720575940619654053,
+      "post_root_id": 720575940620054694,
+      "weight": 8,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp02_1",
+      "post_name": "emergency_escape_DN_GF_1",
+      "pre_root_id": 720575940619654053,
+      "post_root_id": 720575940622838154,
+      "weight": 25,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp02_1",
+      "post_name": "emergency_escape_DN_DNp03_1",
+      "pre_root_id": 720575940619654053,
+      "post_root_id": 720575940627645514,
+      "weight": 2,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp02_1",
+      "post_name": "emergency_escape_DN_DNp11_2",
+      "pre_root_id": 720575940619654053,
+      "post_root_id": 720575940629777018,
+      "weight": 2,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp02_1",
+      "post_name": "stopping_and_braking_DNp09_1",
+      "pre_root_id": 720575940619654053,
+      "post_root_id": 720575940635872101,
+      "weight": 26,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp02_1",
+      "post_name": "threat_detection_LC4_L",
+      "pre_root_id": 720575940619654053,
+      "post_root_id": 720575940640612480,
+      "weight": 2,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "VS_stabilization_VS1",
+      "post_name": "VS_stabilization_VS6",
+      "pre_root_id": 720575940619878961,
+      "post_root_id": 720575940626928521,
+      "weight": 2,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "VS_stabilization_VS1",
+      "post_name": "VS_stabilization_VS5",
+      "pre_root_id": 720575940619878961,
+      "post_root_id": 720575940639151694,
+      "weight": 5,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "VS_stabilization_VS1",
+      "post_name": "VS_stabilization_VS3",
+      "pre_root_id": 720575940619878961,
+      "post_root_id": 720575940641812699,
+      "weight": 10,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "VS_stabilization_VS1",
+      "post_name": "VS_stabilization_VS4",
+      "pre_root_id": 720575940619878961,
+      "post_root_id": 720575940659799937,
+      "weight": 7,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp11_1",
+      "post_name": "emergency_escape_DN_DNp04_1",
+      "pre_root_id": 720575940620054694,
+      "post_root_id": 720575940604954289,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp11_1",
+      "post_name": "emergency_escape_DN_DNp02_1",
+      "pre_root_id": 720575940620054694,
+      "post_root_id": 720575940619654053,
+      "weight": 3,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp11_1",
+      "post_name": "emergency_escape_DN_GF_1",
+      "pre_root_id": 720575940620054694,
+      "post_root_id": 720575940622838154,
+      "weight": 4,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp11_1",
+      "post_name": "emergency_escape_DN_DNp03_1",
+      "pre_root_id": 720575940620054694,
+      "post_root_id": 720575940627645514,
+      "weight": 16,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp11_1",
+      "post_name": "emergency_escape_DN_DNb01_2",
+      "pre_root_id": 720575940620054694,
+      "post_root_id": 720575940630758418,
+      "weight": 5,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp11_1",
+      "post_name": "threat_detection_LC4_L",
+      "pre_root_id": 720575940620054694,
+      "post_root_id": 720575940640612480,
+      "weight": 2,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp02_2",
+      "post_name": "stopping_and_braking_DNp09_2",
+      "pre_root_id": 720575940620468718,
+      "post_root_id": 720575940627652358,
+      "weight": 7,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp02_2",
+      "post_name": "steering_motor_DN_DNb05_2",
+      "pre_root_id": 720575940620468718,
+      "post_root_id": 720575940629461442,
+      "weight": 3,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp02_2",
+      "post_name": "emergency_escape_DN_DNp04_2",
+      "pre_root_id": 720575940620468718,
+      "post_root_id": 720575940629757036,
+      "weight": 12,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp02_2",
+      "post_name": "emergency_escape_DN_DNp11_2",
+      "pre_root_id": 720575940620468718,
+      "post_root_id": 720575940629777018,
+      "weight": 3,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp02_2",
+      "post_name": "emergency_escape_DN_GF_2",
+      "pre_root_id": 720575940620468718,
+      "post_root_id": 720575940632499757,
+      "weight": 16,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp02_2",
+      "post_name": "threat_detection_LC4_R",
+      "pre_root_id": 720575940620468718,
+      "post_root_id": 720575940645821316,
+      "weight": 9,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "forward_sprint_BPN_Type_2_BPN_1",
+      "post_name": "forward_sprint_BPN_Type_4_BPN_1",
+      "pre_root_id": 720575940622022071,
+      "post_root_id": 720575940603250860,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "forward_sprint_BPN_Type_2_BPN_1",
+      "post_name": "forward_sprint_BPN_Type_3_BPN_1",
+      "pre_root_id": 720575940622022071,
+      "post_root_id": 720575940628490028,
+      "weight": 6,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "forward_sprint_BPN_Type_2_BPN_1",
+      "post_name": "forward_sprint_BPN_Type_2_BPN_2",
+      "pre_root_id": 720575940622022071,
+      "post_root_id": 720575940632802785,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_GF_1",
+      "post_name": "emergency_escape_DN_DNp04_1",
+      "pre_root_id": 720575940622838154,
+      "post_root_id": 720575940604954289,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_GF_1",
+      "post_name": "emergency_escape_DN_DNp02_1",
+      "pre_root_id": 720575940622838154,
+      "post_root_id": 720575940619654053,
+      "weight": 12,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_GF_1",
+      "post_name": "emergency_escape_DN_DNp11_1",
+      "pre_root_id": 720575940622838154,
+      "post_root_id": 720575940620054694,
+      "weight": 12,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_GF_1",
+      "post_name": "emergency_escape_DN_DNp03_1",
+      "pre_root_id": 720575940622838154,
+      "post_root_id": 720575940627645514,
+      "weight": 2,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_GF_1",
+      "post_name": "threat_detection_LC4_L",
+      "pre_root_id": 720575940622838154,
+      "post_root_id": 720575940640612480,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "threat_detection_LPLC2_R",
+      "post_name": "stopping_and_braking_DNp09_2",
+      "pre_root_id": 720575940624931530,
+      "post_root_id": 720575940627652358,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNb01_1",
+      "post_name": "steering_motor_DN_DNa02_1",
+      "pre_root_id": 720575940625878160,
+      "post_root_id": 720575940604737708,
+      "weight": 7,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNb01_1",
+      "post_name": "emergency_escape_DN_DNa15_2",
+      "pre_root_id": 720575940625878160,
+      "post_root_id": 720575940609488942,
+      "weight": 20,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNb01_1",
+      "post_name": "backward_walk_MDN_MDN_1",
+      "pre_root_id": 720575940625878160,
+      "post_root_id": 720575940616026939,
+      "weight": 2,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNb01_1",
+      "post_name": "emergency_escape_DN_DNp03_1",
+      "pre_root_id": 720575940625878160,
+      "post_root_id": 720575940627645514,
+      "weight": 7,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNb01_1",
+      "post_name": "steering_motor_DN_DNa02_2",
+      "pre_root_id": 720575940625878160,
+      "post_root_id": 720575940629327659,
+      "weight": 3,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNb01_1",
+      "post_name": "emergency_escape_DN_DNa15_1",
+      "pre_root_id": 720575940625878160,
+      "post_root_id": 720575940631759663,
+      "weight": 2,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "forward_sprint_BPN_Type_1_BPN_1",
+      "post_name": "forward_sprint_BPN_Type_4_BPN_1",
+      "pre_root_id": 720575940625895708,
+      "post_root_id": 720575940603250860,
+      "weight": 11,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNa01_1",
+      "post_name": "steering_motor_DN_DNa02_1",
+      "pre_root_id": 720575940626328707,
+      "post_root_id": 720575940604737708,
+      "weight": 9,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNa01_1",
+      "post_name": "steering_motor_DN_DNg13_2",
+      "pre_root_id": 720575940626328707,
+      "post_root_id": 720575940606112940,
+      "weight": 12,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNa01_1",
+      "post_name": "emergency_escape_DN_DNa15_2",
+      "pre_root_id": 720575940626328707,
+      "post_root_id": 720575940609488942,
+      "weight": 7,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNa01_1",
+      "post_name": "backward_walk_MDN_MDN_2",
+      "pre_root_id": 720575940626328707,
+      "post_root_id": 720575940610236514,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNa01_1",
+      "post_name": "backward_walk_MDN_MDN_1",
+      "pre_root_id": 720575940626328707,
+      "post_root_id": 720575940616026939,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNa01_1",
+      "post_name": "stopping_and_braking_Bluebell_2",
+      "pre_root_id": 720575940626328707,
+      "post_root_id": 720575940635166571,
+      "weight": 31,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "VS_stabilization_VS6",
+      "post_name": "steering_motor_DN_DNb06_2",
+      "pre_root_id": 720575940626928521,
+      "post_root_id": 720575940629041879,
+      "weight": 29,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "VS_stabilization_VS6",
+      "post_name": "VS_stabilization_VS5",
+      "pre_root_id": 720575940626928521,
+      "post_root_id": 720575940639151694,
+      "weight": 6,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "VS_stabilization_VS6",
+      "post_name": "VS_stabilization_VS3",
+      "pre_root_id": 720575940626928521,
+      "post_root_id": 720575940641812699,
+      "weight": 14,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "VS_stabilization_VS6",
+      "post_name": "VS_stabilization_VS4",
+      "pre_root_id": 720575940626928521,
+      "post_root_id": 720575940659799937,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp03_1",
+      "post_name": "emergency_escape_DN_DNp04_1",
+      "pre_root_id": 720575940627645514,
+      "post_root_id": 720575940604954289,
+      "weight": 3,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp03_1",
+      "post_name": "emergency_escape_DN_DNa15_2",
+      "pre_root_id": 720575940627645514,
+      "post_root_id": 720575940609488942,
+      "weight": 19,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp03_1",
+      "post_name": "emergency_escape_DN_DNp11_1",
+      "pre_root_id": 720575940627645514,
+      "post_root_id": 720575940620054694,
+      "weight": 2,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp03_1",
+      "post_name": "steering_motor_DN_DNb06_2",
+      "pre_root_id": 720575940627645514,
+      "post_root_id": 720575940629041879,
+      "weight": 2,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp03_1",
+      "post_name": "emergency_escape_DN_DNb01_2",
+      "pre_root_id": 720575940627645514,
+      "post_root_id": 720575940630758418,
+      "weight": 29,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "stopping_and_braking_DNp09_2",
+      "post_name": "steering_motor_DN_DNa02_1",
+      "pre_root_id": 720575940627652358,
+      "post_root_id": 720575940604737708,
+      "weight": 47,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "stopping_and_braking_DNp09_2",
+      "post_name": "emergency_escape_DN_DNa15_2",
+      "pre_root_id": 720575940627652358,
+      "post_root_id": 720575940609488942,
+      "weight": 5,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "stopping_and_braking_DNp09_2",
+      "post_name": "backward_walk_MDN_MDN_2",
+      "pre_root_id": 720575940627652358,
+      "post_root_id": 720575940610236514,
+      "weight": 4,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "stopping_and_braking_DNp09_2",
+      "post_name": "emergency_escape_DN_DNp02_2",
+      "pre_root_id": 720575940627652358,
+      "post_root_id": 720575940620468718,
+      "weight": 20,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "stopping_and_braking_DNp09_2",
+      "post_name": "steering_motor_DN_DNa01_1",
+      "pre_root_id": 720575940627652358,
+      "post_root_id": 720575940626328707,
+      "weight": 10,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "stopping_and_braking_DNp09_2",
+      "post_name": "emergency_escape_DN_DNp04_2",
+      "pre_root_id": 720575940627652358,
+      "post_root_id": 720575940629757036,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNb05_1",
+      "post_name": "emergency_escape_DN_DNp03_1",
+      "pre_root_id": 720575940628352850,
+      "post_root_id": 720575940627645514,
+      "weight": 4,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNb05_1",
+      "post_name": "stopping_and_braking_DNp09_1",
+      "pre_root_id": 720575940628352850,
+      "post_root_id": 720575940635872101,
+      "weight": 2,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "forward_sprint_BPN_Type_3_BPN_1",
+      "post_name": "forward_sprint_BPN_Type_2_BPN_1",
+      "pre_root_id": 720575940628490028,
+      "post_root_id": 720575940622022071,
+      "weight": 3,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "T5_OFF_motion_T5d",
+      "post_name": "VS_stabilization_VS2",
+      "pre_root_id": 720575940628717062,
+      "post_root_id": 720575940640722851,
+      "weight": 2,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "stopping_and_braking_Foxglove_2",
+      "post_name": "steering_motor_DN_DNg13_2",
+      "pre_root_id": 720575940628755815,
+      "post_root_id": 720575940606112940,
+      "weight": 7,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "stopping_and_braking_Foxglove_2",
+      "post_name": "stopping_and_braking_Foxglove_1",
+      "pre_root_id": 720575940628755815,
+      "post_root_id": 720575940611160930,
+      "weight": 9,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "stopping_and_braking_Foxglove_2",
+      "post_name": "emergency_escape_DN_DNp11_1",
+      "pre_root_id": 720575940628755815,
+      "post_root_id": 720575940620054694,
+      "weight": 3,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "stopping_and_braking_Foxglove_2",
+      "post_name": "stopping_and_braking_Bluebell_1",
+      "pre_root_id": 720575940628755815,
+      "post_root_id": 720575940631168057,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp03_2",
+      "post_name": "emergency_escape_DN_DNb01_1",
+      "pre_root_id": 720575940628884496,
+      "post_root_id": 720575940625878160,
+      "weight": 10,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp03_2",
+      "post_name": "emergency_escape_DN_DNp11_2",
+      "pre_root_id": 720575940628884496,
+      "post_root_id": 720575940629777018,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp03_2",
+      "post_name": "emergency_escape_DN_DNa15_1",
+      "pre_root_id": 720575940628884496,
+      "post_root_id": 720575940631759663,
+      "weight": 11,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNb06_2",
+      "post_name": "steering_motor_DN_DNb06_1",
+      "pre_root_id": 720575940629041879,
+      "post_root_id": 720575940637308605,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNb06_2",
+      "post_name": "VS_stabilization_VS5",
+      "pre_root_id": 720575940629041879,
+      "post_root_id": 720575940639151694,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNb06_2",
+      "post_name": "VS_stabilization_VS3",
+      "pre_root_id": 720575940629041879,
+      "post_root_id": 720575940641812699,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNa02_2",
+      "post_name": "backward_walk_MDN_MDN_2",
+      "pre_root_id": 720575940629327659,
+      "post_root_id": 720575940610236514,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNa02_2",
+      "post_name": "backward_walk_MDN_MDN_1",
+      "pre_root_id": 720575940629327659,
+      "post_root_id": 720575940616026939,
+      "weight": 2,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNa02_2",
+      "post_name": "steering_motor_DN_DNg13_1",
+      "pre_root_id": 720575940629327659,
+      "post_root_id": 720575940616471052,
+      "weight": 2,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNa02_2",
+      "post_name": "steering_motor_DN_DNa01_2",
+      "pre_root_id": 720575940629327659,
+      "post_root_id": 720575940618167579,
+      "weight": 13,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNa02_2",
+      "post_name": "emergency_escape_DN_DNb01_1",
+      "pre_root_id": 720575940629327659,
+      "post_root_id": 720575940625878160,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNa02_2",
+      "post_name": "emergency_escape_DN_DNa15_1",
+      "pre_root_id": 720575940629327659,
+      "post_root_id": 720575940631759663,
+      "weight": 15,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp04_2",
+      "post_name": "emergency_escape_DN_DNp02_2",
+      "pre_root_id": 720575940629757036,
+      "post_root_id": 720575940620468718,
+      "weight": 5,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp04_2",
+      "post_name": "stopping_and_braking_DNp09_2",
+      "pre_root_id": 720575940629757036,
+      "post_root_id": 720575940627652358,
+      "weight": 6,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp04_2",
+      "post_name": "emergency_escape_DN_DNp11_2",
+      "pre_root_id": 720575940629757036,
+      "post_root_id": 720575940629777018,
+      "weight": 3,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp04_2",
+      "post_name": "emergency_escape_DN_GF_2",
+      "pre_root_id": 720575940629757036,
+      "post_root_id": 720575940632499757,
+      "weight": 4,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp04_2",
+      "post_name": "threat_detection_LC4_R",
+      "pre_root_id": 720575940629757036,
+      "post_root_id": 720575940645821316,
+      "weight": 2,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp11_2",
+      "post_name": "emergency_escape_DN_DNp02_1",
+      "pre_root_id": 720575940629777018,
+      "post_root_id": 720575940619654053,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp11_2",
+      "post_name": "emergency_escape_DN_DNp02_2",
+      "pre_root_id": 720575940629777018,
+      "post_root_id": 720575940620468718,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp11_2",
+      "post_name": "emergency_escape_DN_DNp03_2",
+      "pre_root_id": 720575940629777018,
+      "post_root_id": 720575940628884496,
+      "weight": 3,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNp11_2",
+      "post_name": "emergency_escape_DN_GF_2",
+      "pre_root_id": 720575940629777018,
+      "post_root_id": 720575940632499757,
+      "weight": 2,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "stopping_and_braking_BRK_2",
+      "post_name": "backward_walk_MDN_MDN_2",
+      "pre_root_id": 720575940630012663,
+      "post_root_id": 720575940610236514,
+      "weight": 2,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "stopping_and_braking_BRK_2",
+      "post_name": "stopping_and_braking_BRK_1",
+      "pre_root_id": 720575940630012663,
+      "post_root_id": 720575940630424407,
+      "weight": 4,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "stopping_and_braking_BRK_1",
+      "post_name": "stopping_and_braking_BRK_2",
+      "pre_root_id": 720575940630424407,
+      "post_root_id": 720575940630012663,
+      "weight": 5,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "threat_detection_LPLC2_L",
+      "post_name": "emergency_escape_DN_DNp04_1",
+      "pre_root_id": 720575940630731847,
+      "post_root_id": 720575940604954289,
+      "weight": 5,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "threat_detection_LPLC2_L",
+      "post_name": "emergency_escape_DN_DNp03_1",
+      "pre_root_id": 720575940630731847,
+      "post_root_id": 720575940627645514,
+      "weight": 2,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "threat_detection_LPLC2_L",
+      "post_name": "stopping_and_braking_DNp09_1",
+      "pre_root_id": 720575940630731847,
+      "post_root_id": 720575940635872101,
+      "weight": 2,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNb01_2",
+      "post_name": "steering_motor_DN_DNa02_1",
+      "pre_root_id": 720575940630758418,
+      "post_root_id": 720575940604737708,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNb01_2",
+      "post_name": "steering_motor_DN_DNg13_2",
+      "pre_root_id": 720575940630758418,
+      "post_root_id": 720575940606112940,
+      "weight": 8,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNb01_2",
+      "post_name": "emergency_escape_DN_DNa15_2",
+      "pre_root_id": 720575940630758418,
+      "post_root_id": 720575940609488942,
+      "weight": 2,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNb01_2",
+      "post_name": "stopping_and_braking_Foxglove_1",
+      "pre_root_id": 720575940630758418,
+      "post_root_id": 720575940611160930,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNb01_2",
+      "post_name": "backward_walk_MDN_MDN_1",
+      "pre_root_id": 720575940630758418,
+      "post_root_id": 720575940616026939,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNb01_2",
+      "post_name": "steering_motor_DN_DNa01_2",
+      "pre_root_id": 720575940630758418,
+      "post_root_id": 720575940618167579,
+      "weight": 4,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNb01_2",
+      "post_name": "emergency_escape_DN_DNb01_1",
+      "pre_root_id": 720575940630758418,
+      "post_root_id": 720575940625878160,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNb01_2",
+      "post_name": "emergency_escape_DN_DNp03_2",
+      "pre_root_id": 720575940630758418,
+      "post_root_id": 720575940628884496,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNb01_2",
+      "post_name": "steering_motor_DN_DNa02_2",
+      "pre_root_id": 720575940630758418,
+      "post_root_id": 720575940629327659,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNb01_2",
+      "post_name": "emergency_escape_DN_DNa15_1",
+      "pre_root_id": 720575940630758418,
+      "post_root_id": 720575940631759663,
+      "weight": 22,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "stopping_and_braking_Bluebell_1",
+      "post_name": "steering_motor_DN_DNa02_1",
+      "pre_root_id": 720575940631168057,
+      "post_root_id": 720575940604737708,
+      "weight": 15,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "stopping_and_braking_Bluebell_1",
+      "post_name": "steering_motor_DN_DNg13_2",
+      "pre_root_id": 720575940631168057,
+      "post_root_id": 720575940606112940,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "stopping_and_braking_Bluebell_1",
+      "post_name": "backward_walk_MDN_MDN_2",
+      "pre_root_id": 720575940631168057,
+      "post_root_id": 720575940610236514,
+      "weight": 2,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "stopping_and_braking_Bluebell_1",
+      "post_name": "steering_motor_DN_DNa01_1",
+      "pre_root_id": 720575940631168057,
+      "post_root_id": 720575940626328707,
+      "weight": 2,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "stopping_and_braking_Bluebell_1",
+      "post_name": "stopping_and_braking_Foxglove_2",
+      "pre_root_id": 720575940631168057,
+      "post_root_id": 720575940628755815,
+      "weight": 4,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "stopping_and_braking_Bluebell_1",
+      "post_name": "stopping_and_braking_BRK_2",
+      "pre_root_id": 720575940631168057,
+      "post_root_id": 720575940630012663,
+      "weight": 2,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "stopping_and_braking_Bluebell_1",
+      "post_name": "stopping_and_braking_DNp09_1",
+      "pre_root_id": 720575940631168057,
+      "post_root_id": 720575940635872101,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNa15_1",
+      "post_name": "steering_motor_DN_DNa01_2",
+      "pre_root_id": 720575940631759663,
+      "post_root_id": 720575940618167579,
+      "weight": 2,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNa15_1",
+      "post_name": "emergency_escape_DN_DNb01_1",
+      "pre_root_id": 720575940631759663,
+      "post_root_id": 720575940625878160,
+      "weight": 8,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNa15_1",
+      "post_name": "emergency_escape_DN_DNp03_2",
+      "pre_root_id": 720575940631759663,
+      "post_root_id": 720575940628884496,
+      "weight": 3,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_DNa15_1",
+      "post_name": "steering_motor_DN_DNa02_2",
+      "pre_root_id": 720575940631759663,
+      "post_root_id": 720575940629327659,
+      "weight": 6,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_GF_2",
+      "post_name": "steering_motor_DN_DNa02_1",
+      "pre_root_id": 720575940632499757,
+      "post_root_id": 720575940604737708,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_GF_2",
+      "post_name": "emergency_escape_DN_DNp02_2",
+      "pre_root_id": 720575940632499757,
+      "post_root_id": 720575940620468718,
+      "weight": 13,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_GF_2",
+      "post_name": "emergency_escape_DN_DNb01_1",
+      "pre_root_id": 720575940632499757,
+      "post_root_id": 720575940625878160,
+      "weight": 3,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_GF_2",
+      "post_name": "emergency_escape_DN_DNp04_2",
+      "pre_root_id": 720575940632499757,
+      "post_root_id": 720575940629757036,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_GF_2",
+      "post_name": "emergency_escape_DN_DNp11_2",
+      "pre_root_id": 720575940632499757,
+      "post_root_id": 720575940629777018,
+      "weight": 9,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "emergency_escape_DN_GF_2",
+      "post_name": "threat_detection_LC4_R",
+      "pre_root_id": 720575940632499757,
+      "post_root_id": 720575940645821316,
+      "weight": 2,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "forward_sprint_BPN_Type_2_BPN_2",
+      "post_name": "forward_sprint_BPN_Type_4_BPN_2",
+      "pre_root_id": 720575940632802785,
+      "post_root_id": 720575940613107119,
+      "weight": 2,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "forward_sprint_BPN_Type_2_BPN_2",
+      "post_name": "forward_sprint_BPN_Type_1_BPN_2",
+      "pre_root_id": 720575940632802785,
+      "post_root_id": 720575940621395233,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "forward_sprint_BPN_Type_3_BPN_2",
+      "post_name": "forward_sprint_BPN_Type_2_BPN_2",
+      "pre_root_id": 720575940634714804,
+      "post_root_id": 720575940632802785,
+      "weight": 3,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "stopping_and_braking_Bluebell_2",
+      "post_name": "stopping_and_braking_Foxglove_1",
+      "pre_root_id": 720575940635166571,
+      "post_root_id": 720575940611160930,
+      "weight": 9,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "stopping_and_braking_Bluebell_2",
+      "post_name": "steering_motor_DN_DNg13_1",
+      "pre_root_id": 720575940635166571,
+      "post_root_id": 720575940616471052,
+      "weight": 2,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "stopping_and_braking_Bluebell_2",
+      "post_name": "steering_motor_DN_DNa02_2",
+      "pre_root_id": 720575940635166571,
+      "post_root_id": 720575940629327659,
+      "weight": 7,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "stopping_and_braking_DNp09_1",
+      "post_name": "emergency_escape_DN_DNp04_1",
+      "pre_root_id": 720575940635872101,
+      "post_root_id": 720575940604954289,
+      "weight": 13,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "stopping_and_braking_DNp09_1",
+      "post_name": "backward_walk_MDN_MDN_2",
+      "pre_root_id": 720575940635872101,
+      "post_root_id": 720575940610236514,
+      "weight": 3,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "stopping_and_braking_DNp09_1",
+      "post_name": "backward_walk_MDN_MDN_1",
+      "pre_root_id": 720575940635872101,
+      "post_root_id": 720575940616026939,
+      "weight": 3,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "stopping_and_braking_DNp09_1",
+      "post_name": "steering_motor_DN_DNa01_2",
+      "pre_root_id": 720575940635872101,
+      "post_root_id": 720575940618167579,
+      "weight": 12,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "stopping_and_braking_DNp09_1",
+      "post_name": "emergency_escape_DN_DNp02_1",
+      "pre_root_id": 720575940635872101,
+      "post_root_id": 720575940619654053,
+      "weight": 11,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "stopping_and_braking_DNp09_1",
+      "post_name": "steering_motor_DN_DNb05_1",
+      "pre_root_id": 720575940635872101,
+      "post_root_id": 720575940628352850,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "stopping_and_braking_DNp09_1",
+      "post_name": "steering_motor_DN_DNa02_2",
+      "pre_root_id": 720575940635872101,
+      "post_root_id": 720575940629327659,
+      "weight": 42,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "stopping_and_braking_DNp09_1",
+      "post_name": "emergency_escape_DN_DNa15_1",
+      "pre_root_id": 720575940635872101,
+      "post_root_id": 720575940631759663,
+      "weight": 3,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "steering_motor_DN_DNb06_1",
+      "post_name": "steering_motor_DN_DNb05_1",
+      "pre_root_id": 720575940637308605,
+      "post_root_id": 720575940628352850,
+      "weight": 1,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "VS_stabilization_VS5",
+      "post_name": "VS_stabilization_VS6",
+      "pre_root_id": 720575940639151694,
+      "post_root_id": 720575940626928521,
+      "weight": 9,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "VS_stabilization_VS5",
+      "post_name": "steering_motor_DN_DNb06_2",
+      "pre_root_id": 720575940639151694,
+      "post_root_id": 720575940629041879,
+      "weight": 33,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "VS_stabilization_VS5",
+      "post_name": "VS_stabilization_VS3",
+      "pre_root_id": 720575940639151694,
+      "post_root_id": 720575940641812699,
+      "weight": 7,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "VS_stabilization_VS5",
+      "post_name": "VS_stabilization_VS4",
+      "pre_root_id": 720575940639151694,
+      "post_root_id": 720575940659799937,
+      "weight": 10,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "threat_detection_LC4_L",
+      "post_name": "emergency_escape_DN_DNp04_1",
+      "pre_root_id": 720575940640612480,
+      "post_root_id": 720575940604954289,
+      "weight": 38,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "threat_detection_LC4_L",
+      "post_name": "emergency_escape_DN_DNp02_1",
+      "pre_root_id": 720575940640612480,
+      "post_root_id": 720575940619654053,
+      "weight": 39,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "threat_detection_LC4_L",
+      "post_name": "emergency_escape_DN_DNp11_1",
+      "pre_root_id": 720575940640612480,
+      "post_root_id": 720575940620054694,
+      "weight": 18,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "threat_detection_LC4_L",
+      "post_name": "emergency_escape_DN_GF_1",
+      "pre_root_id": 720575940640612480,
+      "post_root_id": 720575940622838154,
+      "weight": 18,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "threat_detection_LC4_L",
+      "post_name": "emergency_escape_DN_DNp03_1",
+      "pre_root_id": 720575940640612480,
+      "post_root_id": 720575940627645514,
+      "weight": 19,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "VS_stabilization_VS3",
+      "post_name": "VS_stabilization_VS1",
+      "pre_root_id": 720575940641812699,
+      "post_root_id": 720575940619878961,
+      "weight": 10,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "VS_stabilization_VS3",
+      "post_name": "VS_stabilization_VS6",
+      "pre_root_id": 720575940641812699,
+      "post_root_id": 720575940626928521,
+      "weight": 10,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "VS_stabilization_VS3",
+      "post_name": "steering_motor_DN_DNb06_2",
+      "pre_root_id": 720575940641812699,
+      "post_root_id": 720575940629041879,
+      "weight": 9,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "VS_stabilization_VS3",
+      "post_name": "VS_stabilization_VS5",
+      "pre_root_id": 720575940641812699,
+      "post_root_id": 720575940639151694,
+      "weight": 3,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "VS_stabilization_VS3",
+      "post_name": "VS_stabilization_VS4",
+      "pre_root_id": 720575940641812699,
+      "post_root_id": 720575940659799937,
+      "weight": 4,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "threat_detection_LC4_R",
+      "post_name": "emergency_escape_DN_DNp02_2",
+      "pre_root_id": 720575940645821316,
+      "post_root_id": 720575940620468718,
+      "weight": 48,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "threat_detection_LC4_R",
+      "post_name": "emergency_escape_DN_DNp04_2",
+      "pre_root_id": 720575940645821316,
+      "post_root_id": 720575940629757036,
+      "weight": 51,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "threat_detection_LC4_R",
+      "post_name": "emergency_escape_DN_DNp11_2",
+      "pre_root_id": 720575940645821316,
+      "post_root_id": 720575940629777018,
+      "weight": 12,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "threat_detection_LC4_R",
+      "post_name": "emergency_escape_DN_GF_2",
+      "pre_root_id": 720575940645821316,
+      "post_root_id": 720575940632499757,
+      "weight": 27,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "VS_stabilization_VS4",
+      "post_name": "VS_stabilization_VS1",
+      "pre_root_id": 720575940659799937,
+      "post_root_id": 720575940619878961,
+      "weight": 8,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "VS_stabilization_VS4",
+      "post_name": "VS_stabilization_VS6",
+      "pre_root_id": 720575940659799937,
+      "post_root_id": 720575940626928521,
+      "weight": 5,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "VS_stabilization_VS4",
+      "post_name": "steering_motor_DN_DNb06_2",
+      "pre_root_id": 720575940659799937,
+      "post_root_id": 720575940629041879,
+      "weight": 52,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "VS_stabilization_VS4",
+      "post_name": "VS_stabilization_VS5",
+      "pre_root_id": 720575940659799937,
+      "post_root_id": 720575940639151694,
+      "weight": 21,
+      "edge_type": "measured"
+    },
+    {
+      "pre_name": "VS_stabilization_VS4",
+      "post_name": "VS_stabilization_VS3",
+      "pre_root_id": 720575940659799937,
+      "post_root_id": 720575940641812699,
+      "weight": 1,
+      "edge_type": "measured"
+    }
+  ]
+}
