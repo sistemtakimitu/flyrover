@@ -13,6 +13,10 @@ Bu dosya, FlyRover projesinde çalışacak tüm AI Asistanlarının (Antigravity
 - `"path-integrated"`: Gerçek veriden elde edilmiş ancak ara nöronlar üzerinden hesaplanmış (multi-hop) dolaylı bağlantılar.
 - `"engineered"`: Biyolojik veride bulunamayıp mühendislik kararı ile manuel atanan ağırlıklar. (Bu etiket mümkün olduğunca az kullanılmalıdır).
 
+Aynı kural `config/type_graph.json` (hücre tipi seviyesi) için de geçerlidir. Bu dosya elle düzenlenmez; `src/data/build_type_graph.py` ile üretilir, hangi tiplerin gireceği `config/cell_types.json`'da tanımlanır. Graf üreten koddaki değişiklik ile üretilen graf **aynı PR'da** olmalıdır.
+
 ## 3. Git ve Klasör Düzeni
-- **Git Flow:** Ana kodlar (Production) `main` branch'inde durur. Buraya *asla* doğrudan commit atılmamalıdır (Başlangıç kurulumu hariç). Geliştirmeler kişisel `feature/isim-gorev` branch'lerinde yapılmalı ve PR açılmalıdır.
-- **Modülerlik:** Yapılan değişiklikler projenin profesyonel yapısına (`src/data`, `src/snn`, `tests`, `docs`) uygun olmalı, ana dizine geçici/dağınık dosyalar bırakılmamalıdır. Geçici SNN denemeleri `tests/` altında yapılmalıdır.
+- **Branch düzeni:** Herkes kendi isimli branch'inde (`yusuf`, `mert`, ...) çalışır ve `main`'e Pull Request açar. `main`'e doğrudan commit atılmaz. PR merge edilince kişisel branch `main` ile güncellenir. PR'lar "merge commit" ile birleştirilir (squash değil; uzun ömürlü kişisel branch'lerde tekrar çakışma çıkarır).
+- **Testler:** PR açmadan önce `pytest tests` geçmelidir. Yeni bir davranış eklendiğinde onu doğrulayan bir test de eklenir (bkz. `tests/test_snn.py`, `tests/test_escape_demo.py`).
+- **Modülerlik:** Değişiklikler proje yapısına uygun olmalı: `src/data` (veri), `src/snn` (sinir ağı), `src/sim` (MuJoCo simülasyonu ve kodlayıcı/çözücü), `tests`, `docs`. Ana dizine geçici dosya bırakılmaz. `tests/` altındaki dosyalar pytest testi olmalıdır; çalıştırılabilir demolar `src/` altına konur.
+- **Faz disiplini:** Çalışmalar `docs/yol_haritasi.md`'deki aktif faza odaklanır. Aktif fazın dışındaki nöron/özellik eklemeleri önce yol haritasına yazılır.
