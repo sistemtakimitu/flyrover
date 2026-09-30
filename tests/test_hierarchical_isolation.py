@@ -65,6 +65,7 @@ import networkx as nx
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 from collections import defaultdict
+import os
 
 
 # =============================================================================
@@ -440,9 +441,12 @@ def plot_results(network: LIFNetwork, steps: int,
     _draw_raster(ax_raster, spike_history, time, steps)
     _draw_activity(ax_vt, network, time)
 
-    plt.savefig("/Users/mertsural/Desktop/flyrover/hierarchical_snn_output.png",
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    output_path = os.path.join(BASE_DIR, "hierarchical_snn_output.png")
+    
+    plt.savefig(output_path,
                 dpi=150, bbox_inches="tight", facecolor=fig.get_facecolor())
-    print("\n  Figure saved: hierarchical_snn_output.png")
+    print(f"\n  Figure saved: {output_path}")
     plt.show()
 
 
