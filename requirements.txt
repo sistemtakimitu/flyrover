@@ -4,3 +4,4 @@ matplotlib
 caveclient
 pandas
 brian2
+pyarrow
