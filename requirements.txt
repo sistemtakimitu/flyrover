@@ -3,3 +3,4 @@ networkx
 matplotlib
 caveclient
 pandas
+brian2
