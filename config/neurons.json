@@ -15,12 +15,16 @@
   },
   "threat_and_target": {
     "threat_detection": {
-      "LC4": { "label": "LO.PVLP.157", "root_id": 720575940628064260 },
-      "LPLC2": { "label": "LOP.PVLP.22", "root_id": 720575940624931530 }
+      "LC4_R": { "label": "LO.480", "root_id": 720575940645821316 },
+      "LC4_L": { "label": "LC4_Twin", "root_id": 720575940640612480 },
+      "LPLC2_L": { "label": "LO.PVLP.770", "root_id": 720575940630731847 },
+      "LPLC2_R": { "label": "LOP.PVLP.22", "root_id": 720575940624931530 }
     },
     "target_pursuit": {
-      "LC10a": { "label": "LO.AOTU.358", "root_id": 720575940624055559 },
-      "LC11": { "label": "LO.PVLP.53", "root_id": 720575940604281120 }
+      "LC10a_R": { "label": "LO.AOTU.75", "root_id": 720575940622187329 },
+      "LC10a_L": { "label": "LC10a_Twin", "root_id": 720575940628553515 },
+      "LC11_R": { "label": "LO.PVLP.162", "root_id": 720575940626730127 },
+      "LC11_L": { "label": "LC11_Twin", "root_id": 720575940624625040 }
     }
   },
   "navigation_and_compass": {
