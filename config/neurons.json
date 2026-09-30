@@ -44,10 +44,14 @@
   },
   "motor_and_action": {
     "forward_sprint_BPN": {
-      "Type_1_BPN": { "label": "CL210", "root_id": 720575940625414686 },
-      "Type_2_BPN": { "label": "PLP.SMP.43", "root_id": 720575940630460975 },
-      "Type_3_BPN": { "label": "CB4187", "root_id": 720575940615192588 },
-      "Type_4_BPN": { "label": "SMP.1032", "root_id": 720575940613107119 }
+      "Type_1_BPN_1": { "label": "SMP.FLA.54", "root_id": 720575940625895708 },
+      "Type_1_BPN_2": { "label": "VES.177", "root_id": 720575940621395233 },
+      "Type_2_BPN_1": { "label": "PLP.SMP.53", "root_id": 720575940622022071 },
+      "Type_2_BPN_2": { "label": "ICL.SMP.36", "root_id": 720575940632802785 },
+      "Type_3_BPN_1": { "label": "CB4187_L", "root_id": 720575940628490028 },
+      "Type_3_BPN_2": { "label": "CB4187_R", "root_id": 720575940634714804 },
+      "Type_4_BPN_1": { "label": "SMP.VES.15", "root_id": 720575940603250860 },
+      "Type_4_BPN_2": { "label": "SMP.1032", "root_id": 720575940613107119 }
     },
     "forward_pursuit_P9": {
       "aSP9_1": { "label": "LH.AVLP.30", "root_id": 720575940643651784 },
