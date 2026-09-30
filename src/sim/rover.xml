@@ -1,0 +1,56 @@
+<!--
+FlyRover Faz 1 sahnesi: 4 tekerli skid-steer rover + ustune gelen kirmizi tehdit topu.
+Rover +x yonune bakar. "eye" kamerasi rover'in on gorusu (SNN'in gozu),
+"chase" kamerasi video kaydi icin.
+-->
+<mujoco model="flyrover_escape">
+  <option timestep="0.002" integrator="implicitfast"/>
+  <visual>
+    <global offwidth="640" offheight="480"/>
+    <headlight ambient="0.4 0.4 0.4"/>
+  </visual>
+
+  <asset>
+    <texture name="grid" type="2d" builtin="checker" width="512" height="512"
+             rgb1="0.55 0.35 0.25" rgb2="0.5 0.32 0.22"/>
+    <material name="mars" texture="grid" texrepeat="20 20"/>
+  </asset>
+
+  <default>
+    <geom friction="1.0 0.02 0.001"/>
+    <default class="wheel">
+      <geom type="cylinder" size="0.1 0.04" euler="90 0 0" rgba="0.15 0.15 0.15 1" mass="0.5"
+            friction="1.2 0.02 0.001"/>
+      <joint type="hinge" axis="0 1 0" damping="0.01"/>
+    </default>
+  </default>
+
+  <worldbody>
+    <light pos="0 0 6" dir="0 0 -1" diffuse="0.8 0.8 0.8"/>
+    <geom name="ground" type="plane" size="40 40 0.1" material="mars"/>
+
+    <body name="rover" pos="0 0 0.12">
+      <freejoint/>
+      <geom name="chassis" type="box" size="0.3 0.2 0.06" rgba="0.85 0.85 0.8 1" mass="8"/>
+      <geom type="box" pos="0.25 0 0.09" size="0.03 0.08 0.04" rgba="0.2 0.3 0.8 1" mass="0.1"/>
+      <camera name="eye" pos="0.32 0 0.12" xyaxes="0 -1 0 0 0 1" fovy="70"/>
+      <camera name="chase" pos="1.8 -6.5 3" xyaxes="1 0 0 0 0.42 0.9" mode="track"/>
+      <body name="wheel_fl" pos="0.2 0.25 -0.02"><joint name="fl" class="wheel"/><geom class="wheel"/></body>
+      <body name="wheel_rl" pos="-0.2 0.25 -0.02"><joint name="rl" class="wheel"/><geom class="wheel"/></body>
+      <body name="wheel_fr" pos="0.2 -0.25 -0.02"><joint name="fr" class="wheel"/><geom class="wheel"/></body>
+      <body name="wheel_rr" pos="-0.2 -0.25 -0.02"><joint name="rr" class="wheel"/><geom class="wheel"/></body>
+    </body>
+
+    <body name="threat" mocap="true" pos="6 0 0.4">
+      <geom type="sphere" size="0.4" rgba="0.9 0.1 0.1 1" contype="0" conaffinity="0"/>
+    </body>
+
+  </worldbody>
+
+  <actuator>
+    <velocity name="v_fl" joint="fl" kv="3" ctrllimited="true" ctrlrange="-20 20"/>
+    <velocity name="v_rl" joint="rl" kv="3" ctrllimited="true" ctrlrange="-20 20"/>
+    <velocity name="v_fr" joint="fr" kv="3" ctrllimited="true" ctrlrange="-20 20"/>
+    <velocity name="v_rr" joint="rr" kv="3" ctrllimited="true" ctrlrange="-20 20"/>
+  </actuator>
+</mujoco>

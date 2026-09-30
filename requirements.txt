@@ -5,3 +5,4 @@ caveclient
 pandas
 brian2
 pyarrow
+mujoco
