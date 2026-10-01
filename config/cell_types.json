@@ -1,0 +1,34 @@
+{
+  "_aciklama": "Hucre tipi seviyesindeki graf (config/type_graph.json) icin tipler. Anahtar = grafta kullanilan kisa ad, deger = FlyWire resmi cell_type (Schlegel et al. 2024). Her tip sol (_L) ve sag (_R) olarak iki dugum olur. Tip isimleri config/neurons.json'daki dogrulanmis noronlarin resmi tiplerinden alindi.",
+  "faz": {
+    "1_kacis": {
+      "LC4": "LC4",
+      "LPLC2": "LPLC2",
+      "GF": "DNp01",
+      "DNp02": "DNp02",
+      "DNp04": "DNp04",
+      "DNp11": "DNp11",
+      "DNp03": "DNp03",
+      "DNb01": "DNb01",
+      "DNa15": "DNa15",
+      "MDN": "MDN"
+    },
+    "2_surus": {
+      "LC10a": "LC10a",
+      "DNa01": "DNae001",
+      "DNa02": "DNa02",
+      "DNb05": "DNb05",
+      "DNb06": "DNb06",
+      "DNg13": "DNg13",
+      "BPN_T1": "CL209",
+      "BPN_T2a": "SMP459",
+      "BPN_T2b": "SMP460",
+      "BPN_T3": "CB4187",
+      "BPN_T4": "SMP461",
+      "Foxglove": "CB0890",
+      "Bluebell": "DNg60",
+      "BRK": "AN_GNG_53",
+      "DNp09": "DNp09"
+    }
+  }
+}
