@@ -1,0 +1,16 @@
+{
+  "connections": {
+    "file": "proofread_connections_783.feather",
+    "sha256": "24f960ae3e7d4f8cd30db3b62e99fb5179cc3d1e76d8c155bfb441e9737d3faf",
+    "source": "https://zenodo.org/records/10676866/files/proofread_connections_783.feather",
+    "reference": "Dorkenwald et al. 2024, FlyWire v783 proofread connections"
+  },
+  "annotations": {
+    "file": "flywire_annotations.tsv",
+    "sha256": "b214970b55d2fbe0853bba536fdcb9e28730f4eb7ab06f600491df795da683cd",
+    "source": "https://raw.githubusercontent.com/flyconnectome/flywire_annotations/a83b2776d60d5764cef36b927f5f9679c16c47a2/supplemental_files/Supplemental_file1_neuron_annotations.tsv",
+    "reference": "Schlegel et al. 2024, FlyWire neuron annotations",
+    "commit": "a83b2776d60d5764cef36b927f5f9679c16c47a2",
+    "git_blob_sha1": "02e72f6c8161d3465f77fec0edf96c5d98027a9e"
+  }
+}

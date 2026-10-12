@@ -1,0 +1,5 @@
+# İşaret düzeltmeleri (ADR 0004). Elle düzenleme yalnızca bu dosyada, kaynak ve hakem onayıyla.
+# Her satır bir hücre tipinin TÜM nöronlarına uygulanır; nöron başına düzeltme yok.
+# Örnek:
+#   - {cell_type: DNp01, sign: 1, source: "Yazar et al. YYYY, Dergi", reviewer: "Ad"}
+overrides: []

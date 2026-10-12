@@ -1,0 +1,6 @@
+# Engineered kenarlar (ADR 0004): veride olmayan, elle eklenen bağlantılar.
+# Gerekçe + hakem onayı zorunlu; mümkün olduğunca az. Path-integrated kenarlar YASAK.
+# Örnek:
+#   - {pre_cell_type: LC10a, post_cell_type: DNa02, syn_count: 10, sign: 1,
+#      reason: "H11 tüm-beyin testi başarısız; ...", reviewer: "Ad"}
+edges: []
