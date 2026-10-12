@@ -3,6 +3,7 @@
 - **Durum:** Önerildi
 - **Tarih:** 2026-10-12
 - **Karar sahibi:** Yusuf (hakem: Mert, Ömer)
+- **Revizyon (2026-10-12, inceleme sonrası):** Katman kararlarını (L1 eşiksiz, L3 dondurulmuş kural) ve kol eşitliğini denetleyen kurallar (A9–A11), shuffled üretici kuralı (B7) eklendi; kabul testi sayısı altıya çıktı.
 
 ## Bağlam
 
@@ -26,6 +27,9 @@ Aşağıdaki kurallar kabul edildikten sonra `.agents/AGENTS.md` ve `CONTRIBUTIN
 | A6 | **Olumsuz sonuçlar** aynı ağırlıkla raporlanır. | Aşama sonu rapor şablonu "olumsuz bulgular" bölümünü zorunlu kılar |
 | A7 | **Rakamlar elle yazılmaz:** Rapordaki her sayı `eval/verify.py` tarafından kayıtlardan yeniden hesaplanır. | CI'da `verify.py` |
 | A8 | Raporlanan her sonuç **en az 5 tohumla** verilir; tümü raporlanır. | Rapor scripti |
+| A9 | **L1 karar vermez:** L1 çıktıları sürekli ve monotondur; görev kararını veren eşik yoktur ([0002](0002-katmanli-mimari.md)). | Referans uyaran taramasıyla birim testi; L1 config'indeki her sabit gerekçe alanı taşır |
+| A10 | **L3 kuralı dondurulur:** L3 kural dosyası ön-kayıt commit'inden sonra değişmez; öncelik tablosu yalnızca `L3-öncelik` etiketli karşılaştırma kolunda bulunur. | Değerlendirme düzeneği L3 dosyasının hash'ini ön-kayıttakiyle karşılaştırır |
+| A11 | **Kollar yalnızca L2'de farklıdır:** Gerçek, shuffled ve bypass koşularında L0, L1, L3, L4 config hash'leri aynıdır. | Değerlendirme düzeneği `meta.json`'daki hash'leri karşılaştırır; fark varsa CKS hesaplanmaz |
 
 ### B. Connectome
 
@@ -35,7 +39,8 @@ Aşağıdaki kurallar kabul edildikten sonra `.agents/AGENTS.md` ve `CONTRIBUTIN
 | B2 | Graf yalnızca kodla üretilir; **elle düzenlenmez**. Graf kodu ve üretilen graf (manifest + hash) **aynı PR'da** olur. | CI grafı yeniden üretir ve hash'i karşılaştırır |
 | B3 | Engineered kenarlar ve işaret düzeltmeleri yalnızca kendi YAML dosyalarında, kaynak ve hakem onayıyla eklenir. | CODEOWNERS: bu dosyalar için iki onay |
 | B4 | Path-integrated kenarlar simülasyonda kullanılmaz. | Graf yükleyici reddeder |
-| B5 | Yeni modül, 5 kabul testini geçmeden `main`'e girmez ([0004](0004-connectome-noron-ve-sinaps-kurallari.md)). | Kabul testleri gece CI'ında |
+| B5 | Yeni modül, 6 kabul testini geçmeden `main`'e girmez ([0004](0004-connectome-noron-ve-sinaps-kurallari.md)). | Kabul testleri gece CI'ında |
+| B7 | Shuffled graflar yalnızca derece korumalı üreticiyle (işaret sınıfı içinde çift-kenar değiş tokuşu) üretilir; tohum ve hash manifestte yer alır. | Üreticinin birim testleri giriş/çıkış derecelerini ve sinaps toplamlarını doğrular |
 | B6 | Yeni nöron tipi aramada `docs/neuron_secim_kriterleri.md`'deki 8 adımlı protokol uygulanır. | PR şablonu |
 
 ### C. ML

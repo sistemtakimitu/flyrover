@@ -3,6 +3,7 @@
 - **Durum:** Önerildi
 - **Tarih:** 2026-10-12
 - **Karar sahibi:** Mert (hakem: Yusuf)
+- **Revizyon (2026-10-12, inceleme sonrası):** Arka plan girdisi kalibrasyonu ön-kayıtlı, davranıştan bağımsız ve her kola ayrı uygulanan bir prosedür olarak tanımlandı; shuffled graf üretimi tanımlandı; kabul testlerine lezyon testi eklendi; P1 için varsayılan motor Brian2 (derlenmiş) oldu, JAX motoru ihtiyaç doğduğunda devreye giren bir hızlandırıcıya dönüştü.
 
 ## Bağlam
 
@@ -37,6 +38,23 @@ Veri dosyaları repoya konmaz; indirme scripti hash'leri doğrular. FlyWire CC B
 6. **Bağlam girdisi:** Alt ağa alınmayan beyin bölgelerinin etkisi, her nörona kalibre edilmiş Poisson arka plan girdisiyle temsil edilir. Hedef: alt ağdaki taban ateşleme hızları, tüm-beyin kahinindeki taban hızlarla eşleşsin.
 
 Beklenen boyut: birkaç bin nöron.
+
+### Arka plan girdisi kalibrasyonu
+
+Kalibrasyon bir **ayar adımıdır** ve CKS'yi doğrudan etkiler. Bu yüzden:
+
+- **Prosedür ön-kayıtta sabitlenir:** hedef büyüklük (hücre tipi başına taban hızı), serbest parametreler (hücre tipi başına tek bir arka plan hızı; nöron başına parametre yok), optimizasyon yöntemi, adım sayısı ve tolerans.
+- **Yalnızca uyaransız taban aktivitesi kullanılır.** Görev koşuları, davranış metrikleri ve uyaranlı tepkiler kalibrasyonda kullanılmaz.
+- **Her kola ayrı ve aynı bütçeyle uygulanır.** Her shuffled graf kendi kalibrasyonunu aynı prosedürle alır; bütçe [0005](0005-ml-stratejisi.md)'teki eşit bütçe kuralına dahildir.
+- Kalibre edilen değerler config'te `tuned_on: baseline` ile işaretlenir ve graf manifestine yazılır.
+- Kalibrasyon toleransa ulaşamazsa sonuç raporlanır; tolerans gevşetilmez.
+
+### Shuffled graf üretimi
+
+[0001](0001-vizyon-ve-basari-olcutu.md)'deki tanım nöron seviyesinde şöyle uygulanır:
+- Genişletilmiş alt ağ (adım 1–3) **gerçek graf üzerinde** bir kez kurulur; shuffled graflar bu alt ağın kenarlarından üretilir.
+- Kenarlar işaret sınıfı içinde çift-kenar değiş tokuşuyla karıştırılır; her nöronun giriş/çıkış derecesi ve giriş/çıkış sinaps toplamı korunur. Değiş tokuş sayısı kenar sayısının en az 10 katıdır.
+- Üretici, korunan büyüklükleri doğrulayan birim testleriyle gelir ve her shuffled graf kendi tohumu ve hash'iyle manifestte yer alır.
 
 ### Sinapslar
 
@@ -76,11 +94,13 @@ Kullanılmayacaklar: DNp07/DNp10 (Synaptera'da seçici çıkmadı), uçuş DN'le
 
 | Motor | Rol |
 |---|---|
-| **JAX spiking motoru** (kendi yazılımımız) | Kapalı döngü ve eğitimde kullanılan motor. Seyrek matris, dt = 0,1 ms, GPU. Hedef: birkaç bin nöronlu alt ağda gerçek zamanın ≥ 10 katı. |
-| **Brian2 referansı** | JAX motorunun doğruluk referansı |
+| **Brian2, derlenmiş hedef** (`cython` veya `cpp_standalone`) | **P1–P3 varsayılan motoru.** Kapalı döngü değerlendirmesi (T1–T3). Nöron seviyesi seyrek bağlantı, dt = 0,1 ms. `ConnectomeSNN.step()` arayüzü korunur. |
+| **JAX spiking motoru** (kendi yazılımımız) | **Hızlandırıcı.** Yalnızca yüksek paralellik gerektiren işlerde: L3 v2 dekoder eğitimi, connectome ince ayarı (P4). Seyrek matris, GPU. Hedef: birkaç bin nöronlu alt ağda gerçek zamanın ≥ 10 katı. |
 | **Tüm-beyin kahini** (Brian2, 138.639 nöron, Shiu modeli) | Yalnızca kabul testlerinde |
 
-**Eşdeğerlik koşulu:** JAX motoru, referans uyaran seti üzerinde Brian2 ile istatistiksel olarak eşdeğer olmadan kullanılmaz (popülasyon hızlarında korelasyon ≥ 0,95, nöron başına ortalama hız farkı tolerans içinde, 20 tohum). Kesin eşikler P0 ön-kaydında yazılır.
+**Neden bu sıra:** Bugünkü yavaşlığın ana nedeni motor değil, `numpy` hedefi ve tip seviyesindeki herkes-herkese bağlantılar. Birkaç bin nöronluk seyrek bir alt ağ derlenmiş Brian2'de değerlendirme koşuları için yeterince hızlı olmalıdır. Bu, P0'daki en büyük riski (kendi motorumuzu yazmak) ilk CKS'nin kritik yolundan çıkarır. P0'da derlenmiş Brian2'nin hızı ölçülür; T1 sınavı (≥ 20 bölüm × 3 kol × 5 tohum) sunucuda bir gecede bitmiyorsa JAX motoru öne çekilir.
+
+**Eşdeğerlik koşulu:** JAX motoru, referans uyaran seti üzerinde Brian2 ile istatistiksel olarak eşdeğer olmadan kullanılmaz (popülasyon hızlarında korelasyon ≥ 0,95, nöron başına ortalama hız farkı tolerans içinde, 20 tohum). Kesin eşikler, JAX motorunun ön-kaydında, ilk karşılaştırma koşusundan önce yazılır.
 
 ### Modül kabul testleri
 
@@ -91,10 +111,13 @@ Her modül ağa girmeden önce aşağıdakilerin hepsini geçmelidir. Kesin eşi
 | 1 | **İzolasyon** | Sol girdi yalnızca sol DN'leri sürer |
 | 2 | **Ayna simetrisi** | L/R girdisi değişince çıktı yer değiştirir; tabandaki L–R farkı küçüktür |
 | 3 | **Sönüm** | Girdi kesildikten 200 ms sonra modül hızı < 0,1 Hz |
-| 4 | **Shuffled null** | Etki, 5 shuffled grafın en büyüğünü aşar |
+| 4 | **Shuffled null** | Etki, 5 shuffled grafın (derece korumalı, kendi kalibrasyonuyla) en büyüğünü aşar |
 | 5 | **Tüm beyne transfer** | Aynı girdi tüm-beyin kahininde aynı DN'leri aynı yönde sürer |
+| 6 | **Lezyon** | Modülün iddia edilen yolundaki ara nöronlar susturulunca (ör. LC4 → DNp04 yolundaki doğrudan kenarlar) DN tepkisi ön-kayıtlı oranda düşer; başka bir yoldan gelen etki raporlanır |
 
 Testi geçemeyen modül ya ağa alınmaz ya da açıkça `engineered` etiketiyle alınır ve CKS raporunda belirtilir.
+
+Test 2 (ayna simetrisi) ve tabandaki L–R farkı, sürekli bir parametrenin (yön, hız) okunabilmesi için **ön koşuldur** ([0002](0002-katmanli-mimari.md)). Tabanda tek taraflı aktivite gösteren DN çiftleri (Synaptera'daki DNp15 gibi) yalnızca ayrık mod seçiminde kullanılabilir.
 
 ### Eski graf
 
@@ -108,15 +131,19 @@ Testi geçemeyen modül ya ağa alınmaz ya da açıkça `engineered` etiketiyle
 | Tip seviyesi graf (mevcut) | Seçiciliği siliyor; kenarların %72'si doğrusal varsayıma dayanıyor |
 | BANC'ı simülasyon tabanı yapmak | Etiketleri daha az olgun, doğrulanmış hazır model yok. Hat B'nin sonucuna göre yeniden değerlendirilir. |
 | FAFB + BANC sinaps sayılarını aynı ağda karıştırmak | İki farklı hayvan, farklı ölçek; ayıklanması zor hatalar |
+| P0'da JAX motorunu kritik yola koymak | İlk CKS'yi kendi motorumuzun doğrulanmasına bağlar; derlenmiş Brian2 değerlendirme için muhtemelen yeterli. JAX, paralellik gerçekten gerektiğinde devreye girer. |
+| Kalibrasyonu yalnızca gerçek grafa yapmak | Shuffled graf kalibre edilmemiş taban aktivitesiyle dezavantajlı başlar ve CKS şişer. |
 
 ## Sonuçlar
 
 **Olumlu**
 - Path-integrated varsayımı ortadan kalkar; sonuçlar tüm beyne daha iyi taşınır.
-- Her modülün biyolojik geçerliliği beş testle belgelenir.
+- Her modülün biyolojik geçerliliği altı testle belgelenir.
+- İlk CKS, kendi motorumuzun doğrulanmasını beklemez.
 
 **Olumsuz / maliyet**
-- Kendi spiking motorumuzu yazmak ve Brian2'ye karşı doğrulamak P0'ın en büyük işidir.
+- Kendi spiking motorumuzu yazmak ve Brian2'ye karşı doğrulamak hâlâ büyük bir iştir; P2'ye kayar ve P4'teki ince ayar buna bağlıdır.
+- Her shuffled graf için ayrı kalibrasyon, hesaplama maliyetini artırır.
 - Tüm-beyin kahini testleri pahalıdır (koşu başına dakikalar); gece testlerinde çalışır.
 - Bazı modüllerin (özellikle hedefe yönelme) testi geçememe ihtimali gerçektir. Bu durumda T2 için o modül `engineered` olur ve bu açıkça raporlanır.
 

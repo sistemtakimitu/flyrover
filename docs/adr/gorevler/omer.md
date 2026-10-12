@@ -36,7 +36,7 @@
 | Görev | Teslim / "bitti" ölçütü |
 |---|---|
 | **T1 sahnesi:** tehdit rastgele yön ve hızla yaklaşıyor | Tohum havuzları (Yusuf ile) |
-| **Loom özellik kodlayıcı** ommatidia üzerinde (açısal büyüme hızı → LC4, açısal büyüklük → LPLC2, sol/sağ) | Mevcut `LoomingEncoder`'ın renk bağımsız sürümü; HAND-MADE etiketli |
+| **Loom özellik kodlayıcı** ommatidia üzerinde (açısal büyüme hızı → LC4, açısal büyüklük → LPLC2, sol/sağ) | Mevcut `LoomingEncoder`'ın renk bağımsız ve **eşiksiz** sürümü (8°/s ve 20° eşikleri kaldırılır; çıktı sürekli ve monoton, A9 testi geçiyor); HAND-MADE etiketli |
 | FlyVis girdi formatı | FlyVis ağına ommatidia girdisi verilebiliyor (köprüyü Mert yazar) |
 | **L4 rover kontrolcüsü v1**: (v, ω) → teker torkları, kinematik + PID | Düz zeminde komut takibi hatası belgelenmiş |
 | T1 mod komutlarını (KAÇ + yön) uygulayan L4 | Mert'in L3 v1'iyle entegre |
@@ -45,7 +45,7 @@
 | Görev | Teslim / "bitti" ölçütü |
 |---|---|
 | **T2 sahnesi:** rastgele konumda hedef kaya, dikkat dağıtıcılar | "1 m önünde durma" metriği `info`'da |
-| Küçük hedef özellik kodlayıcı (→ LC10a, LC11) | HAND-MADE etiketli |
+| Küçük hedef özellik kodlayıcı (→ LC10a, LC11) | HAND-MADE etiketli; eşiksiz (A9) |
 | **Kol RL becerileri** (MJX, durum tabanlı, PPO/SAC): uzan, kavra, kaldır, bırak | Rastgele nesne ve pozlarda ≥ %90 başarı; MLflow'da kayıtlı |
 | Becerilerin parametrik çağrılması: `UZAN(hedef_poz)`, `KAVRA()`, `KALDIR(yükseklik)` | `ModeCommand` → beceri eşlemesi |
 | Eğimde rover kontrolcüsü (kayma telafisi) | Eğimli test sahnesinde komut takibi hatası |
@@ -74,7 +74,7 @@
 | Ömer'in ihtiyacı | Kimden | Ne zaman |
 |---|---|---|
 | CUDA sunucusu, MLflow | Yusuf | P0 ortası |
-| JAX motoru `step()` arayüzü | Mert | H4 |
+| Beyin motoru `step()` arayüzü (derlenmiş Brian2) | Mert | H4 |
 | `ModeCommand` üreten L3 | Mert | P1'den itibaren |
 | Tohum havuzu kilitleme mekanizması | Yusuf | P1 başı |
 
@@ -89,6 +89,8 @@
 - **Bilgi güvenlik duvarı.** L4 politikaları kamerayı veya görev kimliğini görmemeli. Ödül tasarımı da görev bilgisini L4'e sızdırmamalı.
 - **RL becerilerini beyinden bağımsız eğit.** Becerilerin başarısı beyne bağlı olmamalı; böylece T3'teki başarısızlıklar beyin ve gövde arasında ayrıştırılabilir.
 - **Özellik kodlayıcıları renk bağımlı yapma.** Mevcut kırmızı maske Mars zemininde kırılgan; geometri ve hareket tabanlı özellikler tercih edilmeli.
+- **Kodlayıcıda karar verme.** "Tehdit var/yok" gibi eşikler L1'de yasak ([0002](../0002-katmanli-mimari.md)); kararı beyin vermeli. Başarı düşükse eşik eklemek yerine sorun raporlanır.
+- **Nesne pozu yalnızca L3 üzerinden L4'e gider** ve `HAND-MADE` etiketlidir; kol politikası hangi nesneye uzanacağını kendisi seçmez.
 - **Sınav tohumlarına dokunma.** Hata ayıklama eğitim ve doğrulama havuzlarında yapılır.
 - **Simülasyon ile beyin arasındaki zaman uyumu.** 20 ms kontrol adımı, 2 ms fizik adımı; render gecikmesi beyin girdisini kaydırmamalı.
 
