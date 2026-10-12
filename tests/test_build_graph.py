@@ -151,3 +151,16 @@ def test_sign_overrides_schema(tmp_path):
 def test_repo_override_files_are_valid():
     assert bg.load_sign_overrides() == []
     assert bg.load_engineered_edges() == []
+
+
+def test_v0_formula_type_weight():
+    from connectome.compare_v0 import type_weight
+    # A={1,2} -> k=100 (gaba, girdi 80) -> B={10}; A -> B dogrudan 6
+    edges5 = pd.DataFrame({'pre': [1, 2, 100, 1], 'post': [100, 100, 10, 10], 'syn_count': [40, 40, 30, 6]})
+    input_total = pd.Series({100: 80, 10: 36})
+    sign = pd.Series({1: 1, 2: 1, 100: -1})
+    m, p = type_weight(edges5, input_total, sign, {1, 2}, {10}, None, set())
+    assert m == 6
+    assert p == pytest.approx(80 * -1 / 80 * 30)
+    _, p_none = type_weight(edges5, input_total, sign, {1, 2}, {10}, {999}, set())
+    assert p_none == 0
