@@ -1,0 +1,39 @@
+# Tohum tipleri ve mod popülasyonları (ADR 0010). Graf üretici yalnızca bu dosyayı okur (B8).
+# Seçici: `cell_type` (anotasyondaki tip adı) ya da `annotation` (sütun -> değer veya değer listesi).
+# expected_per_side: sol ve sağ sayının her biri bu aralıkta olmalı; değilse üretim durur.
+# Sayılar ve anotasyon eşlemeleri: docs/reports/p0_tohum_tipleri.md (connectome/discover_seeds.py).
+version: 1
+connectome: {dataset: FAFB, materialization: 783}
+expansion: {theta: 0.01, max_hops: 2, min_synapses: 5}     # davranıştan önce sabitlenir
+
+seeds:
+  # --- Girdi tohumları (L1'den sürülür)
+  LC4:       {role: input, module: kacis, cell_type: LC4,   expected_per_side: [45, 60]}
+  LPLC2:     {role: input, module: kacis, cell_type: LPLC2, expected_per_side: [90, 115]}
+  LC10a:     {role: input, module: hedef, cell_type: LC10a, expected_per_side: [100, 130]}
+  LC11:      {role: input, module: dur,   cell_type: LC11,  expected_per_side: [55, 75]}
+  # Labellar şeker GRN'leri: LB3c (sugar) + LB3b (sugar/low_salt), MxLbN siniri. Su (LB3a) dahil değil.
+  GRN_sugar: {role: input, module: uzan,  expected_per_side: [20, 40],
+              annotation: {cell_class: gustatory, cell_sub_class: [sugar, sugar/low_salt]}}
+
+  # --- Mod popülasyonları (L3 okur; her tip en fazla bir modda)
+  GF:        {role: mode, mode: KAC,    cell_type: DNp01,   expected_per_side: [1, 1]}
+  DNp02:     {role: mode, mode: KAC,    cell_type: DNp02,   expected_per_side: [1, 1]}
+  DNp04:     {role: mode, mode: KAC,    cell_type: DNp04,   expected_per_side: [1, 1]}
+  DNp11:     {role: mode, mode: KAC,    cell_type: DNp11,   expected_per_side: [1, 1]}
+  MDN:       {role: mode, mode: KAC,    cell_type: MDN,     expected_per_side: [2, 2]}
+  # Hemibrain/Namiki DNa01 = FlyWire DNae001 (hemibrain_type). FlyWire'daki "DNa01" ayrı bir tiptir (hemibrain VES006).
+  DNa01:     {role: mode, mode: YAKLAS, cell_type: DNae001, expected_per_side: [1, 1]}
+  DNa02:     {role: mode, mode: YAKLAS, cell_type: DNa02,   expected_per_side: [1, 1]}
+  DNp09:     {role: mode, mode: DUR,    cell_type: DNp09,   expected_per_side: [1, 1]}
+  # MN9 = CB0701 (motor, PhN). Shiu et al. 2024'teki MN9 kimliği 720575940660219265 bu tipin sağ nöronu.
+  MN9:       {role: mode, mode: UZAN,   cell_type: CB0701,  expected_per_side: [1, 1]}
+
+  # --- Yalnızca kayıt (hiçbir moda girmez)
+  DNg13:     {role: record, cell_type: DNg13,  expected_per_side: [1, 1]}
+  DNb05:     {role: record, cell_type: DNb05,  expected_per_side: [1, 1]}
+  DNb06:     {role: record, cell_type: DNb06,  expected_per_side: [1, 1]}
+  Foxglove:  {role: record, cell_type: CB0890, expected_per_side: [1, 1]}
+  Bluebell:  {role: record, cell_type: DNg60,  expected_per_side: [1, 1]}
+
+default_mode: {T1: BEKLE, T1b: BEKLE, T2: KESFET, T3: KESFET, T4: KESFET}
