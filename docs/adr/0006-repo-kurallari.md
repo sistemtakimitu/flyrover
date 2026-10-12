@@ -4,6 +4,7 @@
 - **Tarih:** 2026-10-12
 - **Karar sahibi:** Yusuf (hakem: Mert, Ömer)
 - **Revizyon (2026-10-12, inceleme sonrası):** Katman kararlarını (L1 eşiksiz, L3 dondurulmuş kural) ve kol eşitliğini denetleyen kurallar (A9–A11), shuffled üretici kuralı (B7) eklendi; kabul testi sayısı altıya çıktı.
+- **Revizyon 2 (2026-10-12):** A9 kapsamı düzeltildi (seçicilik özellikleri monoton olmak zorunda değil); B7 ağırlık aralığı içi değiş tokuşa göre düzeltildi (B7'nin önceki testi tanım gereği hep başarısız olurdu); B8 (tohum tipi kuralı) ve C5 (model seçim protokolü) eklendi.
 
 ## Bağlam
 
@@ -27,7 +28,7 @@ Aşağıdaki kurallar kabul edildikten sonra `.agents/AGENTS.md` ve `CONTRIBUTIN
 | A6 | **Olumsuz sonuçlar** aynı ağırlıkla raporlanır. | Aşama sonu rapor şablonu "olumsuz bulgular" bölümünü zorunlu kılar |
 | A7 | **Rakamlar elle yazılmaz:** Rapordaki her sayı `eval/verify.py` tarafından kayıtlardan yeniden hesaplanır. | CI'da `verify.py` |
 | A8 | Raporlanan her sonuç **en az 5 tohumla** verilir; tümü raporlanır. | Rapor scripti |
-| A9 | **L1 karar vermez:** L1 çıktıları sürekli ve monotondur; görev kararını veren eşik yoktur ([0002](0002-katmanli-mimari.md)). | Referans uyaran taramasıyla birim testi; L1 config'indeki her sabit gerekçe alanı taşır |
+| A9 | **L1 karar vermez:** L1 çıktıları görevden bağımsız ve süreklidir; büyüklük özellikleri monotondur, seçicilik özellikleri literatürden alınmış ayar eğrisini izler; görev kararını veren eşik yoktur ([0002](0002-katmanli-mimari.md)). | Referans uyaran taramasıyla birim testi; L1 config'indeki her sabit gerekçe ve kaynak alanı taşır |
 | A10 | **L3 kuralı dondurulur:** L3 kural dosyası ön-kayıt commit'inden sonra değişmez; öncelik tablosu yalnızca `L3-öncelik` etiketli karşılaştırma kolunda bulunur. | Değerlendirme düzeneği L3 dosyasının hash'ini ön-kayıttakiyle karşılaştırır |
 | A11 | **Kollar yalnızca L2'de farklıdır:** Gerçek, shuffled ve bypass koşularında L0, L1, L3, L4 config hash'leri aynıdır. | Değerlendirme düzeneği `meta.json`'daki hash'leri karşılaştırır; fark varsa CKS hesaplanmaz |
 
@@ -40,8 +41,9 @@ Aşağıdaki kurallar kabul edildikten sonra `.agents/AGENTS.md` ve `CONTRIBUTIN
 | B3 | Engineered kenarlar ve işaret düzeltmeleri yalnızca kendi YAML dosyalarında, kaynak ve hakem onayıyla eklenir. | CODEOWNERS: bu dosyalar için iki onay |
 | B4 | Path-integrated kenarlar simülasyonda kullanılmaz. | Graf yükleyici reddeder |
 | B5 | Yeni modül, 6 kabul testini geçmeden `main`'e girmez ([0004](0004-connectome-noron-ve-sinaps-kurallari.md)). | Kabul testleri gece CI'ında |
-| B7 | Shuffled graflar yalnızca derece korumalı üreticiyle (işaret sınıfı içinde çift-kenar değiş tokuşu) üretilir; tohum ve hash manifestte yer alır. | Üreticinin birim testleri giriş/çıkış derecelerini ve sinaps toplamlarını doğrular |
-| B6 | Yeni nöron tipi aramada `docs/neuron_secim_kriterleri.md`'deki 8 adımlı protokol uygulanır. | PR şablonu |
+| B6 | Yeni nöron tipi aramada `docs/neuron_secim_kriterleri.md`'deki 8 adımlı protokol **hücre tipi düzeyinde** uygulanır. | PR şablonu |
+| B7 | Shuffled graflar yalnızca derece korumalı üreticiyle (işaret sınıfı ve ağırlık aralığı içinde çift-kenar değiş tokuşu) üretilir; tohum ve hash manifestte yer alır. | Üreticinin birim testleri: dereceler birebir, sinaps toplamları ön-kayıtlı tolerans içinde |
+| B8 | Ağa elle tek tek nöron (`root_id`) eklenmez. Ağ yalnızca [0010](0010-noron-secimi-tohum-tipleri.md)'daki tohum tiplerinden ve genişletme adımından üretilir; yeni tohum tipi ADR + kabul testleri gerektirir. | Graf üretici yalnızca `config/modules.yaml`'daki tipleri okur |
 
 ### C. ML
 
@@ -51,6 +53,7 @@ Aşağıdaki kurallar kabul edildikten sonra `.agents/AGENTS.md` ve `CONTRIBUTIN
 | C2 | Gerçek, shuffled ve bypass kollarına eşit eğitim/ayar bütçesi. | MLflow'da üç kolun bütçeleri yan yana raporlanır |
 | C3 | L4 politikaları L3 dışında görev bilgisi alamaz. | Gözlem şeması testi |
 | C4 | Her eğitim koşusu config, tohum ve commit hash'iyle MLflow'a kaydedilir. | Eğitim başlatıcı |
+| C5 | Model seçimi yalnızca [0009](0009-ml-model-secim-protokolu.md)'daki protokolle yapılır: ön-kayıtlı aday listesi, doğrulama tohumları, eşit bütçe, ≥ 5 eğitim tohumu, IQM + güven aralığı. Seçilmeyen adaylar da raporlanır. | `docs/prereg/ml/` dosyası olmadan seçim raporu üretilmez |
 
 ### D. Mühendislik ve güvenlik
 

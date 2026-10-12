@@ -1,12 +1,13 @@
 # Yusuf: Platform, değerlendirme ve dürüstlük sahibi
 
 - **Rol:** Siber güvenlik & full stack mühendisi; ekibin **tarafsız değerlendiricisi**
-- **Sahip olduğu alanlar:** Repo yapısı, CI/CD, güvenlik, CUDA sunucusu ve erişimi, deney takibi (MLflow), kayıt şeması, L5 değerlendirme düzeneği, CKS, `verify.py`, ön-kayıt süreci, dashboard ve beyin aktivitesi görüntüleyici, entegrasyon, yayın hazırlığı
+- **Sahip olduğu alanlar:** Repo yapısı, CI/CD, güvenlik, CUDA sunucusu ve erişimi, deney takibi (MLflow), kayıt şeması, L5 değerlendirme düzeneği, CKS, `verify.py`, **shuffled graf üretici**, **L1 karar-vermezlik testleri (A9)**, ön-kayıt süreci, dashboard ve beyin aktivitesi görüntüleyici, entegrasyon, yayın hazırlığı
+- **Revizyon 2 (2026-10-12):** Tarafsızlık için shuffled üretici ve A9 testleri Yusuf'a geçti ([0007](../0007-ekip-ve-gorev-dagilimi.md)); T1b eklendi; JAX eşdeğerlik düzeneği yalnızca JAX motoru yazılırsa gerekir.
 - **Hakemleri:** Mert ve Ömer (dönüşümlü)
 - **Yedeği:** Ömer
 - İlgili kararlar: [0006](../0006-repo-kurallari.md) · [0001](../0001-vizyon-ve-basari-olcutu.md) · [0007](../0007-ekip-ve-gorev-dagilimi.md)
 
-Yusuf'un hiçbir beyin veya ML modülünün sahibi olmaması bilinçli bir tercih: CKS'yi hesaplayan ve sınav tohumlarını açan kişi, sonucu iyi çıkması gereken modülü yazan kişi olmamalı.
+Yusuf'un hiçbir beyin veya ML modülünün sahibi olmaması bilinçli bir tercih: CKS'yi hesaplayan, sıfır hipotezini (shuffled graf) üreten ve sınav tohumlarını açan kişi, sonucu iyi çıkması gereken modülü yazan kişi olmamalı.
 
 ---
 
@@ -36,7 +37,8 @@ Yusuf'un hiçbir beyin veya ML modülünün sahibi olmaması bilinçli bir terci
 | **Kayıt şeması** (`meta.json`, `data.h5`/zarr, `metrics.json`) + doğrulayıcı | Etiketsiz alan → test hatası |
 | **Değerlendirme düzeneği iskeleti:** görev × kol × tohum koşturucu | Sahte bir görevle uçtan uca çalışıyor; kollar arasında L0/L1/L3/L4 config hash'leri farklıysa (A11) veya L3 kural dosyası ön-kayıttan sonra değiştiyse (A10) koşuyu reddediyor |
 | **Ön-kayıt şablonu** ve `docs/prereg/` süreci | Şablon + CI kontrolü (sınav koşusu için ön-kaydın daha eski commit'te olması) |
-| JAX–Brian2 **eşdeğerlik test düzeneği** (Mert ile; P2'de kullanılır) | Referans uyaran seti; istatistik raporu otomatik |
+| **Shuffled graf üretici** (`connectome/shuffle.py`): işaret sınıfı ve ağırlık aralığı içinde çift-kenar değiş tokuşu ([0004](../0004-connectome-noron-ve-sinaps-kurallari.md)); Mert'in graf manifesti üzerinde çalışır | Birim testleri: dereceler birebir, sinaps toplamları ön-kayıtlı tolerans içinde, işaret sınıfı başına kenar sayısı ve girdi/çıktı kimlikleri aynı; tohum + hash manifestte |
+| JAX–Brian2 **eşdeğerlik test düzeneği** (yalnızca JAX motoru yazılırsa; [0005](../0005-ml-stratejisi.md)) | Referans uyaran seti; istatistik raporu otomatik |
 | Mevcut kodu `v0-faz1-kacis` etiketiyle işaretle | Etiket repoda |
 
 ### P1 Kaçış (H5–H8)
@@ -45,8 +47,9 @@ Yusuf'un hiçbir beyin veya ML modülünün sahibi olmaması bilinçli bir terci
 | **Tohum havuzları ve sınav kilidi** (Ömer ile) | Sınav havuzu yalnızca `--exam` + etiketli commit + ön-kayıt ile açılıyor; her açılış loglanıyor |
 | **CKS hesaplama** + bootstrap %95 güven aralığı | Birim testli |
 | **`verify.py`**: rapor sayılarını kayıtlardan yeniden hesaplar | CI'da çalışıyor; uyuşmazlıkta hata |
-| T1 ön-kayıt sürecinin yönetimi | T1 ön-kaydı sınavdan önce `main`'de |
-| **T1 sınavının koşturulması** ve ilk CKS raporu | `docs/reports/P1_T1.md` (olumsuz bulgular bölümü dahil) |
+| **A9 testleri**: L1 kodlayıcıları için referans uyaran taraması (büyüklük özellikleri monoton, seçicilik özellikleri config'teki ayar eğrisiyle uyumlu, görev eşiği yok) | CI'da; Ömer'in kodlayıcıları bu testten geçmeden sınav yok |
+| T1 ve T1b ön-kayıt sürecinin yönetimi | Ön-kayıtlar sınavdan önce `main`'de |
+| **T1 ve T1b sınavlarının koşturulması**, ilk CKS raporu (T1 aktarım testi, T1b ilk anlamlı sayı) | `docs/reports/P1_T1.md` (olumsuz bulgular bölümü dahil) |
 | Bypass kolunun eşit bütçe denetimi (hakem) | İnceleme notu |
 | **Dashboard v1** (web) | Koşular, kollar ve CKS listeleniyor |
 

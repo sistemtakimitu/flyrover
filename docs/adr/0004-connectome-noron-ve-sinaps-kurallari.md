@@ -2,8 +2,9 @@
 
 - **Durum:** Önerildi
 - **Tarih:** 2026-10-12
-- **Karar sahibi:** Mert (hakem: Yusuf)
+- **Karar sahibi:** Mert (hakem: Yusuf); shuffled üretici: Yusuf (hakem: Mert)
 - **Revizyon (2026-10-12, inceleme sonrası):** Arka plan girdisi kalibrasyonu ön-kayıtlı, davranıştan bağımsız ve her kola ayrı uygulanan bir prosedür olarak tanımlandı; shuffled graf üretimi tanımlandı; kabul testlerine lezyon testi eklendi; P1 için varsayılan motor Brian2 (derlenmiş) oldu, JAX motoru ihtiyaç doğduğunda devreye giren bir hızlandırıcıya dönüştü.
+- **Revizyon 2 (2026-10-12):** Shuffled değiş tokuşu ağırlık aralığı içine alındı (dereceler tam, sinaps toplamları yaklaşık); davranış modülleri tablosu [0010](0010-noron-secimi-tohum-tipleri.md)'daki tohum tipi kararıyla değiştirildi; shuffled üreticinin sahipliği tarafsızlık için Yusuf'a geçti.
 
 ## Bağlam
 
@@ -53,8 +54,10 @@ Kalibrasyon bir **ayar adımıdır** ve CKS'yi doğrudan etkiler. Bu yüzden:
 
 [0001](0001-vizyon-ve-basari-olcutu.md)'deki tanım nöron seviyesinde şöyle uygulanır:
 - Genişletilmiş alt ağ (adım 1–3) **gerçek graf üzerinde** bir kez kurulur; shuffled graflar bu alt ağın kenarlarından üretilir.
-- Kenarlar işaret sınıfı içinde çift-kenar değiş tokuşuyla karıştırılır; her nöronun giriş/çıkış derecesi ve giriş/çıkış sinaps toplamı korunur. Değiş tokuş sayısı kenar sayısının en az 10 katıdır.
-- Üretici, korunan büyüklükleri doğrulayan birim testleriyle gelir ve her shuffled graf kendi tohumu ve hash'iyle manifestte yer alır.
+- Kenarlar **aynı işaret sınıfı ve aynı ağırlık aralığı** içinde çift-kenar değiş tokuşuyla karıştırılır; ağırlık kenarla birlikte taşınır. Ağırlık aralıkları sinaps sayısının log ölçekli aralıklarıdır (başlangıç önerisi: 5–7, 8–11, 12–19, 20–39, 40–79, ≥ 80); aralıklar ilk shuffled koşudan önce ön-kayda yazılır.
+- **Neden aralık:** A→B (w₁) ve C→D (w₂) değiş tokuş edilip ağırlık kenarla taşınırsa A ve C'nin çıkış toplamı korunur, ama w₁ ≠ w₂ ise B ve D'nin giriş toplamı değişir. Dereceler ve iki yöndeki sinaps toplamları ağırlıklar farklıyken aynı anda tam korunamaz. Aralık içi değiş tokuş dereceleri **tam**, sinaps toplamlarını **yaklaşık** korur.
+- Değiş tokuş sayısı kenar sayısının en az 10 katıdır.
+- Üretici, birim testleriyle gelir: giriş/çıkış dereceleri **birebir** aynı; nöron başına giriş/çıkış sinaps toplamlarının göreli sapması ön-kayıtlı toleransın altında (sapma dağılımı raporlanır); işaret sınıfı başına kenar sayısı aynı; girdi ve çıktı nöronlarının kimliği aynı. Her shuffled graf kendi tohumu ve hash'iyle manifestte yer alır.
 
 ### Sinapslar
 
@@ -74,16 +77,16 @@ w_ij = işaret(i) × sinaps_sayısı(i → j) × w_syn        (w_syn = 0,275 mV,
 
 ### Davranış modülleri
 
-| Modül | Girdi | Çekirdek | Çıktı DN'leri | Risk |
-|---|---|---|---|---|
-| **Kaçış** | LC4, LPLC2 | — | GF (DNp01), DNp02, DNp04, DNp11, MDN | Düşük: ölçülmüş, güçlü yollar |
-| **Hedefe yönelme** | LC10a | ara nöronlar | DNa01, DNa02, DNg13 | **Yüksek:** yol tüm beyinde doğrulanmalı |
-| **Dur / don** | LC11, LPLC2 | — | DNp09 | Orta |
-| **Uzanma kararı** | "hedef yakın ve ortada" → GRN benzeri girdi | Hortum uzatma (PER) devresi | MN9 benzeri karar nöronu | Orta: Synaptera'da çalışan tek yol, girdi eşlemesi elle |
-| **İleri / keşif** | AN (yürüme durumu) | BPN | — | Yüksek: BPN'in bilinen görsel girdisi yok |
-| Pusula (EPG → PFL3) | — | merkezi kompleks | — | **Ertelendi:** uniform LIF ile kararlı halka çekicisi beklenmez |
+Tohum tipleri, mod → DN popülasyonu eşlemesi, çıkarılan ve ertelenen tipler [0010](0010-noron-secimi-tohum-tipleri.md)'da karara bağlanmıştır. Özet:
 
-Kullanılmayacaklar: DNp07/DNp10 (Synaptera'da seçici çıkmadı), uçuş DN'leri (DNg02, DNp15).
+| Modül | Girdi tohumları | Çıktı (mod popülasyonu) | Risk |
+|---|---|---|---|
+| **Kaçış** | LC4, LPLC2 | KAÇ: DNp01 (GF), DNp02, DNp04, DNp11, MDN | Düşük: ölçülmüş, güçlü yollar |
+| **Hedefe yönelme** | LC10a | YAKLAŞ: DNae001 (DNa01), DNa02 | **Yüksek:** yol tüm beyinde doğrulanmalı |
+| **Dur / don** | LC11 | DUR: DNp09 | Orta |
+| **Uzanma kararı** | Labellar şeker GRN'leri ("hedef yakın ve ortada" → GRN, HAND-MADE) | UZAN: MN9 | Orta: Synaptera'da çalışan tek yol; girdi eşlemesi elle |
+
+Ara nöronlar elle seçilmez; genişletme adımıyla (adım 3) veriden gelir. Kullanılmayacaklar: DNp07/DNp10 (Synaptera'da seçici çıkmadı), uçuş DN'leri (DNg02, DNp15). Pusula (EPG → PFL3) ve ileri yürüme (BPN, P9) ertelendi.
 
 ### Nöron modeli
 
@@ -95,7 +98,7 @@ Kullanılmayacaklar: DNp07/DNp10 (Synaptera'da seçici çıkmadı), uçuş DN'le
 | Motor | Rol |
 |---|---|
 | **Brian2, derlenmiş hedef** (`cython` veya `cpp_standalone`) | **P1–P3 varsayılan motoru.** Kapalı döngü değerlendirmesi (T1–T3). Nöron seviyesi seyrek bağlantı, dt = 0,1 ms. `ConnectomeSNN.step()` arayüzü korunur. |
-| **JAX spiking motoru** (kendi yazılımımız) | **Hızlandırıcı.** Yalnızca yüksek paralellik gerektiren işlerde: L3 v2 dekoder eğitimi, connectome ince ayarı (P4). Seyrek matris, GPU. Hedef: birkaç bin nöronlu alt ağda gerçek zamanın ≥ 10 katı. |
+| **JAX spiking motoru** (kendi yazılımımız) | **Opsiyonel hızlandırıcı.** Yalnızca Brian2'nin yetmediği yüksek paralellik işlerinde: RL ile L3 dekoder eğitimi, surrogate-gradient ince ayar. İnce ayarın ilk yöntemi evrim stratejileri olduğu ve Brian2 ile çalıştığı için ([0005](0005-ml-stratejisi.md)) JAX motoru kritik yolda değildir; ihtiyacı [0009](0009-ml-model-secim-protokolu.md)'daki ölçümlerle belirlenir. Seyrek matris, GPU. Hedef: birkaç bin nöronlu alt ağda gerçek zamanın ≥ 10 katı. |
 | **Tüm-beyin kahini** (Brian2, 138.639 nöron, Shiu modeli) | Yalnızca kabul testlerinde |
 
 **Neden bu sıra:** Bugünkü yavaşlığın ana nedeni motor değil, `numpy` hedefi ve tip seviyesindeki herkes-herkese bağlantılar. Birkaç bin nöronluk seyrek bir alt ağ derlenmiş Brian2'de değerlendirme koşuları için yeterince hızlı olmalıdır. Bu, P0'daki en büyük riski (kendi motorumuzu yazmak) ilk CKS'nin kritik yolundan çıkarır. P0'da derlenmiş Brian2'nin hızı ölçülür; T1 sınavı (≥ 20 bölüm × 3 kol × 5 tohum) sunucuda bir gecede bitmiyorsa JAX motoru öne çekilir.

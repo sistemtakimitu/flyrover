@@ -2,8 +2,9 @@
 
 - **Durum:** Önerildi
 - **Tarih:** 2026-10-12
-- **Karar sahibi:** Mert (beyne dokunan ML), Ömer (gövdeye dokunan ML); hakem: Yusuf
+- **Karar sahibi:** Mert (tüm ML); hakem: Yusuf (eşit bütçe), Ömer (kol becerileri ve ortam arayüzü)
 - **Revizyon (2026-10-12, inceleme sonrası):** Eşit bütçe kuralı arka plan kalibrasyonunu ve L3 kuralının seçimini kapsayacak şekilde genişletildi; bypass'ın çıktı biçimi [0001](0001-vizyon-ve-basari-olcutu.md) ile uyumlu hale getirildi; Synaptera atfı düzeltildi.
+- **Revizyon 2 (2026-10-12):** Tüm ML Mert'e geçti (Ömer Hat B'ye, bkz. [0007](0007-ekip-ve-gorev-dagilimi.md)); connectome ince ayarında evrim stratejileri **ilk yöntem** oldu; model seçimi [0009](0009-ml-model-secim-protokolu.md)'daki protokole bağlandı.
 
 ## Bağlam
 
@@ -15,17 +16,18 @@ Vizyon ML'e iki rol veriyor: kol ve rover hareketini öğrenmek, ve uzun vadede 
 
 ### Sahiplik kuralı
 
-- **Beyne dokunan ML** (L2–L3: ince ayar, öğrenilmiş dekoder, VNC vekili, bypass) → **Mert**
-- **Gövdeye dokunan ML** (L4: kol becerileri, hareket kontrolcüsü) → **Ömer**
+- **Tüm ML** (L2 ince ayar, L3 öğrenilmiş dekoder, L4 kol becerileri, VNC vekili, bypass) → **Mert**
+- **Rover hareket kontrolcüsü** (L4, kinematik + PID; RL gerekirse Mert ile) → **Ömer**
+- Hangi modelin seçileceği yalnızca [0009](0009-ml-model-secim-protokolu.md)'daki protokolle belirlenir.
 
 ### Modeller
 
 | # | Model | Katman | Yöntem | Öğrendiği | Etiket | Sahip | Aşama |
 |---|---|---|---|---|---|---|---|
-| 1 | **Kol becerileri** (uzan, kavra, kaldır, bırak) | L4 | PPO / SAC, MJX'te paralel, durum tabanlı, domain randomization | Hedef poz + propriosepsiyon → eklem torkları | TRAINED | Ömer | P2 |
+| 1 | **Kol becerileri** (uzan, kavra, kaldır, bırak) | L4 | PPO / SAC, MJX'te paralel, durum tabanlı, domain randomization | Hedef poz + propriosepsiyon → eklem torkları | TRAINED | Mert | P0 sonu – P2 |
 | 2 | **Rover hareket kontrolcüsü** | L4 | PID → gerekirse RL | (v, ω) → teker torku; eğimde kayma telafisi | HAND-MADE / TRAINED | Ömer | P1–P4 |
 | 3 | **Öğrenilmiş dekoder** (VNC yuvası v2) | L3 | DAgger veya RL (ridge ile davranış klonlaması değil) | DN aktivitesi → mod + parametre | TRAINED | Mert | P3 |
-| 4 | **Connectome ince ayarı** | L2 | Surrogate-gradient veya evrim stratejileri | **Yalnızca hücre tipi başına kazanç ve eşik** (birkaç yüz parametre) | TRAINED (BRAIN topolojisi) | Mert | P4 |
+| 4 | **Connectome ince ayarı** | L2 | **Önce evrim stratejileri** (CMA-ES): gradyan gerektirmez, doğrudan Brian2 ile çalışır. Surrogate-gradient yalnızca ES tıkanırsa ve JAX motoru eşdeğerliği geçmişse | **Yalnızca hücre tipi başına kazanç ve eşik** (birkaç yüz parametre) | TRAINED (BRAIN topolojisi) | Mert | P4 |
 | 5 | **VNC vekili** (Hat B) | L3 | Denetimli öğrenme | DN aktivitesi → sinek gövdesi hareketi (v, ω, ön bacak uzanması) | TRAINED (biyolojik simülasyon verisi) | Mert | P4, Hat B GO ise |
 | 6 | **Bypass** | L1 → L3 | 3 ve 4 ile **aynı bütçe** | L1 özellikleri → DN aktivitesi biçiminde çıktı → aynı L3 kuralı, beyin olmadan | Yalnızca kontrol kolu | Mert | P1'den itibaren |
 
@@ -64,7 +66,7 @@ Vizyon ML'e iki rol veriyor: kol ve rover hareketini öğrenmek, ve uzun vadede 
 
 **Olumsuz / maliyet**
 - Eşit bütçe kuralı eğitim maliyetini artırır.
-- Surrogate-gradient ile SNN eğitimi kararsız olabilir; evrim stratejileri yedek yöntemdir.
+- Evrim stratejileri, parametre sayısı birkaç yüzü aşarsa yavaşlar; bu sınır, tip başına skaler kuralıyla (C1) zaten korunur. Surrogate-gradient ile SNN eğitimi kararsız olabilir; bu yüzden ikinci sıradadır.
 
 ## İlgili
 - [0001 Vizyon](0001-vizyon-ve-basari-olcutu.md) · [0004 Connectome](0004-connectome-noron-ve-sinaps-kurallari.md) · [gorevler/mert.md](gorevler/mert.md) · [gorevler/omer.md](gorevler/omer.md)

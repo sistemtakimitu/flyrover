@@ -6,6 +6,8 @@ Bu klasör FlyRover'ın **yeniden tasarımına** ait kararları içerir. Her ADR
 
 > **Revizyon (2026-10-12):** 0001–0008 (0003 ve 0007'de yalnızca tutarlılık düzeltmeleri) ve görev belgeleri bir inceleme sonrası güncellendi. Değişikliklerin özeti her ADR'nin başındaki "Revizyon" satırındadır.
 
+> **Revizyon 2 (2026-10-12):** İnceleme düzeltmeleri (shuffled tanımı, L1 kapsamı, L3 normalizasyonu, 50 ms atfı, T1b), yeni görev dağılımı (Ömer: Hat B + dünya; Mert: FAFB + tüm ML; Yusuf: platform + shuffled üretici) ve iki yeni ADR: 0009 (model seçim protokolü), 0010 (tohum tipleri).
+
 ## Okuma sırası
 
 | # | Karar | Özet |
@@ -13,19 +15,21 @@ Bu klasör FlyRover'ın **yeniden tasarımına** ait kararları içerir. Her ADR
 | [0001](0001-vizyon-ve-basari-olcutu.md) | Vizyon ve başarı ölçütü | Beyin *ne/ne zaman*, ML *nasıl*. Manşet sayı: Connectome Katkı Skoru (CKS). |
 | [0002](0002-katmanli-mimari.md) | Katmanlı mimari | L0–L5 katmanları, DN seviyesi sınır, bilgi güvenlik duvarı, karar nerede verilir (L1 eşiksiz, L3 hakemliksiz), veri sözleşmeleri |
 | [0003](0003-simulasyon-ortami.md) | Simülasyon ortamı | MuJoCo 3 + MJX, Gymnasium; rover + 5 DOF kol; sinek gözü örneklemesi |
-| [0004](0004-connectome-noron-ve-sinaps-kurallari.md) | Connectome, nöron ve sinaps kuralları | FAFB v783 nöron seviyesi alt ağ, kalibrasyon ve shuffled kuralları, Brian2 → JAX motoru, 6 kabul testi |
+| [0004](0004-connectome-noron-ve-sinaps-kurallari.md) | Connectome, nöron ve sinaps kuralları | FAFB v783 nöron seviyesi alt ağ, kalibrasyon ve shuffled kuralları, derlenmiş Brian2 (JAX opsiyonel), 6 kabul testi |
 | [0005](0005-ml-stratejisi.md) | ML stratejisi | Ne eğitilir, ne eğitilmez; shuffled/bypass eşit bütçe |
 | [0006](0006-repo-kurallari.md) | Repo kuralları | Bilimsel dürüstlük, connectome, ML ve mühendislik kuralları + CI ile denetim |
-| [0007](0007-ekip-ve-gorev-dagilimi.md) | Ekip ve görev dağılımı | 3 kişi, katman sahipliği, çapraz hakemlik |
-| [0008](0008-yol-haritasi.md) | Yol haritası | P0–P4 aşamaları, Hat B (BANC), karar noktaları |
+| [0007](0007-ekip-ve-gorev-dagilimi.md) | Ekip ve görev dağılımı | 3 kişi, iki hat (FAFB + ML / BANC), katman sahipliği, hatlar arası sözleşmeler |
+| [0008](0008-yol-haritasi.md) | Yol haritası | P0–P4 aşamaları, T1b ile ilk anlamlı CKS (H8), Hat B GO/NO-GO (H8), karar noktaları |
+| [0009](0009-ml-model-secim-protokolu.md) | ML model seçim protokolü | Dört ML işi için aday listesi, tek metrik, IK/kural baz çizgisi, eşit bütçe, 5 tohum, IQM + güven aralığı |
+| [0010](0010-noron-secimi-tohum-tipleri.md) | Nöron seçimi: tohum tipleri | 73 elle seçilmiş nöron yerine 14 tohum tipi + veriden genişletme; mod → DN popülasyonları; çıkarılan ve ertelenen tipler |
 
 ## Kişi bazlı hedef ve yol haritaları
 
 | Kişi | Rol | Belge |
 |---|---|---|
-| Mert | Data scientist & ML engineer | [gorevler/mert.md](gorevler/mert.md) |
-| Ömer | Rover uzmanı, simülasyon & yazılım mühendisi | [gorevler/omer.md](gorevler/omer.md) |
-| Yusuf | Siber güvenlik & full stack mühendisi | [gorevler/yusuf.md](gorevler/yusuf.md) |
+| Mert | Data scientist & ML engineer · FAFB beyin çekirdeği + tüm ML | [gorevler/mert.md](gorevler/mert.md) |
+| Ömer | Rover uzmanı, simülasyon & yazılım mühendisi · Hat B (BANC) + dünya | [gorevler/omer.md](gorevler/omer.md) |
+| Yusuf | Siber güvenlik & full stack mühendisi · platform, değerlendirme, shuffled üretici | [gorevler/yusuf.md](gorevler/yusuf.md) |
 
 ## Mevcut belgelerle ilişki
 

@@ -1,71 +1,79 @@
-# Ömer: Gövde, dünya ve gövde-ML sahibi
+# Ömer: Hat B ve dünya sahibi
 
 - **Rol:** Rover uzmanı, simülasyon & yazılım mühendisi
-- **Sahip olduğu katmanlar:** L0 (MuJoCo dünyası, robotlar, arazi), L1 (sinek gözü, özellik kodlayıcılar), L4 (rover kontrolcüsü, kol RL becerileri), Gym ortamları ve görev sahneleri, Hat B'de sinek gövdesi (NeuroMechFly)
-- **Hakemleri:** Mert (sensör → nöron arayüzü, RL algoritmaları), Yusuf (ortam API'si, tohum havuzları)
+- **Sahip olduğu alanlar:** **Hat B** (BANC verisi, BANC beyin+VNC modeli, NeuroMechFly sinek gövdesi, GO/NO-GO deneyi, AN listesi, VNC vekili veri seti); **dünya** (L0 MuJoCo: rover + kol MJCF, sensörler, arazi; L1 sinek gözü ve özellik kodlayıcılar; T1–T4 görev sahneleri; L4 rover kontrolcüsü)
+- **Hakemleri:** Mert (sensör → nöron arayüzü, FAFB ↔ BANC tip eşlemesi), Yusuf (ortam API'si, tohum havuzları, A9 testleri)
 - **Yedeği:** Mert
-- İlgili kararlar: [0003](../0003-simulasyon-ortami.md) · [0002](../0002-katmanli-mimari.md) · [0005](../0005-ml-stratejisi.md)
+- İlgili kararlar: [0003](../0003-simulasyon-ortami.md) · [0007](../0007-ekip-ve-gorev-dagilimi.md) · [0008](../0008-yol-haritasi.md) · [0002](../0002-katmanli-mimari.md)
+- **Revizyon 2 (2026-10-12):** Görev dağılımı değişti ([0007](../0007-ekip-ve-gorev-dagilimi.md)): Hat B ana iş oldu ve H1'de başlıyor (GO/NO-GO H8); kol RL becerileri Mert'e geçti; dünya işinin yoğun kısmı P0'da.
 
 ---
 
 ## Ulaşılması gereken nokta (H28 sonunda)
 
-1. **Görev paketi:** `FlyRover/T1`–`T4` Gymnasium ortamları; her biri için eğitim / doğrulama / sınav tohum havuzları ve domain randomization.
-2. **Robotlar:** 4 teker skid-steer rover (opsiyonel olarak 6 teker rocker-bogie) + 5 serbestlik dereceli kol ve paralel kıskaç; kamera, IMU, odometri, eklem enkoderi, temas ve kuvvet sensörleri.
-3. **Sinek gözü:** İki geniş açılı kamera → altıgen ommatidia örneklemesi; hem özellik kodlayıcılarına hem FlyVis'e girdi verebiliyor.
-4. **Kol becerileri:** MJX'te RL ile eğitilmiş uzan, kavra, kaldır, bırak becerileri; rastgele nesne ve pozlarda **≥ %90 başarı**, L3'ten gelen mod komutuyla çağrılabiliyor.
-5. **Rover kontrolcüsü:** (v, ω) komutunu düz ve eğimli arazide kaymayı telafi ederek uygulayan L4 kontrolcüsü.
-6. **Hat B (gövde tarafı):** NeuroMechFly yürüme düzeneği; BANC beyin+VNC çıktısını sinek gövdesine bağlayan arayüz.
-7. **Görsel çıktı:** Tanıtım ve rapor için video render hattı (kayıtlardan render; simülasyonu yeniden koşturmadan).
+**Hat B**
+1. **BANC bilgi paketi:** MDN, DNa02, DNp09 ve diğer mod DN'lerinin VNC hedefleri; FAFB ↔ BANC tip eşlemesi ve farkları; lisans ve kullanım koşulları belgelenmiş.
+2. **AN listesi:** Yürüme durumu ve temas taşıyan yükselen nöronlar; FAFB'deki karşılıkları; rover sensörlerine eşleme önerisi (Mert'in AN kodlayıcısı için).
+3. **GO/NO-GO sonucu (H8):** BANC beyin+VNC LIF modeli + NeuroMechFly gövdesi; MDN uyarımında geri yürüme deseni ön-kayıtlı ölçütle test edilmiş. Sonuç olumlu da olumsuz da raporlanmış.
+4. **GO ise:** Beş davranış (geri yürüme, dönüş, kaçış, dur, ön bacak uzanma) ön-kayıtlı ölçütlerle test edilmiş; **VNC vekili veri seti** şemaya uygun olarak Mert'e teslim edilmiş.
+
+**Dünya**
+5. **Görev paketi:** `FlyRover/T1`, `T1b`, `T2`, `T3`, `T4` Gymnasium ortamları; eğitim / doğrulama / sınav tohum havuzları (Yusuf ile) ve domain randomization.
+6. **Robotlar ve sensörler:** 4 teker skid-steer rover + 5 DOF kol ve paralel kıskaç (MJX'te çalışır); kamera, IMU, odometri, eklem enkoderi, temas ve kuvvet.
+7. **Sinek gözü ve L1:** İki kamera → altıgen ommatidia; eşiksiz loom ve küçük hedef kodlayıcıları (A9).
+8. **Rover kontrolcüsü:** (v, ω) komutunu düz ve eğimli arazide uygulayan L4.
 
 ---
 
+## Başlangıç: ilk 2 hafta (H1–H2)
+
+| # | İş | Çıktı |
+|---|---|---|
+| 1 | **BANC erişimi ve lisans:** veri kaynağı, sürüm, kullanım koşulları; repoya veri girmez | `docs/reports/banc_b1.md` ilk bölüm |
+| 2 | **NeuroMechFly / FlyGym kurulumu:** yürüme örneğinin sunucuda çalışması | Çalışan örnek, sürümler sabit |
+| 3 | **Dünya v1 iskeleti:** mevcut `rover.xml` yeni `sim/` yapısında; kol MJCF taslağı (Mert'in ML hattı H3'te buna ihtiyaç duyuyor) | MJX'te açılan rover + kol |
+| 4 | **İki sözleşmenin taslağı** ([0007](../0007-ekip-ve-gorev-dagilimi.md)): AN listesi formatı ve VNC vekili veri şeması | Mert ile birlikte yazılmış taslaklar |
+
 ## Yol haritası
 
-### P0 Temel (H1–H4)
+### P0 (H1–H4): Dünya v1 + B1
 | Görev | Teslim / "bitti" ölçütü |
 |---|---|
-| Mevcut `rover.xml`'i yeni `sim/` yapısına taşı; MuJoCo 3 + MJX kurulumu | Mac'te CPU, sunucuda GPU üzerinde açılıyor |
-| **5 DOF kol + paralel kıskaç** MJCF modeli, rover üstüne montaj | Eklem limitleri, kütle ve sürtünme belgelenmiş; kol rover'ı devirmiyor |
-| Sensör seti: iki geniş açılı kamera, IMU, odometri, enkoder, temas, bilek kuvveti | `Observation` sözleşmesine uygun |
-| **Sinek gözü:** kamera → altıgen ommatidia örneklemesi | Sol/sağ göz ayrı; FlyGym formatıyla uyumlu |
-| Gymnasium API iskeleti, `step()` / `reset()`, `info` metrikleri | Duman testi CI'da çalışıyor |
-| Prosedürel heightfield arazi v0 | Düz + hafif engebeli |
+| Rover + **5 DOF kol + kıskaç** MJCF; MJX uyumu | Eklem limitleri, kütle, sürtünme belgelenmiş; Mert'in "uzan" görevi bu modelle çalışıyor |
+| Sensör seti ve `Observation` sözleşmesi | Duman testi CI'da |
+| **Sinek gözü:** kamera → altıgen ommatidia | Sol/sağ ayrı; FlyGym formatıyla uyumlu |
+| Gymnasium API iskeleti, heightfield arazi v0 | `reset/step/info` çalışıyor |
+| **B1:** MDN, DNa02, DNp09 VNC hedefleri; AN adayları; iki sözleşme | `docs/reports/banc_b1.md`; sözleşmeler `main`'de (H4) |
+| **B2 ön-kaydı:** "MDN uyarımında geri yürüme" ölçütü | `docs/prereg/hatb_b2.md`, B2 koşularından önce |
 
-### P1 Kaçış (H5–H8)
+### P1 (H5–H8): B2 + T1/T1b
 | Görev | Teslim / "bitti" ölçütü |
 |---|---|
-| **T1 sahnesi:** tehdit rastgele yön ve hızla yaklaşıyor | Tohum havuzları (Yusuf ile) |
-| **Loom özellik kodlayıcı** ommatidia üzerinde (açısal büyüme hızı → LC4, açısal büyüklük → LPLC2, sol/sağ) | Mevcut `LoomingEncoder`'ın renk bağımsız ve **eşiksiz** sürümü (8°/s ve 20° eşikleri kaldırılır; çıktı sürekli ve monoton, A9 testi geçiyor); HAND-MADE etiketli |
-| FlyVis girdi formatı | FlyVis ağına ommatidia girdisi verilebiliyor (köprüyü Mert yazar) |
-| **L4 rover kontrolcüsü v1**: (v, ω) → teker torkları, kinematik + PID | Düz zeminde komut takibi hatası belgelenmiş |
-| T1 mod komutlarını (KAÇ + yön) uygulayan L4 | Mert'in L3 v1'iyle entegre |
+| **B2:** BANC beyin+VNC LIF modeli; MDN uyarımı → NeuroMechFly gövdesi | **GO / NO-GO (H8)**, rapor olumsuz bulgular dahil |
+| T1 ve T1b sahneleri (tek tehdit; iki tehdit / tehdit + dikkat dağıtıcı) | Tohum havuzları (Yusuf ile) |
+| Eşiksiz loom kodlayıcı (LC4: genişleme hızı, LPLC2: açısal boyut; renk bağımsız) | A9 testi geçiyor (Yusuf) |
+| L4 rover kontrolcüsü v1 (kinematik + PID) | Düz zeminde komut takibi hatası belgelenmiş |
 
-### P2 Yaklaş-dur + kol (H9–H14)
+### P2 (H9–H14): B3 + T2
 | Görev | Teslim / "bitti" ölçütü |
 |---|---|
-| **T2 sahnesi:** rastgele konumda hedef kaya, dikkat dağıtıcılar | "1 m önünde durma" metriği `info`'da |
-| Küçük hedef özellik kodlayıcı (→ LC10a, LC11) | HAND-MADE etiketli; eşiksiz (A9) |
-| **Kol RL becerileri** (MJX, durum tabanlı, PPO/SAC): uzan, kavra, kaldır, bırak | Rastgele nesne ve pozlarda ≥ %90 başarı; MLflow'da kayıtlı |
-| Becerilerin parametrik çağrılması: `UZAN(hedef_poz)`, `KAVRA()`, `KALDIR(yükseklik)` | `ModeCommand` → beceri eşlemesi |
-| Eğimde rover kontrolcüsü (kayma telafisi) | Eğimli test sahnesinde komut takibi hatası |
+| **B3** (GO ise): dönüş (DNa02), kaçış, dur (DNp09), ön bacak uzanma | Her biri için ön-kayıtlı ölçüt ve sonuç |
+| T2 sahnesi; küçük hedef kodlayıcı (LC10a, LC11; literatürden ayar eğrisi) | A9 testi; "1 m önünde durma" metriği |
+| Eğimde rover kontrolcüsü | Eğimli sahnede komut takibi |
+| **NO-GO ise:** BANC bilgi paketi raporu; zaman T2–T4 sahnelerine ve kol ortamına kayar | Rapor |
 
-### P3 Entegrasyon (H15–H20)
+### P3 (H15–H20): B3–B4 + T3
 | Görev | Teslim / "bitti" ölçütü |
 |---|---|
-| **T3 sahnesi ve uçtan uca entegrasyon**: L3 modları → L4 beceri çağırma | T3 bölümleri uçtan uca koşuyor |
-| Nesne pozu algısı (kolun kavraması için; mühendislik algısı) | HAND-MADE etiketli; bilgi güvenlik duvarına uygun (yalnızca L3 parametresi olarak iletiliyor) |
-| Becerilerin rover hareket ederken ve eğimde dayanıklılığı | Domain randomization altında başarı oranı |
-| **Hat B / B2:** NeuroMechFly yürüme düzeneği; BANC beyin+VNC motor nöron çıktısını sinek gövdesine bağlama | MDN uyarımında gövde hareketinin ölçümü (**GO/NO-GO**, Mert ile) |
+| **B4** (GO ise): DN aktivitesi → gövde hareketi veri seti | Şemaya uygun; koşu bazında eğitim/test ayrımı yapılabilir |
+| T3 sahnesi; nesne pozu algısı (`HAND-MADE`, yalnızca L3 üzerinden L4'e) | T3 bölümleri uçtan uca koşuyor |
 
-### P4 Mars (H21–H28)
+### P4 (H21–H28): B5 + T4
 | Görev | Teslim / "bitti" ölçütü |
 |---|---|
-| **T4 Mars sahnesi:** eğim, kayalık arazi, dikkat dağıtıcılar, görev sırasında gelen tehdit | `info`'da kesinti ve göreve dönüş metrikleri |
-| Tam domain randomization (sürtünme, kütle, ışık, renk, kaya şekli) | Ön-kayıtta tanımlı aralıklar |
-| Opsiyonel: 6 teker rocker-bogie şasi | Yalnızca zaman kalırsa; ayrı ADR |
-| **Video render hattı**: kayıtlardan render, kaynak etiketli ekran yazıları | Synaptera tarzı "neyi kim kontrol ediyor" etiketleri |
-| Hat B / B3–B4 (GO ise): beş davranışın gövde ölçümleri; VNC vekili için veri | Mert'e veri seti |
+| **B5:** Hat B final raporu; FAFB ↔ BANC farkları | Olumsuz bulgular dahil |
+| T4 Mars sahnesi: eğim, kayalar, dikkat dağıtıcılar, görev kesintisi | `info`'da kesinti ve göreve dönüş metrikleri |
+| Domain randomization; opsiyonel rocker-bogie (ayrı ADR) | Ön-kayıtta tanımlı aralıklar |
 
 ---
 
@@ -73,30 +81,32 @@
 
 | Ömer'in ihtiyacı | Kimden | Ne zaman |
 |---|---|---|
-| CUDA sunucusu, MLflow | Yusuf | P0 ortası |
-| Beyin motoru `step()` arayüzü (derlenmiş Brian2) | Mert | H4 |
-| `ModeCommand` üreten L3 | Mert | P1'den itibaren |
-| Tohum havuzu kilitleme mekanizması | Yusuf | P1 başı |
+| CUDA sunucusu | Yusuf | H2–H3 |
+| FAFB tip adları ve mod DN listesi ([0010](../0010-noron-secimi-tohum-tipleri.md)) | Mert | H1 (hazır) |
+| Beyin motoru `step()` (T1 entegrasyonu) | Mert | H4 |
+| Tohum havuzu kilidi, A9 testleri | Yusuf | P1 başı |
 
 | Ömer'den beklenen | Kime | Ne zaman |
 |---|---|---|
-| Dünya v1 + `Observation` + ommatidia | Mert, Yusuf | H3–H4 |
-| T1–T4 sahneleri | Mert (modüller), Yusuf (CKS) | Her aşamanın başı |
-| Kol becerileri | Mert (L3 UZAN/KAVRA) | P2 sonu |
+| Kol MJCF (MJX uyumlu) | Mert (ML hattı) | **H3** |
+| Dünya v1 + `Observation` + ommatidia | Mert, Yusuf | H4 |
+| AN listesi + VNC vekili veri şeması | Mert | H4 |
+| GO/NO-GO kararı | Ekip | H8 |
+| VNC vekili veri seti (GO ise) | Mert | P3 sonu |
 
 ## Dikkat edilecekler
 
-- **Bilgi güvenlik duvarı.** L4 politikaları kamerayı veya görev kimliğini görmemeli. Ödül tasarımı da görev bilgisini L4'e sızdırmamalı.
-- **RL becerilerini beyinden bağımsız eğit.** Becerilerin başarısı beyne bağlı olmamalı; böylece T3'teki başarısızlıklar beyin ve gövde arasında ayrıştırılabilir.
-- **Özellik kodlayıcıları renk bağımlı yapma.** Mevcut kırmızı maske Mars zemininde kırılgan; geometri ve hareket tabanlı özellikler tercih edilmeli.
-- **Kodlayıcıda karar verme.** "Tehdit var/yok" gibi eşikler L1'de yasak ([0002](../0002-katmanli-mimari.md)); kararı beyin vermeli. Başarı düşükse eşik eklemek yerine sorun raporlanır.
-- **Nesne pozu yalnızca L3 üzerinden L4'e gider** ve `HAND-MADE` etiketlidir; kol politikası hangi nesneye uzanacağını kendisi seçmez.
-- **Sınav tohumlarına dokunma.** Hata ayıklama eğitim ve doğrulama havuzlarında yapılır.
-- **Simülasyon ile beyin arasındaki zaman uyumu.** 20 ms kontrol adımı, 2 ms fizik adımı; render gecikmesi beyin girdisini kaydırmamalı.
+- **İki hattı dengele.** Dünya işinin yoğun kısmı P0'da; kol MJCF H3'te Mert'in kritik yolunda. P1'den sonra zamanın çoğu Hat B'ye.
+- **B2'yi ön-kayıtla yap.** "Geri yürüme deseni" ölçütü (yön, ritim, bacak koordinasyonu) koşulardan önce yazılmalı; Synaptera'nın tek "çalışan" kararının da elle bir tetikleyiciye dayandığını unutma.
+- **FAFB ve BANC sinaps sayılarını aynı ağda karıştırma** ([0004](../0004-connectome-noron-ve-sinaps-kurallari.md)); karşılaştırmalar tip düzeyinde.
+- **Kodlayıcıda karar verme** (A9); seçicilik eğrileri literatürden, kaynaklı.
+- **Bilgi güvenlik duvarı:** L4 kamerayı ve görev kimliğini görmez; nesne pozu yalnızca L3 üzerinden.
+- **Sınav tohumlarına dokunma.**
 
 ## Okuma listesi
 
-- MuJoCo 3 ve MJX belgeleri; MuJoCo Playground
-- Wang-Chen et al. 2024, *Nature Methods* 21: NeuroMechFly v2 / FlyGym (göz modeli ve yürüme)
-- Brax / MuJoCo Playground PPO ve SAC örnekleri (manipülasyon görevleri)
-- Domain randomization (Tobin et al. 2017)
+- BANC yayını ve veri sayfası (lisans ve kullanım koşulları dahil)
+- Wang-Chen et al. 2024, *Nature Methods* 21: NeuroMechFly v2 / FlyGym (yürüme, göz modeli)
+- Bidaye et al. 2014, *Science*: MDN ve geri yürüme
+- Cheong et al. 2024 / MANC DN tiplemesi (DN'lerin VNC hedefleri)
+- MuJoCo 3, MJX ve MuJoCo Playground belgeleri
