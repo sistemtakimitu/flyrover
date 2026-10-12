@@ -33,7 +33,7 @@ SEEDS = {
     'DNa01': {'role': 'mode', 'mode': 'YAKLAS', 'cell_type': 'DNae001', 'expected_per_side': [1, 1]},
     'DNa02': {'role': 'mode', 'mode': 'YAKLAS', 'cell_type': 'DNa02', 'expected_per_side': [1, 1]},
 }
-CFG = {'version': 1, 'connectome': {}, 'expansion': {'theta': 0.01, 'max_hops': 2, 'min_synapses': 5},
+CFG = {'version': 1, 'connectome': {}, 'expansion': {'theta': 0.01, 'max_hops': 2, 'min_synapses': 5, 'direction': 'directed'},
        'seeds': SEEDS, 'default_mode': {}}
 
 
@@ -50,6 +50,7 @@ def test_repo_modules_yaml_is_valid():
     (lambda c: c['seeds']['DNa02'].update(role='record'), 'record tohumu'),
     (lambda c: c['seeds']['DNa02'].update(expected_per_side=[2, 1]), 'expected_per_side'),
     (lambda c: c.pop('expansion'), 'eksik alanlar'),
+    (lambda c: c['expansion'].pop('direction'), 'gecersiz expansion'),
 ])
 def test_validate_rejects(mutate, message):
     cfg = copy.deepcopy(CFG)

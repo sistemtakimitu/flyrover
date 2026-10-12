@@ -54,6 +54,24 @@ def load_annotations(path):
     return ann
 
 
+NT_COLUMNS = {'ach_avg': 'acetylcholine', 'gaba_avg': 'gaba', 'glut_avg': 'glutamate',
+              'oct_avg': 'octopamine', 'ser_avg': 'serotonin', 'da_avg': 'dopamine'}
+
+
+def load_presynaptic_nt(path, root_ids):
+    """Anotasyonda top_nt'si olmayan noronlar icin: cikis sinapslarinin sinaps sayisiyla
+    agirliklandirilmis NT ortalamasinin en buyugu. {root_id: nt}"""
+    table = feather.read_table(path, columns=['pre_pt_root_id', 'syn_count', *NT_COLUMNS])
+    df = table.to_pandas()
+    df = df[df['pre_pt_root_id'].isin(set(root_ids))]
+    if df.empty:
+        return {}
+    weighted = df[list(NT_COLUMNS)].mul(df['syn_count'], axis=0)
+    weighted['pre'] = df['pre_pt_root_id']
+    means = weighted.groupby('pre').sum()
+    return {int(k): NT_COLUMNS[v] for k, v in means.idxmax(axis=1).items()}
+
+
 def load_edges(path, min_synapses=1):
     """Noron-noron kenarlari: neuropil'ler uzerinden toplanmis sinaps sayisi."""
     table = feather.read_table(path, columns=['pre_pt_root_id', 'post_pt_root_id', 'syn_count'])

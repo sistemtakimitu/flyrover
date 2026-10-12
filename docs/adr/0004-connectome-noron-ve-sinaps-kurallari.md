@@ -33,12 +33,12 @@ Veri dosyaları repoya konmaz; indirme scripti hash'leri doğrular. FlyWire CC B
 
 1. **Tohum tipleri** davranış modüllerinden seçilir (aşağıdaki tablo).
 2. Tohum tiplerinin **tüm nöronları** gerçek kimlikleriyle alınır (`root_id`).
-3. **Genişletme:** Her tohum nöronunun girdi ve çıktı ortaklarından, toplam girdisinin/çıktısının ≥ `θ` kadarını sağlayanlar 2 sıçramaya kadar ağa eklenir. Başlangıç değeri `θ = %1`; değer davranışa bakmadan seçilir ve config'te sabitlenir.
+3. **Genişletme:** Bir nöronun toplam girdisinin (çıktısının) ≥ `θ` kadarını sağlayan ve ≥ 5 sinapslı ortakları 2 sıçramaya kadar ağa eklenir. Başlangıç değeri `θ = %1`; değer davranışa bakmadan seçilir ve config'te sabitlenir. **Yön (2026-10-12 netleştirme):** girdi tohumlarından yalnızca çıkış yönünde, mod ve kayıt tohumlarından yalnızca giriş yönünde genişletilir (`direction: directed`). Girdilerin yukarı akışı (optik lob) L1'in işidir; DN'lerin aşağı akışı (VNC) FAFB'de yoktur. Çift yönlü genişletme ~39 bin nöron (25 bini optik lob), yönlü genişletme ~9,3 bin nöron verir ([p0_graf_v1.md](../reports/p0_graf_v1.md)). Toplam girdi/çıktı, eşiksiz tüm sinapslarla hesaplanır.
 4. Bağlantılar **nöron-nöron** kurulur. Tip seviyesinde herkes-herkese bağlantı **kullanılmaz**.
 5. **Path-integrated kenarlar simülasyonda yasaktır.** Yalnızca analiz ve rapor amacıyla hesaplanabilir.
 6. **Bağlam girdisi:** Alt ağa alınmayan beyin bölgelerinin etkisi, her nörona kalibre edilmiş Poisson arka plan girdisiyle temsil edilir. Hedef: alt ağdaki taban ateşleme hızları, tüm-beyin kahinindeki taban hızlarla eşleşsin.
 
-Beklenen boyut: birkaç bin nöron.
+Beklenen boyut: birkaç bin nöron (v1: 9.304 nöron, 291.383 kenar).
 
 ### Arka plan girdisi kalibrasyonu
 

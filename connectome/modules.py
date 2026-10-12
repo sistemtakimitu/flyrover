@@ -6,6 +6,7 @@ Kurallar:
   - ayni secici iki tohumda kullanilamaz (ayrik mod populasyonlari, ADR 0002)
   - role: input -> `module`, role: mode -> `mode` zorunlu; record ikisini de almaz
   - expected_per_side: [alt, ust] (alt <= ust)
+  - expansion.direction: directed (girdi -> ileri, mod/kayit -> geri) ya da bidirectional
 """
 import os
 
@@ -17,6 +18,7 @@ from connectome.data import ANNOTATION_COLUMNS, BASE_DIR
 MODULES_PATH = os.path.join(BASE_DIR, 'config', 'modules.yaml')
 TOP_LEVEL_KEYS = {'version', 'connectome', 'expansion', 'seeds', 'default_mode'}
 ROLES = {'input', 'mode', 'record'}
+DIRECTIONS = {'directed', 'bidirectional'}
 SIDES = ('left', 'right')
 
 
@@ -36,7 +38,8 @@ def validate(cfg):
     if missing:
         raise ModulesError(f"eksik alanlar: {sorted(missing)}")
     exp = cfg['expansion']
-    if not (0 < exp['theta'] < 1 and exp['max_hops'] >= 0 and exp['min_synapses'] >= 1):
+    if not (0 < exp['theta'] < 1 and exp['max_hops'] >= 0 and exp['min_synapses'] >= 1
+            and exp.get('direction') in DIRECTIONS):
         raise ModulesError(f"gecersiz expansion: {exp}")
 
     seen = {}

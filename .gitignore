@@ -32,3 +32,6 @@ Thumbs.db
 
 # Local query cache (src/data/fetch_data.py)
 data/cache/
+
+# Graf üretici çıktıları (connectome/build_graph.py); manifest connectome/manifests/ altında
+data/graphs/

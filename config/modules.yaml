@@ -4,7 +4,10 @@
 # Sayılar ve anotasyon eşlemeleri: docs/reports/p0_tohum_tipleri.md (connectome/discover_seeds.py).
 version: 1
 connectome: {dataset: FAFB, materialization: 783}
-expansion: {theta: 0.01, max_hops: 2, min_synapses: 5}     # davranıştan önce sabitlenir
+# Genişletme (ADR 0004 adım 3), davranıştan önce sabitlenir. directed: girdi tohumlarından yalnızca
+# çıkış yönünde, mod/kayıt tohumlarından yalnızca giriş yönünde. Girdilerin yukarı akışı (optik lob)
+# L1'in işi; DN'lerin aşağı akışı (VNC) FAFB'de yok. Çift yönlü genişletme ~39 bin nöron veriyor.
+expansion: {theta: 0.01, max_hops: 2, min_synapses: 5, direction: directed}
 
 seeds:
   # --- Girdi tohumları (L1'den sürülür)
