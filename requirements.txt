@@ -4,6 +4,7 @@ matplotlib
 caveclient
 pandas
 brian2
+cython
 pyarrow
 pyyaml
 mujoco
