@@ -3,13 +3,14 @@
 - **Durum:** Önerildi
 - **Tarih:** 2026-10-12
 - **Karar sahibi:** Ekip (Mert, Ömer, Yusuf)
+- **Revizyon (2026-10-12, inceleme sonrası):** Shuffled kontrolü giriş ve çıkış derecesini koruyacak şekilde tanımlandı; bypass'ın girdi ve çıktı sınırları netleştirildi; T1'in ne ölçtüğü ve "karar nerede verilir" kuralı eklendi; Synaptera'ya yapılan atıflar düzeltildi.
 
 ## Bağlam
 
 FlyRover'ın ilk hedefi "sinek connectome'undan türetilen bir SNN'in rover'ı sürmesi ve robot kolla cisim kaldırması" idi. Faz 1 (kaçış) çalıştı, ancak iki sorun görünür hale geldi:
 
 1. **Katkı ölçülmüyor.** Faz 1 testinde kontrol durumu "beyin kapalı = rover hareketsiz". LC4 hızını doğrudan geri vitese bağlayan herhangi bir kural da bu testi geçerdi. Kodlayıcı (tehdit algısı) ve çözücü (kazançlar, 0,5 s kalıcılık) elle yazılmış; aradaki 609 nöronluk alt ağın katkısı ayrıca ölçülmüyor.
-2. **Synaptera'nın bulguları.** FlyWire v783 tüm-beyin modelini (Shiu et al. 2024) NeuroMechFly gövdesine bağlayan ön-kayıtlı çalışmada beyinden gelen **tek** davranışsal karar beslenme kararıydı (eşikli MN9 okuması). Sürekli direksiyon okuması (DNp15) doğrulamayı geçemedi, itki DN'i (DNg02) sessiz kaldı, yaklaşma (loom) testlerinin 0/20'si geçti, DN'lerden eğitilen ridge okuma başarısız oldu ve beyni atlayan "bypass" kolu gerçek beyin kolu kadar iyi sonuç verdi.
+2. **Synaptera'nın bulguları.** FlyWire v783 tüm-beyin modelini (Shiu et al. 2024) NeuroMechFly gövdesine bağlayan ön-kayıtlı çalışmada beyinden gelen **tek** davranışsal karar beslenme kararıydı (eşikli MN9 okuması; tetikleyicisi elle tasarlanmıştı). Açık döngü görsel DN taramasında 21 testten yalnızca biri geçti (DNp15, sapma yönü) ve o da sabit bir tek taraflı taban aktivitesi taşıyordu; kapalı döngüde kullanılabilir bir direksiyon sinyali vermedi. İtki DN'i (DNg02) sessiz kaldı, yaklaşma (loom) takip testlerinin 0/20'si geçti. DN'lerden eğitilen doğrusal okuma ilk denemede başarısız oldu (dönüş için çapraz doğrulanmış R² negatif) ve gerçek beyin kolu, shuffled ve beyni atlayan "bypass" kollarından daha iyi değildi.
 
 Buradan çıkan ders: connectome **kısa, güçlü, ölçülmüş yollarda ayrık kararlar** için bilgi taşıyor; **tüm beyni kontrolcü olarak kullanmak** bugünkü modellerle çalışmıyor. "Sinek beyni rover'ı sürüyor" iddiası ise test edilemez.
 
@@ -29,8 +30,10 @@ Her benchmark görevi `T` için, kilitli **sınav tohumları** üzerinde (en az 
 | Kol | Tanım |
 |---|---|
 | **Gerçek** | FAFB v783'ten kurulan alt ağ |
-| **Shuffled** | Derece korunarak karıştırılmış alt ağ: presinaptik nöron, ağırlık ve işaret korunur, postsinaptik hedef alt ağ içinde permüte edilir (5 farklı permütasyon) |
-| **Bypass** | Aynı L1 özellikleri → beyinsiz bir eşleme (kural veya küçük MLP) → aynı L3 modları. **Gerçek kolla aynı ayar/eğitim bütçesi.** |
+| **Shuffled** | Derece korunarak karıştırılmış alt ağ (5 farklı tohum). Her nöronun **hem giriş hem çıkış derecesi** ve toplam giriş/çıkış sinaps sayısı korunur; kenarlar yalnızca **aynı işaret sınıfı içinde** çift-kenar değiş tokuşuyla (A→B, C→D ⇒ A→D, C→B) karıştırılır. Öz-bağlantı ve çift kenar oluşturan değiş tokuşlar reddedilir. Girdi (L1'den sürülen) ve çıktı (L3'e okunan) nöronların kimliği korunur. |
+| **Bypass** | Gerçek kolla **aynı L1 çıktısı** → beyinsiz bir eşleme (kural veya küçük MLP) → **DN aktivitesi biçiminde** bir çıktı → **aynı L3 kuralı**. Böylece üç kol yalnızca L2'de farklıdır. **Gerçek kolla aynı ayar/eğitim bütçesi.** |
+
+Üç kolda L0, L1, L3 ve L4 **bayt düzeyinde aynı** config ile çalışır; yalnızca L2 değişir. Kol farkı başka bir katmandan geliyorsa CKS geçersizdir.
 
 ```
 CKS(T) = S_gerçek − max(S_shuffled, S_bypass)
@@ -49,7 +52,13 @@ CKS ≤ 0 çıkması da bir sonuçtur ve aynı ağırlıkla raporlanır (bkz. [0
 | **T3 Al** | T2 + kayayı kolla kavra ve kaldır | + UZAN, KAVRA |
 | **T4 Mars** | Eğimli arazide T3; dikkat dağıtıcılar ve görev sırasında gelen tehdit | Hakemlik: tehdit → KAÇ, sonra göreve dönüş |
 
-T4 projenin final sınavıdır. Davranışlar arası hakemliği connectome'un kendisi yapabiliyorsa, projenin en güçlü bilimsel sonucu bu olur.
+T4 projenin final sınavıdır. Davranışlar arası hakemliği connectome'un kendisi yapabiliyorsa, projenin en güçlü bilimsel sonucu bu olur. Bu iddia ancak hakemlik L3'te kodlanmamışsa kurulabilir ([0002](0002-katmanli-mimari.md), "Karar nerede verilir").
+
+### Görevlerin ne ölçtüğü
+
+- **T1 öncelikle bir aktarım testidir.** Yaklaşan nesne bilgisi L1'de zaten çıkarıldığı için güçlü bir bypass T1'i kolayca çözebilir. T1'de CKS ≈ 0 beklenen ve kabul edilebilir bir sonuçtur; T1'in asıl amacı altyapıyı ve üç kolu uçtan uca doğrulamaktır.
+- **CKS > 0 ancak beynin birden fazla girdiyi birleştirmesi gereken görevlerde anlamlıdır:** sol/sağ tehdit ayrımı, aynı anda tehdit ve hedef, görev kesintisi ve göreve dönüş (T2–T4). Her görevin ön-kaydı, beynin hangi birleştirmeyi yapması gerektiğini yazar.
+- L1 çıktısında görev kararını veren bir eşik varsa (ör. "tehdit var/yok"), o görevde CKS raporlanmaz; önce L1 düzeltilir ([0002](0002-katmanli-mimari.md)).
 
 ### Kapsam dışı (bilerek)
 
@@ -63,6 +72,8 @@ T4 projenin final sınavıdır. Davranışlar arası hakemliği connectome'un ke
 | Seçenek | Neden seçilmedi |
 |---|---|
 | "Sinek beyni rover'ı uçtan uca sürer" | Test edilemez. Synaptera tüm-beyin kontrolünün bugünkü modellerle çalışmadığını gösterdi. |
+| Shuffled: yalnızca postsinaptik hedefi permüte etmek | Giriş derecesi dağılımını bozar; bazı nöronlar aşırı girdi alır, bazıları hiç almaz. Fark topolojiden değil derece dağılımından gelebilir. |
+| Bypass'ın L3'ü atlayıp doğrudan mod üretmesi | Kollar iki katmanda birden farklı olur; CKS'nin kaynağı ayrıştırılamaz. |
 | Yalnızca seçilmiş nöronlar, ML yok | Sürekli kontrol ve kol için biyolojik devre yok; kol hiç gerçekleşmez. |
 | Uçtan uca ML (kamera → motor) | Connectome'un rolü kalmaz. Bu seçenek yalnızca **bypass kontrol kolu** olarak var olur. |
 

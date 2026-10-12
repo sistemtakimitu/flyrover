@@ -4,14 +4,16 @@ Bu klasör FlyRover'ın **yeniden tasarımına** ait kararları içerir. Her ADR
 
 > **Durum:** Tüm ADR'ler şu an **Önerildi** durumundadır. Ekip toplantısında kabul edilince durumları **Kabul edildi** olarak güncellenir ve `README.md`, `.agents/AGENTS.md` ile `docs/yol_haritasi.md` bu kararlara göre güncellenir.
 
+> **Revizyon (2026-10-12):** 0001–0008 (0003 ve 0007'de yalnızca tutarlılık düzeltmeleri) ve görev belgeleri bir inceleme sonrası güncellendi. Değişikliklerin özeti her ADR'nin başındaki "Revizyon" satırındadır.
+
 ## Okuma sırası
 
 | # | Karar | Özet |
 |---|---|---|
 | [0001](0001-vizyon-ve-basari-olcutu.md) | Vizyon ve başarı ölçütü | Beyin *ne/ne zaman*, ML *nasıl*. Manşet sayı: Connectome Katkı Skoru (CKS). |
-| [0002](0002-katmanli-mimari.md) | Katmanlı mimari | L0–L5 katmanları, DN seviyesi sınır, bilgi güvenlik duvarı, veri sözleşmeleri |
+| [0002](0002-katmanli-mimari.md) | Katmanlı mimari | L0–L5 katmanları, DN seviyesi sınır, bilgi güvenlik duvarı, karar nerede verilir (L1 eşiksiz, L3 hakemliksiz), veri sözleşmeleri |
 | [0003](0003-simulasyon-ortami.md) | Simülasyon ortamı | MuJoCo 3 + MJX, Gymnasium; rover + 5 DOF kol; sinek gözü örneklemesi |
-| [0004](0004-connectome-noron-ve-sinaps-kurallari.md) | Connectome, nöron ve sinaps kuralları | FAFB v783 nöron seviyesi alt ağ, JAX motoru, 5 kabul testi |
+| [0004](0004-connectome-noron-ve-sinaps-kurallari.md) | Connectome, nöron ve sinaps kuralları | FAFB v783 nöron seviyesi alt ağ, kalibrasyon ve shuffled kuralları, Brian2 → JAX motoru, 6 kabul testi |
 | [0005](0005-ml-stratejisi.md) | ML stratejisi | Ne eğitilir, ne eğitilmez; shuffled/bypass eşit bütçe |
 | [0006](0006-repo-kurallari.md) | Repo kuralları | Bilimsel dürüstlük, connectome, ML ve mühendislik kuralları + CI ile denetim |
 | [0007](0007-ekip-ve-gorev-dagilimi.md) | Ekip ve görev dağılımı | 3 kişi, katman sahipliği, çapraz hakemlik |
