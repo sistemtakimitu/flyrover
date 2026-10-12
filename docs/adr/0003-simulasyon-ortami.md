@@ -3,6 +3,7 @@
 - **Durum:** Önerildi
 - **Tarih:** 2026-10-12
 - **Karar sahibi:** Ömer (hakem: Mert)
+- **Revizyon (2026-10-12, inceleme sonrası):** Beyin motoru satırları [0004](0004-connectome-noron-ve-sinaps-kurallari.md) ile uyumlu hale getirildi (P1–P3 derlenmiş Brian2, sonra JAX).
 
 ## Bağlam
 
@@ -23,7 +24,7 @@ Kendi fizik motorumuzu **yazmayız**. "Kendi simülasyon ortamımız" = kendi ro
 
 | İş yükü | Mod | Donanım |
 |---|---|---|
-| Beyin kapalı döngü değerlendirmesi (T1–T4) | MuJoCo (CPU fizik + render) + JAX beyin (GPU) | CUDA sunucusu; geliştirme için Mac'te CPU |
+| Beyin kapalı döngü değerlendirmesi (T1–T4) | MuJoCo (CPU fizik + render) + beyin motoru (P1–P3: derlenmiş Brian2, CPU; gerekirse JAX, GPU — bkz. [0004](0004-connectome-noron-ve-sinaps-kurallari.md)) | CUDA sunucusu; geliştirme için Mac'te CPU |
 | Kol / hareket RL eğitimi | MJX, durum tabanlı, binlerce paralel ortam | CUDA sunucusu |
 | Hat B sinek gövdesi | NeuroMechFly (FlyGym, MuJoCo) | CUDA sunucusu |
 
@@ -76,7 +77,7 @@ Beyin, fizik motorunun içinde değil, dışında çalışır. İkisi `step()` a
 
 **Olumlu**
 - Rover, kol ve Hat B (sinek gövdesi) aynı motorda; bilgi ve kod paylaşılır.
-- JAX hem MJX'te hem beyin motorunda kullanıldığı için RL ve beyin aynı GPU'da çalışabilir.
+- JAX beyin motoru devreye girdiğinde (P2 sonrası) MJX ile aynı çerçevede olduğu için RL ve beyin aynı GPU'da çalışabilir.
 
 **Olumsuz / maliyet**
 - **Paylaşılan bir CUDA sunucusu zorunlu.** Kurulumu ve erişim güvenliği Yusuf'un sorumluluğundadır ([gorevler/yusuf.md](gorevler/yusuf.md)).

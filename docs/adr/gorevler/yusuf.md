@@ -34,9 +34,9 @@ Yusuf'un hiçbir beyin veya ML modülünün sahibi olmaması bilinçli bir terci
 | **CUDA sunucusu:** SSH anahtarlı erişim (veya Tailscale), kullanıcı hesapları, iş kuyruğu, disk düzeni | Mert ve Ömer sunucuda GPU'lu bir iş çalıştırabiliyor |
 | **MLflow** (self-hosted) | Eğitim başlatıcı commit + config + tohumu otomatik kaydediyor |
 | **Kayıt şeması** (`meta.json`, `data.h5`/zarr, `metrics.json`) + doğrulayıcı | Etiketsiz alan → test hatası |
-| **Değerlendirme düzeneği iskeleti:** görev × kol × tohum koşturucu | Sahte bir görevle uçtan uca çalışıyor |
+| **Değerlendirme düzeneği iskeleti:** görev × kol × tohum koşturucu | Sahte bir görevle uçtan uca çalışıyor; kollar arasında L0/L1/L3/L4 config hash'leri farklıysa (A11) veya L3 kural dosyası ön-kayıttan sonra değiştiyse (A10) koşuyu reddediyor |
 | **Ön-kayıt şablonu** ve `docs/prereg/` süreci | Şablon + CI kontrolü (sınav koşusu için ön-kaydın daha eski commit'te olması) |
-| JAX–Brian2 **eşdeğerlik test düzeneği** (Mert ile) | Referans uyaran seti; istatistik raporu otomatik |
+| JAX–Brian2 **eşdeğerlik test düzeneği** (Mert ile; P2'de kullanılır) | Referans uyaran seti; istatistik raporu otomatik |
 | Mevcut kodu `v0-faz1-kacis` etiketiyle işaretle | Etiket repoda |
 
 ### P1 Kaçış (H5–H8)

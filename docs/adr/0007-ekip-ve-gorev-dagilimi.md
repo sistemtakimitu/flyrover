@@ -3,6 +3,7 @@
 - **Durum:** Önerildi
 - **Tarih:** 2026-10-12
 - **Karar sahibi:** Ekip (Mert, Ömer, Yusuf)
+- **Revizyon (2026-10-12, inceleme sonrası):** Mert'in L2 sorumluluğu "beyin motorları (derlenmiş Brian2, JAX)" ve shuffled üretici olarak güncellendi.
 
 ## Bağlam
 
@@ -22,7 +23,7 @@ Ekip üç kişiden oluşuyor:
 
 | Kişi | Rol | Ana sorumluluk |
 |---|---|---|
-| **Mert** | **Beyin ve beyin-ML sahibi** | Connectome verisi ve graf üretici (L2), JAX spiking motoru, modül kabul testleri, L3 mod seçici, beyne dokunan tüm ML (dekoder, ince ayar, VNC vekili, **bypass kolu**), BANC analizi |
+| **Mert** | **Beyin ve beyin-ML sahibi** | Connectome verisi, graf ve shuffled üretici (L2), beyin motorları (derlenmiş Brian2, JAX), modül kabul testleri, L3 mod seçici, beyne dokunan tüm ML (dekoder, ince ayar, VNC vekili, **bypass kolu**), BANC analizi |
 | **Ömer** | **Gövde, dünya ve gövde-ML sahibi** | MuJoCo dünyası (L0), rover + kol modelleri, sinek gözü ve özellik kodlayıcıları (L1), L4 kontrolcüleri, kol RL becerileri, Gym ortamları ve görev sahneleri, Hat B'de NeuroMechFly |
 | **Yusuf** | **Platform, değerlendirme ve dürüstlük sahibi (tarafsız değerlendirici)** | Repo yapısı, CI/CD, güvenlik, CUDA sunucusu, deney takibi, kayıt şeması, değerlendirme düzeneği (L5), CKS, `verify.py`, dashboard ve beyin aktivitesi görüntüleyici, ön-kayıt süreci, entegrasyon, yayın hazırlığı |
 
@@ -38,7 +39,7 @@ Yusuf'un hiçbir beyin veya ML modülünün sahibi olmaması **bilinçli bir ter
 | L1 Göz, özellik kodlayıcılar | D | **S** | |
 | L1 FlyVis köprüsü, AN kodlayıcı | **S** | H | |
 | L2 Graf üretici, veri | **S** | | H |
-| L2 JAX motoru | **S** | | H (eşdeğerlik testi düzeneği) |
+| L2 beyin motorları (Brian2, JAX) | **S** | | H (eşdeğerlik testi düzeneği) |
 | L2 Modül kabul testleri | **S** | | H |
 | L3 Mod seçici (VNC yuvası) | **S** | H | |
 | L4 Rover kontrolcüsü | | **S** | |
