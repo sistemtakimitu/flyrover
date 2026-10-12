@@ -20,7 +20,7 @@ NEURONS = pd.DataFrame({
 EDGES = pd.DataFrame({
     'pre':       [1, 2, 100, 3, 101],
     'post':      [100, 100, 10, 101, 11],
-    'syn_count': [40, 40, 60, 60, 60],
+    'syn_count': [40, 40, 200, 60, 200],
     'sign':      [1, 1, 1, 1, -1],
 })
 
@@ -62,3 +62,13 @@ def test_persistent_rejects_other_step_length():
     with pytest.raises(ValueError, match='sabit'):
         snn.step({}, 10.0)
     snn.close()
+
+
+def test_shiu_semantics_refractory_and_reset():
+    from brian2 import ms, mV
+    snn = make()
+    rfc = snn.lif.neurons.rfc[:] / ms
+    inputs = set(snn._input_idx)
+    assert all(rfc[i] == 0 for i in inputs)                       # uyarilan noronlar: 0 (Shiu)
+    assert all(rfc[i] == pytest.approx(2.2) for i in range(len(rfc)) if i not in inputs)
+    assert snn.lif.neurons.event_codes['spike'].replace(' ', '') == 'v=v_rst;g=0*mV'

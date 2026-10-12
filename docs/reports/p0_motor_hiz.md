@@ -12,51 +12,51 @@
 
 | kod üretimi | mod | ağ kurulumu (s, en kötü) | ilk adım, derleme dahil (s) |
 |---|---|---|---|
-| cython | persistent | 0.2 | 0.3 |
-| cython | per_run | 0.2 | 0.2 |
-| numpy | persistent | 0.1 | 0.2 |
-| numpy | per_run | 0.1 | 0.2 |
+| cython | persistent | 0.2 | 5.8 |
+| cython | per_run | 0.2 | 0.1 |
+| numpy | persistent | 0.1 | 0.1 |
+| numpy | per_run | 0.1 | 0.1 |
 
 ## Adım süresi
 
 | kod üretimi | mod | senaryo | adım (ms) | medyan duvar (ms) | RTF | aktif nöron |
 |---|---|---|---|---|---|---|
-| cython | persistent | sessiz | 10 | 2.0 | 5.10 | 0 |
-| cython | persistent | LC4 iki taraf 100 Hz | 10 | 2.0 | 4.94 | 397 |
-| cython | persistent | tüm girdiler 100 Hz | 10 | 2.1 | 4.74 | 1645 |
-| cython | persistent | sessiz | 20 | 4.2 | 4.82 | 0 |
-| cython | persistent | LC4 iki taraf 100 Hz | 20 | 4.1 | 4.89 | 473 |
-| cython | persistent | tüm girdiler 100 Hz | 20 | 4.2 | 4.78 | 1666 |
-| cython | persistent | sessiz | 50 | 9.5 | 5.25 | 0 |
-| cython | persistent | LC4 iki taraf 100 Hz | 50 | 9.7 | 5.16 | 500 |
-| cython | persistent | tüm girdiler 100 Hz | 50 | 10.1 | 4.97 | 1693 |
-| cython | per_run | sessiz | 10 | 24.9 | 0.40 | 0 |
-| cython | per_run | LC4 iki taraf 100 Hz | 10 | 25.1 | 0.40 | 397 |
-| cython | per_run | tüm girdiler 100 Hz | 10 | 25.1 | 0.40 | 1645 |
-| cython | per_run | sessiz | 20 | 26.6 | 0.75 | 0 |
-| cython | per_run | LC4 iki taraf 100 Hz | 20 | 26.7 | 0.75 | 473 |
-| cython | per_run | tüm girdiler 100 Hz | 20 | 27.1 | 0.74 | 1666 |
-| cython | per_run | sessiz | 50 | 31.5 | 1.59 | 0 |
-| cython | per_run | LC4 iki taraf 100 Hz | 50 | 31.8 | 1.57 | 500 |
-| cython | per_run | tüm girdiler 100 Hz | 50 | 32.2 | 1.55 | 1693 |
-| numpy | persistent | sessiz | 10 | 5.5 | 1.83 | 0 |
-| numpy | persistent | LC4 iki taraf 100 Hz | 10 | 6.2 | 1.62 | 397 |
-| numpy | persistent | tüm girdiler 100 Hz | 10 | 6.7 | 1.49 | 1645 |
-| numpy | persistent | sessiz | 20 | 10.9 | 1.83 | 0 |
-| numpy | persistent | LC4 iki taraf 100 Hz | 20 | 12.1 | 1.65 | 473 |
-| numpy | persistent | tüm girdiler 100 Hz | 20 | 13.2 | 1.51 | 1666 |
-| numpy | persistent | sessiz | 50 | 26.4 | 1.89 | 0 |
-| numpy | persistent | LC4 iki taraf 100 Hz | 50 | 30.1 | 1.66 | 500 |
-| numpy | persistent | tüm girdiler 100 Hz | 50 | 32.7 | 1.53 | 1693 |
-| numpy | per_run | sessiz | 10 | 26.0 | 0.38 | 0 |
-| numpy | per_run | LC4 iki taraf 100 Hz | 10 | 26.6 | 0.38 | 397 |
-| numpy | per_run | tüm girdiler 100 Hz | 10 | 27.2 | 0.37 | 1645 |
-| numpy | per_run | sessiz | 20 | 30.9 | 0.65 | 0 |
-| numpy | per_run | LC4 iki taraf 100 Hz | 20 | 32.4 | 0.62 | 473 |
-| numpy | per_run | tüm girdiler 100 Hz | 20 | 33.5 | 0.60 | 1666 |
-| numpy | per_run | sessiz | 50 | 47.4 | 1.06 | 0 |
-| numpy | per_run | LC4 iki taraf 100 Hz | 50 | 50.4 | 0.99 | 500 |
-| numpy | per_run | tüm girdiler 100 Hz | 50 | 53.6 | 0.93 | 1693 |
+| cython | persistent | sessiz | 10 | 2.9 | 3.41 | 0 |
+| cython | persistent | LC4 iki taraf 100 Hz | 10 | 2.4 | 4.10 | 282 |
+| cython | persistent | tüm girdiler 100 Hz | 10 | 2.6 | 3.89 | 1777 |
+| cython | persistent | sessiz | 20 | 4.7 | 4.25 | 0 |
+| cython | persistent | LC4 iki taraf 100 Hz | 20 | 4.8 | 4.18 | 312 |
+| cython | persistent | tüm girdiler 100 Hz | 20 | 5.0 | 4.01 | 1810 |
+| cython | persistent | sessiz | 50 | 11.4 | 4.40 | 0 |
+| cython | persistent | LC4 iki taraf 100 Hz | 50 | 11.5 | 4.36 | 336 |
+| cython | persistent | tüm girdiler 100 Hz | 50 | 12.0 | 4.15 | 1848 |
+| cython | per_run | sessiz | 10 | 25.3 | 0.39 | 0 |
+| cython | per_run | LC4 iki taraf 100 Hz | 10 | 25.6 | 0.39 | 282 |
+| cython | per_run | tüm girdiler 100 Hz | 10 | 25.8 | 0.39 | 1777 |
+| cython | per_run | sessiz | 20 | 27.4 | 0.73 | 0 |
+| cython | per_run | LC4 iki taraf 100 Hz | 20 | 27.8 | 0.72 | 312 |
+| cython | per_run | tüm girdiler 100 Hz | 20 | 28.1 | 0.71 | 1810 |
+| cython | per_run | sessiz | 50 | 33.6 | 1.49 | 0 |
+| cython | per_run | LC4 iki taraf 100 Hz | 50 | 34.1 | 1.47 | 336 |
+| cython | per_run | tüm girdiler 100 Hz | 50 | 34.7 | 1.44 | 1848 |
+| numpy | persistent | sessiz | 10 | 7.1 | 1.41 | 0 |
+| numpy | persistent | LC4 iki taraf 100 Hz | 10 | 7.8 | 1.28 | 282 |
+| numpy | persistent | tüm girdiler 100 Hz | 10 | 8.5 | 1.17 | 1777 |
+| numpy | persistent | sessiz | 20 | 14.1 | 1.42 | 0 |
+| numpy | persistent | LC4 iki taraf 100 Hz | 20 | 15.5 | 1.29 | 312 |
+| numpy | persistent | tüm girdiler 100 Hz | 20 | 16.9 | 1.18 | 1810 |
+| numpy | persistent | sessiz | 50 | 35.1 | 1.42 | 0 |
+| numpy | persistent | LC4 iki taraf 100 Hz | 50 | 38.6 | 1.29 | 336 |
+| numpy | persistent | tüm girdiler 100 Hz | 50 | 42.8 | 1.17 | 1848 |
+| numpy | per_run | sessiz | 10 | 30.4 | 0.33 | 0 |
+| numpy | per_run | LC4 iki taraf 100 Hz | 10 | 30.0 | 0.33 | 282 |
+| numpy | per_run | tüm girdiler 100 Hz | 10 | 32.7 | 0.31 | 1777 |
+| numpy | per_run | sessiz | 20 | 36.9 | 0.54 | 0 |
+| numpy | per_run | LC4 iki taraf 100 Hz | 20 | 36.7 | 0.55 | 312 |
+| numpy | per_run | tüm girdiler 100 Hz | 20 | 38.6 | 0.52 | 1810 |
+| numpy | per_run | sessiz | 50 | 55.4 | 0.90 | 0 |
+| numpy | per_run | LC4 iki taraf 100 Hz | 50 | 59.4 | 0.84 | 336 |
+| numpy | per_run | tüm girdiler 100 Hz | 50 | 62.9 | 0.79 | 1848 |
 
 ## Duman testi: mod DN hızları (Hz, sol–sağ ortalaması; cython persistent, 20 ms adım, tohum 0)
 
@@ -65,5 +65,5 @@ Kalibrasyonsuz, arka plan girdisiz; kabul testi değildir. Yalnızca ağın sess
 | senaryo | GF | DNp02 | DNp04 | DNp11 | MDN | DNa01 | DNa02 | DNp09 | MN9 |
 |---|---|---|---|---|---|---|---|---|---|
 | sessiz | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
-| LC4 iki taraf 100 Hz | 72.0 | 195.0 | 290.0 | 166.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
-| tüm girdiler 100 Hz | 166.0 | 167.0 | 298.0 | 91.0 | 0.0 | 0.0 | 25.0 | 3.0 | 318.0 |
+| LC4 iki taraf 100 Hz | 87.0 | 115.0 | 154.0 | 96.0 | 0.0 | 0.0 | 5.0 | 0.0 | 0.0 |
+| tüm girdiler 100 Hz | 143.0 | 102.0 | 180.0 | 82.0 | 0.0 | 0.0 | 26.0 | 0.0 | 43.0 |
