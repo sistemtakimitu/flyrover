@@ -1,0 +1,377 @@
+#!/usr/bin/env bash
+# macwsl - macOS için WSL benzeri Linux terminali.
+#
+# Windows'taki `wsl` komutunun kullanımını taklit eder; arkada Lima
+# (https://lima-vm.io) ve Apple Virtualization.framework ile hafif bir
+# Linux VM'i çalıştırır. Mac'teki ev dizini VM içine yazılabilir olarak
+# bağlanır, VM ilk komutta otomatik açılır.
+#
+# macOS'un yerleşik bash 3.2'si ile uyumlu tutulur (ilişkisel dizi,
+# ${x,,}, mapfile vb. kullanılmaz).
+set -euo pipefail
+
+VERSION="0.1.0"
+PREFIX="macwsl-"
+CONFIG_DIR="${MACWSL_CONFIG_DIR:-${XDG_CONFIG_HOME:-$HOME/.config}/macwsl}"
+DEFAULT_FILE="$CONFIG_DIR/default"
+FALLBACK_DISTRO="ubuntu"
+
+die() { printf 'macwsl: %s\n' "$*" >&2; exit 1; }
+info() { printf '%s\n' "$*" >&2; }
+lower() { printf '%s' "$1" | tr '[:upper:]' '[:lower:]'; }
+
+usage() {
+  cat <<'EOF'
+Kullanım: macwsl [seçenekler] [komut...]
+
+Komut verilmezse varsayılan dağıtımda etkileşimli kabuk açar.
+
+Kurulum ve yönetim:
+  --install [DAĞITIM]       Lima'yı (gerekirse Homebrew ile) ve dağıtımı kurar.
+                            Dağıtım verilmezse Ubuntu 24.04 kurulur.
+  -l, --list [-v]           Kurulu dağıtımları listeler (-v: durumlarıyla).
+  -l, --list --online       Kurulabilecek dağıtımları listeler.
+  -s, --set-default DAĞITIM Varsayılan dağıtımı değiştirir.
+  -t, --terminate DAĞITIM   Bir dağıtımı durdurur.
+  --shutdown                Çalışan tüm dağıtımları durdurur.
+  --unregister DAĞITIM      Dağıtımı ve diskini SİLER (geri alınamaz).
+  --update                  Lima'yı günceller (brew upgrade lima).
+  --status                  Genel durumu gösterir.
+  --version                 Sürüm bilgisini gösterir.
+  -h, --help                Bu yardımı gösterir.
+
+Çalıştırma:
+  -d, --distribution DAĞITIM  Varsayılan yerine bu dağıtımı kullanır.
+  --cd DİZİN                  Bu dizinde başlar ('~' = Linux ev dizini).
+  -e, --exec KOMUT...         Komutu Linux içinde çalıştırır.
+  -- KOMUT...                 -e ile aynı.
+  -y, --yes                   Onay sorularını atlar.
+
+Ortam değişkenleri (yalnızca --install sırasında):
+  MACWSL_CPUS, MACWSL_MEMORY (GiB), MACWSL_DISK (GiB)
+
+Örnekler:
+  macwsl --install
+  macwsl
+  macwsl -e uname -a
+  macwsl --install Debian && macwsl -d debian
+EOF
+}
+
+# Kullanıcının yazdığı dağıtım adını Lima şablonuna çevirir.
+distro_template() {
+  case "$(lower "$1")" in
+    ubuntu|ubuntu-24.04|ubuntu-24-04) echo ubuntu-24.04 ;;
+    ubuntu-22.04|ubuntu-22-04) echo ubuntu-22.04 ;;
+    debian|debian-12) echo debian-12 ;;
+    fedora|fedoralinux) echo fedora ;;
+    archlinux|arch) echo archlinux ;;
+    *) return 1 ;;
+  esac
+}
+
+list_online() {
+  cat <<'EOF'
+Kurulabilecek dağıtımlar (macwsl --install <AD>):
+
+AD              AÇIKLAMA
+Ubuntu          Ubuntu 24.04 LTS (varsayılan)
+Ubuntu-24.04    Ubuntu 24.04 LTS
+Ubuntu-22.04    Ubuntu 22.04 LTS
+Debian          Debian 12
+Fedora          Fedora (güncel sürüm)
+Archlinux       Arch Linux
+EOF
+}
+
+# "Ubuntu-24.04" -> "macwsl-ubuntu-24-04"
+instance_name() {
+  local n
+  n="$(lower "$1" | tr '.' '-')"
+  case "$n" in
+    ''|-*|*[!a-z0-9-]*) die "Geçersiz dağıtım adı: '$1'" ;;
+  esac
+  printf '%s%s' "$PREFIX" "$n"
+}
+
+require_lima() {
+  command -v limactl >/dev/null 2>&1 || die "Lima kurulu değil. Önce şunu çalıştırın: macwsl --install"
+}
+
+instance_exists() {
+  limactl list --quiet 2>/dev/null | grep -qx "$1"
+}
+
+instance_status() {
+  limactl list --format '{{.Status}}' "$1" 2>/dev/null || true
+}
+
+ensure_running() {
+  if [ "$(instance_status "$1")" != "Running" ]; then
+    info "${1#"$PREFIX"} başlatılıyor..."
+    limactl start --tty=false "$1"
+  fi
+}
+
+get_default() {
+  local d=""
+  if [ -f "$DEFAULT_FILE" ]; then
+    d="$(head -n 1 "$DEFAULT_FILE")"
+  fi
+  printf '%s' "${d:-$FALLBACK_DISTRO}"
+}
+
+save_default() {
+  mkdir -p "$CONFIG_DIR"
+  printf '%s\n' "$1" > "$DEFAULT_FILE"
+}
+
+confirm() {
+  [ "$ASSUME_YES" = 1 ] && return 0
+  [ -t 0 ] || die "Onay gerekiyor; etkileşimsiz kullanımda -y ekleyin."
+  local reply
+  printf '%s [e/H] ' "$1" >&2
+  read -r reply || true
+  case "$(lower "$reply")" in
+    e|evet|y|yes) return 0 ;;
+    *) return 1 ;;
+  esac
+}
+
+ensure_lima() {
+  command -v limactl >/dev/null 2>&1 && return 0
+  if ! command -v brew >/dev/null 2>&1; then
+    die "Homebrew bulunamadı. Önce https://brew.sh adresindeki komutla kurun, sonra tekrar: macwsl --install"
+  fi
+  info "Lima kuruluyor (brew install lima)..."
+  brew install lima
+  command -v limactl >/dev/null 2>&1 || die "Lima kurulumu başarısız oldu."
+}
+
+cmd_install() {
+  local distro="$1" tmpl inst short
+  tmpl="$(distro_template "$distro")" || die "Bilinmeyen dağıtım: '$distro'. Liste için: macwsl --list --online"
+  inst="$(instance_name "$distro")"
+  short="${inst#"$PREFIX"}"
+  ensure_lima
+
+  if instance_exists "$inst"; then
+    info "'$short' zaten kurulu."
+  else
+    local args
+    args=(start "--name=$inst" --tty=false --mount-writable)
+    [ -n "${MACWSL_CPUS:-}" ] && args+=("--cpus=$MACWSL_CPUS")
+    [ -n "${MACWSL_MEMORY:-}" ] && args+=("--memory=$MACWSL_MEMORY")
+    [ -n "${MACWSL_DISK:-}" ] && args+=("--disk=$MACWSL_DISK")
+    args+=("template://$tmpl")
+    info "'$short' kuruluyor ($tmpl). İlk kurulum imaj indirdiği için birkaç dakika sürebilir..."
+    limactl "${args[@]}"
+  fi
+
+  # İlk kurulan dağıtım varsayılan olur.
+  if [ ! -f "$DEFAULT_FILE" ] || ! instance_exists "$(instance_name "$(get_default)")"; then
+    save_default "$short"
+  fi
+  info "Hazır. Linux terminaline girmek için: macwsl$( [ "$short" = "$(get_default)" ] || printf ' -d %s' "$short")"
+}
+
+cmd_list() {
+  local verbose="$1" rows def n s short
+  require_lima
+  rows="$(limactl list --format '{{.Name}}|{{.Status}}' 2>/dev/null | grep "^$PREFIX" || true)"
+  if [ -z "$rows" ]; then
+    info "Kurulu dağıtım yok. Kurmak için: macwsl --install"
+    return 0
+  fi
+  def="$(lower "$(get_default)")"
+  if [ "$verbose" = 1 ]; then
+    printf '  %-20s %s\n' "AD" "DURUM"
+    while IFS='|' read -r n s; do
+      short="${n#"$PREFIX"}"
+      if [ "$short" = "$def" ]; then
+        printf '* %-20s %s\n' "$short" "$s"
+      else
+        printf '  %-20s %s\n' "$short" "$s"
+      fi
+    done <<EOF
+$rows
+EOF
+  else
+    echo "Kurulu dağıtımlar:"
+    while IFS='|' read -r n s; do
+      short="${n#"$PREFIX"}"
+      if [ "$short" = "$def" ]; then
+        echo "$short (varsayılan)"
+      else
+        echo "$short"
+      fi
+    done <<EOF
+$rows
+EOF
+  fi
+}
+
+cmd_set_default() {
+  local inst
+  require_lima
+  inst="$(instance_name "$1")"
+  instance_exists "$inst" || die "'$1' kurulu değil."
+  save_default "${inst#"$PREFIX"}"
+  info "Varsayılan dağıtım: ${inst#"$PREFIX"}"
+}
+
+cmd_terminate() {
+  local inst
+  require_lima
+  inst="$(instance_name "$1")"
+  instance_exists "$inst" || die "'$1' kurulu değil."
+  if [ "$(instance_status "$inst")" = "Running" ]; then
+    limactl stop "$inst"
+  else
+    info "'${inst#"$PREFIX"}' zaten durmuş."
+  fi
+}
+
+cmd_shutdown() {
+  local rows n s stopped=0
+  require_lima
+  rows="$(limactl list --format '{{.Name}}|{{.Status}}' 2>/dev/null | grep "^$PREFIX" || true)"
+  while IFS='|' read -r n s; do
+    [ -n "$n" ] || continue
+    if [ "$s" = "Running" ]; then
+      limactl stop "$n"
+      stopped=$((stopped + 1))
+    fi
+  done <<EOF
+$rows
+EOF
+  info "$stopped dağıtım durduruldu."
+}
+
+cmd_unregister() {
+  local inst short
+  require_lima
+  inst="$(instance_name "$1")"
+  short="${inst#"$PREFIX"}"
+  instance_exists "$inst" || die "'$1' kurulu değil."
+  confirm "'$short' ve içindeki tüm dosyalar silinecek. Emin misiniz?" || die "İptal edildi."
+  limactl delete --force "$inst"
+  if [ -f "$DEFAULT_FILE" ] && [ "$(lower "$(get_default)")" = "$short" ]; then
+    rm -f "$DEFAULT_FILE"
+  fi
+  info "'$short' silindi."
+}
+
+cmd_status() {
+  echo "macwsl $VERSION"
+  if command -v limactl >/dev/null 2>&1; then
+    echo "Lima: $(limactl --version 2>/dev/null | head -n 1)"
+    echo "Varsayılan dağıtım: $(get_default)"
+    cmd_list 1
+  else
+    echo "Lima: kurulu değil (macwsl --install)"
+  fi
+}
+
+cmd_version() {
+  echo "macwsl $VERSION"
+  if command -v limactl >/dev/null 2>&1; then
+    limactl --version 2>/dev/null | head -n 1
+  fi
+}
+
+cmd_update() {
+  command -v brew >/dev/null 2>&1 || die "Homebrew bulunamadı."
+  brew upgrade lima
+}
+
+# Dağıtımda kabuk açar ya da komut çalıştırır.
+cmd_run() {
+  local distro="$1" workdir="$2" inst short args
+  shift 2
+  require_lima
+  inst="$(instance_name "$distro")"
+  short="${inst#"$PREFIX"}"
+  if ! instance_exists "$inst"; then
+    if distro_template "$distro" >/dev/null; then
+      die "'$short' kurulu değil. Kurmak için: macwsl --install $distro"
+    fi
+    die "'$short' kurulu değil. Kurulabilecekler için: macwsl --list --online"
+  fi
+  ensure_running "$inst"
+
+  args=(shell)
+  if [ "$workdir" = "~" ]; then
+    # Linux ev dizini: Lima'nın Mac dizinine geçmesini engelle, içeride $HOME'a geç.
+    args+=("--workdir=/" "$inst")
+    # shellcheck disable=SC2016 # $HOME ve $SHELL Mac'te değil, VM içinde açılmalı.
+    if [ $# -eq 0 ]; then
+      exec limactl "${args[@]}" sh -c 'cd "$HOME" || exit 1; exec "${SHELL:-/bin/bash}" -l'
+    fi
+    # shellcheck disable=SC2016
+    exec limactl "${args[@]}" sh -c 'cd "$HOME" || exit 1; exec "$@"' sh "$@"
+  fi
+  if [ -n "$workdir" ]; then
+    # Mac'te var olan göreli/mutlak yolu mutlak yola çevir (ev dizini VM'de aynı yolda).
+    if [ -d "$workdir" ]; then
+      workdir="$(cd "$workdir" && pwd)"
+    fi
+    args+=("--workdir=$workdir")
+  fi
+  args+=("$inst")
+  exec limactl "${args[@]}" "$@"
+}
+
+need_arg() {
+  [ "$2" -ge 2 ] || die "$1 bir değer bekliyor."
+}
+
+main() {
+  local action="run" distro="" workdir="" verbose=0 online=0 target=""
+  ASSUME_YES=0
+
+  while [ $# -gt 0 ]; do
+    case "$1" in
+      --install)
+        action=install; shift
+        if [ $# -gt 0 ]; then
+          case "$1" in -*) ;; *) distro="$1"; shift ;; esac
+        fi
+        ;;
+      -d|--distribution) need_arg "$1" $#; distro="$2"; shift 2 ;;
+      -l|--list) action=list; shift ;;
+      -v|--verbose) verbose=1; shift ;;
+      -o|--online) online=1; shift ;;
+      --cd) need_arg "$1" $#; workdir="$2"; shift 2 ;;
+      -s|--set-default) need_arg "$1" $#; action=set-default; target="$2"; shift 2 ;;
+      -t|--terminate) need_arg "$1" $#; action=terminate; target="$2"; shift 2 ;;
+      --unregister) need_arg "$1" $#; action=unregister; target="$2"; shift 2 ;;
+      --shutdown) action=shutdown; shift ;;
+      --update) action=update; shift ;;
+      --status) action=status; shift ;;
+      --version) action=version; shift ;;
+      -y|--yes) ASSUME_YES=1; shift ;;
+      -h|--help) usage; return 0 ;;
+      -e|--exec|--) shift; break ;;
+      -*) die "Bilinmeyen seçenek: $1 (yardım: macwsl --help)" ;;
+      *) break ;;
+    esac
+  done
+
+  case "$action" in
+    install) cmd_install "${distro:-$FALLBACK_DISTRO}" ;;
+    list)
+      if [ "$online" = 1 ]; then list_online; else cmd_list "$verbose"; fi
+      ;;
+    set-default) cmd_set_default "$target" ;;
+    terminate) cmd_terminate "$target" ;;
+    unregister) cmd_unregister "$target" ;;
+    shutdown) cmd_shutdown ;;
+    update) cmd_update ;;
+    status) cmd_status ;;
+    version) cmd_version ;;
+    run) cmd_run "${distro:-$(get_default)}" "$workdir" "$@" ;;
+  esac
+}
+
+main "$@"
